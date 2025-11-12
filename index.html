@@ -216,7 +216,7 @@
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
-            padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+            padding: 8px 0;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             z-index: 100;
         }
@@ -455,389 +455,13 @@
     </div>
 
     <div class="container">
-        <!-- Home Tab -->
         <div id="homeTab" class="tab-content">
             <div class="card">
-                <div class="stat-card">
-                    <div class="stat-label">AVG HUMIDITY</div>
-                    <div class="stat-value">${avgHum}%</div>
-                </div>
-            `;
-        }
-
-        // Render map
-        function renderMap() {
-            setTimeout(() => {
-                if (state.mapInstance) {
-                    state.mapInstance.remove();
-                }
-                
-                if (state.recordings.length === 0) {
-                    document.getElementById('map').innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-icon">📍</div>
-                            <div style="font-size: 14px; color: #6b7280;">No locations recorded yet</div>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                const centerLat = state.recordings[0].location.lat;
-                const centerLng = state.recordings[0].location.lng;
-
-                state.mapInstance = L.map('map').setView([centerLat, centerLng], 13);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap'
-                }).addTo(state.mapInstance);
-
-                state.recordings.forEach(r => {
-                    const color = getColor(r.noiseLevel);
-                    const icon = L.divIcon({
-                        html: `<div style="background: ${color}; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">${getCategoryIcon(r.category)}</div>`,
-                        iconSize: [30, 30]
-                    });
-
-                    L.marker([r.location.lat, r.location.lng], { icon })
-                        .bindPopup(`
-                            <div style="font-family: sans-serif;">
-                                <strong>${r.locationName}</strong><br>
-                                ${r.noiseLevel} dB - ${r.category}<br>
-                                ${r.temperature}°C, ${r.humidity}%<br>
-                                ${r.time}
-                            </div>
-                        `)
-                        .addTo(state.mapInstance);
-                });
-
-                if (state.recordings.length > 1) {
-                    const heatData = state.recordings.map(r => [
-                        r.location.lat,
-                        r.location.lng,
-                        r.noiseLevel / 100
-                    ]);
-                    L.heatLayer(heatData, { radius: 25, blur: 15 }).addTo(state.mapInstance);
-                }
-            }, 100);
-        }
-
-        // Render data
-        function renderData() {
-            const list = document.getElementById('recordingsList');
-            
-            if (state.recordings.length === 0) {
-                list.innerHTML = `
-                    <div class="card">
-                        <div class="empty-state">
-                            <div class="empty-icon">📊</div>
-                            <div style="font-size: 14px; color: #6b7280;">No recordings yet</div>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-            
-            list.innerHTML = state.recordings.map(r => `
-                <div class="recording-item">
-                    <div class="recording-header">
-                        <div class="recording-category">
-                            ${getCategoryIcon(r.category)} ${r.category}
-                        </div>
-                        <div class="recording-level" style="background: ${getColor(r.noiseLevel)}">
-                            ${r.noiseLevel} dB
-                        </div>
-                    </div>
-                    <div class="recording-info">📍 ${r.locationName}</div>
-                    <div class="recording-info">📅 ${r.date} • ⏰ ${r.time}</div>
-                    <div class="recording-info">🌡️ ${r.temperature}°C • 💧 ${r.humidity}%</div>
-                    <div style="margin-top: 12px;">
-                        ${Object.entries(r.confidences).map(([cat, conf]) => `
-                            <div class="confidence-bar">
-                                <div class="confidence-label">
-                                    <span>${cat}</span>
-                                    <span>${conf.toFixed(0)}%</span>
-                                </div>
-                                <div class="confidence-progress">
-                                    <div class="confidence-fill" style="width: ${conf}%"></div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete</button>
-                </div>
-            `).join('');
-        }
-
-        // Render analytics
-        function renderAnalytics() {
-            if (state.recordings.length === 0) {
-                document.getElementById('categoryChart').parentElement.innerHTML = `
-                    <div class="section-title">📈 Analytics</div>
-                    <div class="empty-state">
-                        <div class="empty-icon">📈</div>
-                        <div style="font-size: 14px; color: #6b7280;">No data for analytics</div>
-                    </div>
-                `;
-                return;
-            }
-            
-            setTimeout(() => {
-                // Category chart
-                const categoryCounts = state.recordings.reduce((acc, r) => {
-                    acc[r.category] = (acc[r.category] || 0) + 1;
-                    return acc;
-                }, {});
-                
-                const catCtx = document.getElementById('categoryChart');
-                if (state.charts.category) state.charts.category.destroy();
-                
-                state.charts.category = new Chart(catCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: Object.keys(categoryCounts).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
-                        datasets: [{
-                            data: Object.values(categoryCounts),
-                            backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: true,
-                        plugins: {
-                            legend: { position: 'bottom' }
-                        }
-                    }
-                });
-
-                // Trend chart
-                const trendCtx = document.getElementById('trendChart');
-                if (state.charts.trend) state.charts.trend.destroy();
-                
-                const sortedRecs = [...state.recordings].reverse();
-                state.charts.trend = new Chart(trendCtx, {
-                    type: 'line',
-                    data: {
-                        labels: sortedRecs.map((r, i) => `#${i+1}`),
-                        datasets: [{
-                            label: 'Noise Level (dB)',
-                            data: sortedRecs.map(r => r.noiseLevel),
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: true,
-                        scales: {
-                            y: { beginAtZero: true, max: 100 }
-                        }
-                    }
-                });
-                
-                // Health comparison
-                const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
-                
-                document.getElementById('healthComp').innerHTML = `
-                    <div class="health-item" style="background: #dcfce7;">
-                        <div>
-                            <div style="font-weight: 600; color: #166534;">WHO Safe (Day)</div>
-                            <div style="font-size: 11px; color: #16a34a;">Recommended limit</div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 700; color: #166534;">55 dB</div>
-                    </div>
-                    <div class="health-item" style="background: ${parseFloat(avg) > 55 ? '#fee2e2' : '#dcfce7'};">
-                        <div>
-                            <div style="font-weight: 600; color: #1f2937;">Your Average</div>
-                            <div style="font-size: 11px; color: #6b7280;">Current level</div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 700; color: ${getColor(parseFloat(avg))}">${avg} dB</div>
-                    </div>
-                    <div class="health-item" style="background: #fee2e2;">
-                        <div>
-                            <div style="font-weight: 600; color: #991b1b;">Damage Risk</div>
-                            <div style="font-size: 11px; color: #dc2626;">Prolonged exposure</div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 700; color: #991b1b;">85 dB</div>
-                    </div>
-                `;
-            }, 100);
-        }
-
-        // Delete recording
-        function deleteRecording(id) {
-            if (confirm('Delete this recording?')) {
-                localStorage.removeItem(`eco_${id}`);
-                state.recordings = state.recordings.filter(r => r.id !== id);
-                updateHeaderCount();
-                renderData();
-                if (state.currentTab === 'home') renderHome();
-            }
-        }
-
-        // Clear all
-        function clearAll() {
-            if (confirm('⚠️ Delete ALL data? Cannot be undone!')) {
-                if (confirm('Are you absolutely sure?')) {
-                    state.recordings.forEach(r => localStorage.removeItem(`eco_${r.id}`));
-                    state.recordings = [];
-                    updateHeaderCount();
-                    renderHome();
-                    showStatus('✅ All data cleared', false);
-                    setTimeout(hideStatus, 2000);
-                }
-            }
-        }
-
-        // Export CSV
-        function exportData() {
-            if (state.recordings.length === 0) {
-                alert('No data to export');
-                return;
-            }
-            
-            const csv = [
-                ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temp (°C)', 'Humidity (%)', 'Traffic %', 'Construction %', 'People %', 'Nature %', 'Silence %'],
-                ...state.recordings.map(r => [
-                    r.date, r.time, r.locationName, r.category, r.noiseLevel, r.temperature, r.humidity,
-                    r.confidences.traffic.toFixed(1),
-                    r.confidences.construction.toFixed(1),
-                    r.confidences.people.toFixed(1),
-                    r.confidences.nature.toFixed(1),
-                    r.confidences.silence.toFixed(1)
-                ])
-            ].map(row => row.join(',')).join('\n');
-            
-            download(csv, `articul8-ecosense-${Date.now()}.csv`, 'text/csv');
-            showStatus('✅ CSV exported!', false);
-            setTimeout(hideStatus, 2000);
-        }
-
-        // Export report
-        function exportReport() {
-            if (state.recordings.length === 0) {
-                alert('No data to export');
-                return;
-            }
-            
-            const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
-            const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
-            const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
-            const min = Math.min(...state.recordings.map(r => r.noiseLevel));
-            const max = Math.max(...state.recordings.map(r => r.noiseLevel));
-            
-            const quietest = state.recordings.reduce((min, r) => r.noiseLevel < min.noiseLevel ? r : min);
-            const loudest = state.recordings.reduce((max, r) => r.noiseLevel > max.noiseLevel ? r : max);
-            
-            const report = `
-╔════════════════════════════════════════════════════════════╗
-║       ARTICUL8 ECOSENSE - ENVIRONMENTAL REPORT            ║
-║       Multi-Sensor Monitoring Platform                    ║
-╚════════════════════════════════════════════════════════════╝
-
-Generated: ${new Date().toLocaleString()}
-Research ID: ${Date.now()}
-
-═══════════════════════════════════════════════════════════
-
-📊 EXECUTIVE SUMMARY
-═══════════════════════════════════════════════════════════
-
-Total Measurements: ${state.recordings.length}
-Study Duration: ${Math.ceil((Date.now() - state.recordings[state.recordings.length-1].timestamp) / (1000*60*60*24))} days
-
-═══════════════════════════════════════════════════════════
-
-📈 ENVIRONMENTAL ANALYSIS
-═══════════════════════════════════════════════════════════
-
-SOUND LEVELS:
-  Average: ${avg} dB
-  Range: ${min} - ${max} dB
-  WHO Comparison: ${parseFloat(avg) > 55 ? 'EXCEEDS' : 'WITHIN'} safe limits (55 dB)
-  EPA Comparison: ${parseFloat(avg) > 70 ? 'EXCEEDS' : 'WITHIN'} safe limits (70 dB)
-
-CLIMATE CONDITIONS:
-  Average Temperature: ${avgTemp}°C
-  Average Humidity: ${avgHum}%
-
-═══════════════════════════════════════════════════════════
-
-📍 LOCATION ANALYSIS
-═══════════════════════════════════════════════════════════
-
-QUIETEST LOCATION:
-  Name: ${quietest.locationName}
-  Level: ${quietest.noiseLevel} dB
-  Category: ${quietest.category}
-  Time: ${quietest.time}
-  Conditions: ${quietest.temperature}°C, ${quietest.humidity}%
-
-LOUDEST LOCATION:
-  Name: ${loudest.locationName}
-  Level: ${loudest.noiseLevel} dB
-  Category: ${loudest.category}
-  Time: ${loudest.time}
-  Conditions: ${loudest.temperature}°C, ${loudest.humidity}%
-
-═══════════════════════════════════════════════════════════
-
-💡 RECOMMENDATIONS
-═══════════════════════════════════════════════════════════
-
-${parseFloat(avg) > 70 ? '⚠️ HIGH NOISE: Implement noise barriers and sound-absorbing materials.\n' : ''}${parseFloat(avg) < 55 ? '✅ EXCELLENT: Noise levels within WHO safe guidelines.\n' : ''}
-Continue monitoring across different times and conditions for
-comprehensive environmental assessment.
-
-═══════════════════════════════════════════════════════════
-
-© Articul8 EcoSense - Multi-Sensor Environmental Platform
-Measuring Sound Levels, Temperature & Humidity
-            `.trim();
-            
-            download(report, `articul8-report-${Date.now()}.txt`, 'text/plain');
-            showStatus('✅ Report generated!', false);
-            setTimeout(hideStatus, 2000);
-        }
-
-        // Download helper
-        function download(content, filename, type) {
-            const blob = new Blob([content], { type });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Helpers
-        function getCategoryIcon(cat) {
-            return {traffic: '🚗', construction: '🏗️', people: '👥', nature: '🌳', silence: '🔇'}[cat] || '🔊';
-        }
-
-        function getColor(db) {
-            if (db < 40) return '#10b981';
-            if (db < 55) return '#84cc16';
-            if (db < 70) return '#f59e0b';
-            if (db < 85) return '#f97316';
-            return '#ef4444';
-        }
-
-        // Initialize
-        loadData();
-        getLocation();
-        getEnvData();
-        renderHome();
-    </script>
-</body>
-</html>section-title">📊 Dashboard</div>
+                <div class="section-title">📊 Dashboard</div>
                 <div class="stats-grid" id="homeStats"></div>
             </div>
         </div>
 
-        <!-- Record Tab -->
         <div id="recordTab" class="tab-content hidden">
             <div class="card">
                 <div class="section-title">🎤 Environmental Recording</div>
@@ -861,9 +485,7 @@ Measuring Sound Levels, Temperature & Humidity
                     </div>
                 </div>
                 
-                <div class="spectrum-bars hidden" id="spectrumBars">
-                    ${Array(10).fill(0).map(() => '<div class="bar"></div>').join('')}
-                </div>
+                <div class="spectrum-bars hidden" id="spectrumBars"></div>
                 
                 <div class="env-grid">
                     <div class="env-item">
@@ -882,7 +504,6 @@ Measuring Sound Levels, Temperature & Humidity
             <div id="statusMsg" class="status-msg hidden"></div>
         </div>
 
-        <!-- Map Tab -->
         <div id="mapTab" class="tab-content hidden">
             <div class="card">
                 <div class="section-title">🗺️ Environmental Map</div>
@@ -893,12 +514,10 @@ Measuring Sound Levels, Temperature & Humidity
             </div>
         </div>
 
-        <!-- Data Tab -->
         <div id="dataTab" class="tab-content hidden">
             <div id="recordingsList"></div>
         </div>
 
-        <!-- Analytics Tab -->
         <div id="analyticsTab" class="tab-content hidden">
             <div class="card">
                 <div class="section-title">📈 Analytics</div>
@@ -956,19 +575,13 @@ Measuring Sound Levels, Temperature & Humidity
 
         let mediaRecorder, audioContext, analyser, dataArray, animationId, recordingTimeout;
 
-        // Load data
         function loadData() {
             const keys = Object.keys(localStorage).filter(k => k.startsWith('eco_'));
             state.recordings = keys.map(k => JSON.parse(localStorage.getItem(k)))
                 .sort((a, b) => b.timestamp - a.timestamp);
-            updateHeaderCount();
-        }
-
-        function updateHeaderCount() {
             document.getElementById('headerCount').textContent = state.recordings.length;
         }
 
-        // Get location
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -985,7 +598,6 @@ Measuring Sound Levels, Temperature & Humidity
             }
         }
 
-        // Get environmental data
         function getEnvData() {
             const hour = new Date().getHours();
             let temp, humidity;
@@ -1011,7 +623,6 @@ Measuring Sound Levels, Temperature & Humidity
             document.getElementById('humidityDisplay').textContent = state.currentHumidity;
         }
 
-        // Toggle recording
         async function toggleRecording() {
             if (state.analyzing) return;
             
@@ -1022,7 +633,6 @@ Measuring Sound Levels, Temperature & Humidity
             }
         }
 
-        // Start recording
         async function startRecording() {
             try {
                 showStatus('🎤 Requesting microphone...', false);
@@ -1062,7 +672,13 @@ Measuring Sound Levels, Temperature & Humidity
                 
                 document.getElementById('recordBtn').classList.add('recording');
                 document.getElementById('recordIcon').textContent = '⏹️';
-                document.getElementById('spectrumBars').classList.remove('hidden');
+                
+                const bars = document.getElementById('spectrumBars');
+                bars.innerHTML = '';
+                for(let i = 0; i < 10; i++) {
+                    bars.innerHTML += '<div class="bar"></div>';
+                }
+                bars.classList.remove('hidden');
                 
                 getEnvData();
                 updateMeter();
@@ -1077,7 +693,6 @@ Measuring Sound Levels, Temperature & Humidity
             }
         }
 
-        // Update meter
         function updateMeter() {
             if (!state.isRecording || !analyser) return;
             
@@ -1105,7 +720,6 @@ Measuring Sound Levels, Temperature & Humidity
             animationId = requestAnimationFrame(updateMeter);
         }
 
-        // Stop recording
         function stopRecording() {
             if (!state.isRecording) return;
             
@@ -1121,7 +735,6 @@ Measuring Sound Levels, Temperature & Humidity
             document.getElementById('spectrumBars').classList.add('hidden');
         }
 
-        // Analyze
         async function analyzeRecording() {
             state.analyzing = true;
             document.getElementById('recordBtn').classList.add('analyzing');
@@ -1172,7 +785,7 @@ Measuring Sound Levels, Temperature & Humidity
             showStatus(`✅ ${db} dB - ${category}`, false);
             setTimeout(hideStatus, 3000);
             
-            updateHeaderCount();
+            document.getElementById('headerCount').textContent = state.recordings.length;
             if (state.currentTab === 'home') renderHome();
         }
 
@@ -1187,7 +800,6 @@ Measuring Sound Levels, Temperature & Humidity
             document.getElementById('statusMsg').classList.add('hidden');
         }
 
-        // Switch tabs
         function switchTab(tab) {
             state.currentTab = tab;
             
@@ -1203,7 +815,6 @@ Measuring Sound Levels, Temperature & Humidity
             if (tab === 'analytics') renderAnalytics();
         }
 
-        // Render home
         function renderHome() {
             if (state.recordings.length === 0) {
                 document.getElementById('homeStats').innerHTML = `
@@ -1236,4 +847,286 @@ Measuring Sound Levels, Temperature & Humidity
                     <div class="stat-label">AVG TEMP</div>
                     <div class="stat-value">${avgTemp}°C</div>
                 </div>
-                <div class="
+                <div class="stat-card">
+                    <div class="stat-label">AVG HUMIDITY</div>
+                    <div class="stat-value">${avgHum}%</div>
+                </div>
+            `;
+        }
+
+        function renderMap() {
+            setTimeout(() => {
+                if (state.mapInstance) {
+                    state.mapInstance.remove();
+                }
+                
+                if (state.recordings.length === 0) {
+                    document.getElementById('map').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📍</div>
+                            <div style="font-size: 14px; color: #6b7280;">No locations recorded yet</div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const centerLat = state.recordings[0].location.lat;
+                const centerLng = state.recordings[0].location.lng;
+
+                state.mapInstance = L.map('map').setView([centerLat, centerLng], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(state.mapInstance);
+
+                state.recordings.forEach(r => {
+                    const color = getColor(r.noiseLevel);
+                    const icon = L.divIcon({
+                        html: '<div style="background: ' + color + '; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">' + getCategoryIcon(r.category) + '</div>',
+                        iconSize: [30, 30]
+                    });
+
+                    L.marker([r.location.lat, r.location.lng], { icon })
+                        .bindPopup('<div><strong>' + r.locationName + '</strong><br>' + r.noiseLevel + ' dB - ' + r.category + '<br>' + r.temperature + '°C, ' + r.humidity + '%</div>')
+                        .addTo(state.mapInstance);
+                });
+
+                if (state.recordings.length > 1) {
+                    const heatData = state.recordings.map(r => [r.location.lat, r.location.lng, r.noiseLevel / 100]);
+                    L.heatLayer(heatData, { radius: 25, blur: 15 }).addTo(state.mapInstance);
+                }
+            }, 100);
+        }
+
+        function renderData() {
+            const list = document.getElementById('recordingsList');
+            
+            if (state.recordings.length === 0) {
+                list.innerHTML = `
+                    <div class="card">
+                        <div class="empty-state">
+                            <div class="empty-icon">📊</div>
+                            <div style="font-size: 14px; color: #6b7280;">No recordings yet</div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            list.innerHTML = state.recordings.map(r => `
+                <div class="recording-item">
+                    <div class="recording-header">
+                        <div class="recording-category">
+                            ${getCategoryIcon(r.category)} ${r.category}
+                        </div>
+                        <div class="recording-level" style="background: ${getColor(r.noiseLevel)}">
+                            ${r.noiseLevel} dB
+                        </div>
+                    </div>
+                    <div class="recording-info">📍 ${r.locationName}</div>
+                    <div class="recording-info">📅 ${r.date} • ⏰ ${r.time}</div>
+                    <div class="recording-info">🌡️ ${r.temperature}°C • 💧 ${r.humidity}%</div>
+                    <div style="margin-top: 12px;">
+                        ${Object.entries(r.confidences).map(([cat, conf]) => `
+                            <div class="confidence-bar">
+                                <div class="confidence-label">
+                                    <span>${cat}</span>
+                                    <span>${conf.toFixed(0)}%</span>
+                                </div>
+                                <div class="confidence-progress">
+                                    <div class="confidence-fill" style="width: ${conf}%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function renderAnalytics() {
+            if (state.recordings.length === 0) {
+                document.getElementById('categoryChart').parentElement.innerHTML = `
+                    <div class="section-title">📈 Analytics</div>
+                    <div class="empty-state">
+                        <div class="empty-icon">📈</div>
+                        <div style="font-size: 14px; color: #6b7280;">No data for analytics</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            setTimeout(() => {
+                const categoryCounts = state.recordings.reduce((acc, r) => {
+                    acc[r.category] = (acc[r.category] || 0) + 1;
+                    return acc;
+                }, {});
+                
+                const catCtx = document.getElementById('categoryChart');
+                if (state.charts.category) state.charts.category.destroy();
+                
+                state.charts.category = new Chart(catCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(categoryCounts).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
+                        datasets: [{
+                            data: Object.values(categoryCounts),
+                            backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+
+                const trendCtx = document.getElementById('trendChart');
+                if (state.charts.trend) state.charts.trend.destroy();
+                
+                const sortedRecs = [...state.recordings].reverse();
+                state.charts.trend = new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: sortedRecs.map((r, i) => '#' + (i+1)),
+                        datasets: [{
+                            label: 'Noise Level (dB)',
+                            data: sortedRecs.map(r => r.noiseLevel),
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true, max: 100 }
+                        }
+                    }
+                });
+                
+                const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
+                
+                document.getElementById('healthComp').innerHTML = `
+                    <div class="health-item" style="background: #dcfce7;">
+                        <div>
+                            <div style="font-weight: 600; color: #166534;">WHO Safe (Day)</div>
+                            <div style="font-size: 11px; color: #16a34a;">Recommended limit</div>
+                        </div>
+                        <div style="font-size: 20px; font-weight: 700; color: #166534;">55 dB</div>
+                    </div>
+                    <div class="health-item" style="background: ${parseFloat(avg) > 55 ? '#fee2e2' : '#dcfce7'};">
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Your Average</div>
+                            <div style="font-size: 11px; color: #6b7280;">Current level</div>
+                        </div>
+                        <div style="font-size: 20px; font-weight: 700; color: ${getColor(parseFloat(avg))}">${avg} dB</div>
+                    </div>
+                    <div class="health-item" style="background: #fee2e2;">
+                        <div>
+                            <div style="font-weight: 600; color: #991b1b;">Damage Risk</div>
+                            <div style="font-size: 11px; color: #dc2626;">Prolonged exposure</div>
+                        </div>
+                        <div style="font-size: 20px; font-weight: 700; color: #991b1b;">85 dB</div>
+                    </div>
+                `;
+            }, 100);
+        }
+
+        function deleteRecording(id) {
+            if (confirm('Delete this recording?')) {
+                localStorage.removeItem('eco_' + id);
+                state.recordings = state.recordings.filter(r => r.id !== id);
+                document.getElementById('headerCount').textContent = state.recordings.length;
+                renderData();
+                if (state.currentTab === 'home') renderHome();
+            }
+        }
+
+        function clearAll() {
+            if (confirm('⚠️ Delete ALL data? Cannot be undone!')) {
+                if (confirm('Are you absolutely sure?')) {
+                    state.recordings.forEach(r => localStorage.removeItem('eco_' + r.id));
+                    state.recordings = [];
+                    document.getElementById('headerCount').textContent = 0;
+                    renderHome();
+                    showStatus('✅ All data cleared', false);
+                    setTimeout(hideStatus, 2000);
+                }
+            }
+        }
+
+        function exportData() {
+            if (state.recordings.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            const csv = [
+                ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temp (°C)', 'Humidity (%)'],
+                ...state.recordings.map(r => [r.date, r.time, r.locationName, r.category, r.noiseLevel, r.temperature, r.humidity])
+            ].map(row => row.join(',')).join('\n');
+            
+            download(csv, 'articul8-data-' + Date.now() + '.csv', 'text/csv');
+            showStatus('✅ CSV exported!', false);
+            setTimeout(hideStatus, 2000);
+        }
+
+        function exportReport() {
+            if (state.recordings.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
+            const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
+            const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
+            
+            const quietest = state.recordings.reduce((min, r) => r.noiseLevel < min.noiseLevel ? r : min);
+            const loudest = state.recordings.reduce((max, r) => r.noiseLevel > max.noiseLevel ? r : max);
+            
+            const report = 'ARTICUL8 ECOSENSE - ENVIRONMENTAL REPORT\n\n' +
+                'Generated: ' + new Date().toLocaleString() + '\n\n' +
+                'SUMMARY\n' +
+                'Total: ' + state.recordings.length + ' recordings\n' +
+                'Avg Noise: ' + avg + ' dB\n' +
+                'Avg Temp: ' + avgTemp + '°C\n' +
+                'Avg Humidity: ' + avgHum + '%\n\n' +
+                'QUIETEST: ' + quietest.locationName + ' (' + quietest.noiseLevel + ' dB)\n' +
+                'LOUDEST: ' + loudest.locationName + ' (' + loudest.noiseLevel + ' dB)\n\n' +
+                '© Articul8 EcoSense';
+            
+            download(report, 'articul8-report-' + Date.now() + '.txt', 'text/plain');
+            showStatus('✅ Report generated!', false);
+            setTimeout(hideStatus, 2000);
+        }
+
+        function download(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function getCategoryIcon(cat) {
+            return {traffic: '🚗', construction: '🏗️', people: '👥', nature: '🌳', silence: '🔇'}[cat] || '🔊';
+        }
+
+        function getColor(db) {
+            if (db < 40) return '#10b981';
+            if (db < 55) return '#84cc16';
+            if (db < 70) return '#f59e0b';
+            if (db < 85) return '#f97316';
+            return '#ef4444';
+        }
+
+        loadData();
+        getLocation();
+        getEnvData();
+        renderHome();
+    </script>
+</body>
+</html>
