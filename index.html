@@ -30,11 +30,12 @@
         
         .header {
             background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             padding: 16px 20px;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .header-content {
@@ -44,8 +45,9 @@
         }
         
         .header h1 {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
         
         .header-stats {
@@ -55,45 +57,142 @@
         }
         
         .container {
-            padding: 16px;
+            padding: 20px;
             max-width: 600px;
             margin: 0 auto;
         }
         
         .card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 20px;
+            background: rgba(255,255,255,0.98);
+            border-radius: 24px;
+            padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            color: #1f2937;
+            transform: translateY(0);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:active {
+            transform: translateY(2px);
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 32px 0;
+        }
+        
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-button:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 20px 12px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-label {
+            font-size: 12px;
+            font-weight: 600;
             color: #1f2937;
         }
         
         .section-title {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             margin-bottom: 16px;
             color: #1f2937;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: -0.5px;
         }
         
         .record-button {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: none;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            font-size: 48px;
+            font-size: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 24px auto;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            margin: 32px auto;
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .record-button::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            opacity: 0;
+            transition: all 0.4s;
         }
         
         .record-button:active {
@@ -105,9 +204,19 @@
             animation: pulse 1.5s infinite;
         }
         
+        .record-button.recording::before {
+            opacity: 1;
+            animation: ripple 1.5s infinite;
+        }
+        
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4); }
-            50% { box-shadow: 0 8px 48px rgba(239, 68, 68, 0.8); }
+            0%, 100% { box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5); }
+            50% { box-shadow: 0 12px 48px rgba(239, 68, 68, 0.8); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
         }
         
         .record-button.analyzing {
@@ -115,11 +224,11 @@
         }
         
         .spinner {
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid white;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid white;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
         }
         
@@ -128,29 +237,41 @@
             100% { transform: rotate(360deg); }
         }
         
+        .meter-container {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        
         .meter-display {
-            font-size: 56px;
-            font-weight: 700;
-            color: #10b981;
+            font-size: 64px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
-            margin: 16px 0;
+            margin: 12px 0;
+            letter-spacing: -2px;
         }
         
         .meter-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #6b7280;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-align: center;
+            font-weight: 700;
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 12px;
             background: #e5e7eb;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
-            margin: 12px 0;
+            margin: 16px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .progress-fill {
@@ -158,53 +279,68 @@
             background: linear-gradient(90deg, #10b981, #059669);
             width: 0%;
             transition: width 0.3s;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
         }
         
         .env-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
         
         .env-item {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            padding: 16px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            padding: 20px;
+            border-radius: 16px;
             text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+        
+        .env-item:active {
+            transform: scale(0.98);
+            border-color: #10b981;
         }
         
         .env-icon {
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: 36px;
+            margin-bottom: 10px;
         }
         
         .env-value {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: #1f2937;
+            letter-spacing: -1px;
         }
         
         .env-label {
             font-size: 11px;
             color: #6b7280;
-            margin-top: 4px;
+            margin-top: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .location-input {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 15px;
-            margin-bottom: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            margin-bottom: 20px;
             background: white;
             color: #1f2937;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         
         .location-input:focus {
             outline: none;
             border-color: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
         
         .bottom-nav {
@@ -212,13 +348,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 8px 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 10px 0 12px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
             z-index: 100;
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
         
         .nav-item {
@@ -226,145 +363,210 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             padding: 8px;
             cursor: pointer;
             border: none;
             background: none;
-            color: #6b7280;
-            transition: all 0.2s;
+            color: #9ca3af;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #10b981;
+            border-radius: 0 0 3px 3px;
+            transition: width 0.3s;
         }
         
         .nav-item.active {
             color: #10b981;
         }
         
+        .nav-item.active::before {
+            width: 40px;
+        }
+        
         .nav-icon {
-            font-size: 22px;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item.active .nav-icon {
+            transform: scale(1.1);
         }
         
         .nav-label {
             font-size: 10px;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
         
         .recording-item {
             background: white;
-            border-radius: 16px;
-            padding: 16px;
+            border-radius: 18px;
+            padding: 18px;
             margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s;
+        }
+        
+        .recording-item:active {
+            transform: scale(0.99);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
         
         .recording-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         
         .recording-category {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .recording-level {
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
+            font-weight: 800;
+            font-size: 14px;
             color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         
         .recording-info {
-            font-size: 12px;
+            font-size: 13px;
             color: #6b7280;
-            margin: 4px 0;
+            margin: 6px 0;
+            font-weight: 500;
         }
         
         .delete-btn {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 8px;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
             width: 100%;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        
+        .delete-btn:active {
+            transform: scale(0.98);
         }
         
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
         
         .empty-icon {
-            font-size: 64px;
-            margin-bottom: 12px;
-            opacity: 0.3;
+            font-size: 80px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+            animation: float 3s ease-in-out infinite;
         }
         
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 14px;
+            margin-bottom: 14px;
         }
         
         .stat-card {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            padding: 20px 16px;
-            border-radius: 16px;
+            padding: 24px 18px;
+            border-radius: 18px;
             text-align: center;
             color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:active {
+            transform: scale(0.97);
         }
         
         .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            margin: 8px 0;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 10px 0;
+            letter-spacing: -1px;
         }
         
         .stat-label {
             font-size: 11px;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .action-btn {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 14px;
             width: 100%;
-            font-weight: 600;
-            font-size: 15px;
-            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .action-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 12px rgba(99, 102, 241, 0.3);
         }
         
         .status-msg {
             background: #10b981;
             color: white;
-            padding: 12px 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin-bottom: 20px;
             text-align: center;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .status-msg.error {
             background: #ef4444;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
         
         .hidden {
@@ -375,61 +577,68 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            gap: 3px;
-            height: 50px;
-            margin: 16px 0;
+            gap: 4px;
+            height: 60px;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 12px;
         }
         
         .bar {
-            width: 5px;
+            width: 6px;
             background: linear-gradient(to top, #10b981, #34d399);
             border-radius: 3px;
             transition: height 0.1s;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
         
         #map {
-            height: 300px;
-            border-radius: 12px;
-            margin: 12px 0;
+            height: 320px;
+            border-radius: 16px;
+            margin: 14px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         canvas {
             max-width: 100%;
-            border-radius: 12px;
+            border-radius: 14px;
         }
         
         .health-comparison {
-            background: #f3f4f6;
-            border-radius: 12px;
-            padding: 12px;
-            margin: 12px 0;
+            background: #f9fafb;
+            border-radius: 14px;
+            padding: 14px;
+            margin: 14px 0;
         }
         
         .health-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            margin: 6px 0;
-            border-radius: 8px;
+            padding: 14px;
+            margin: 8px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .confidence-bar {
-            margin: 8px 0;
+            margin: 10px 0;
         }
         
         .confidence-label {
             display: flex;
             justify-content: space-between;
-            font-size: 11px;
-            margin-bottom: 4px;
+            font-size: 12px;
+            margin-bottom: 6px;
             text-transform: capitalize;
+            font-weight: 600;
         }
         
         .confidence-progress {
-            height: 6px;
+            height: 8px;
             background: #e5e7eb;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
         }
         
@@ -438,6 +647,35 @@
             background: linear-gradient(90deg, #667eea, #764ba2);
             transition: width 0.3s;
         }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .quick-stat {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            padding: 16px;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .quick-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .quick-stat-label {
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -445,11 +683,11 @@
         <div class="header-content">
             <div>
                 <h1>🌿 Articul8 EcoSense</h1>
-                <div style="font-size: 11px; opacity: 0.8; margin-top: 2px;">Sound • Temp • Humidity</div>
+                <div style="font-size: 11px; opacity: 0.85; margin-top: 3px; font-weight: 600;">Environmental Intelligence Platform</div>
             </div>
             <div class="header-stats">
-                <div style="font-size: 18px; font-weight: 700;" id="headerCount">0</div>
-                <div style="font-size: 11px;">Recordings</div>
+                <div style="font-size: 20px; font-weight: 800;" id="headerCount">0</div>
+                <div style="font-size: 11px; font-weight: 600;">Recordings</div>
             </div>
         </div>
     </div>
@@ -457,8 +695,40 @@
     <div class="container">
         <div id="homeTab" class="tab-content">
             <div class="card">
-                <div class="section-title">📊 Dashboard</div>
+                <div class="hero-section">
+                    <div class="hero-icon">🌿</div>
+                    <div class="hero-title">Monitor Your Environment</div>
+                    <div class="hero-subtitle">AI-powered sound, temperature, and humidity tracking with real-time analysis</div>
+                    <button class="cta-button" onclick="switchTab('record')">
+                        <span style="font-size: 24px;">🎤</span>
+                        Start Recording
+                    </button>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔊</div>
+                        <div class="feature-label">Sound</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌡️</div>
+                        <div class="feature-label">Temperature</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💧</div>
+                        <div class="feature-label">Humidity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" id="statsCard">
+                <div class="section-title">📊 Your Statistics</div>
                 <div class="stats-grid" id="homeStats"></div>
+            </div>
+            
+            <div class="card" id="recentCard" style="display: none;">
+                <div class="section-title">⏱️ Recent Activity</div>
+                <div id="recentActivity"></div>
             </div>
         </div>
 
@@ -469,14 +739,14 @@
                     type="text" 
                     class="location-input" 
                     id="locationInput" 
-                    placeholder="📍 Location (e.g., School Plaza)"
+                    placeholder="📍 Location name (e.g., School Plaza)"
                 >
                 
                 <button class="record-button" id="recordBtn" onclick="toggleRecording()">
                     <span id="recordIcon">🎤</span>
                 </button>
                 
-                <div style="text-align: center; margin-bottom: 16px;">
+                <div class="meter-container">
                     <div class="meter-label">SOUND LEVEL</div>
                     <div class="meter-display" id="dbDisplay">0</div>
                     <div class="meter-label">DECIBELS (dB)</div>
@@ -508,8 +778,8 @@
             <div class="card">
                 <div class="section-title">🗺️ Environmental Map</div>
                 <div id="map"></div>
-                <div style="font-size: 12px; color: #6b7280; text-align: center; margin-top: 8px;">
-                    Color-coded by noise intensity
+                <div style="font-size: 13px; color: #6b7280; text-align: center; margin-top: 12px; font-weight: 600;">
+                    🟢 Quiet • 🟡 Moderate • 🔴 Loud
                 </div>
             </div>
         </div>
@@ -520,9 +790,13 @@
 
         <div id="analyticsTab" class="tab-content hidden">
             <div class="card">
-                <div class="section-title">📈 Analytics</div>
-                <canvas id="categoryChart" style="margin: 16px 0;"></canvas>
-                <canvas id="trendChart" style="margin: 16px 0;"></canvas>
+                <div class="section-title">📈 Sound Distribution</div>
+                <canvas id="categoryChart" style="margin: 18px 0;"></canvas>
+            </div>
+            
+            <div class="card">
+                <div class="section-title">📉 Noise Trends</div>
+                <canvas id="trendChart" style="margin: 18px 0;"></canvas>
             </div>
             
             <div class="card">
@@ -530,9 +804,18 @@
                 <div class="health-comparison" id="healthComp"></div>
             </div>
             
-            <button class="action-btn" onclick="exportData()">📥 Export CSV</button>
-            <button class="action-btn" onclick="exportReport()">📄 Generate Report</button>
-            <button class="action-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626)" onclick="clearAll()">🗑️ Clear All Data</button>
+            <button class="action-btn" onclick="exportData()">
+                <span style="font-size: 20px;">📥</span>
+                Export Data (CSV)
+            </button>
+            <button class="action-btn" onclick="exportReport()">
+                <span style="font-size: 20px;">📄</span>
+                Generate Report
+            </button>
+            <button class="action-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);" onclick="clearAll()">
+                <span style="font-size: 20px;">🗑️</span>
+                Clear All Data
+            </button>
         </div>
     </div>
 
@@ -580,6 +863,10 @@
             state.recordings = keys.map(k => JSON.parse(localStorage.getItem(k)))
                 .sort((a, b) => b.timestamp - a.timestamp);
             document.getElementById('headerCount').textContent = state.recordings.length;
+            
+            if (state.recordings.length > 0) {
+                document.getElementById('recentCard').style.display = 'block';
+            }
         }
 
         function getLocation() {
@@ -635,7 +922,7 @@
 
         async function startRecording() {
             try {
-                showStatus('🎤 Requesting microphone...', false);
+                showStatus('🎤 Requesting microphone access...', false);
                 
                 const stream = await navigator.mediaDevices.getUserMedia({
                     audio: {
@@ -646,7 +933,7 @@
                     }
                 });
 
-                showStatus('🔴 Recording... SPEAK LOUDLY!', false);
+                showStatus('🔴 Recording... Make some noise!', false);
                 
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 analyser = audioContext.createAnalyser();
@@ -675,7 +962,7 @@
                 
                 const bars = document.getElementById('spectrumBars');
                 bars.innerHTML = '';
-                for(let i = 0; i < 10; i++) {
+                for(let i = 0; i < 12; i++) {
                     bars.innerHTML += '<div class="bar"></div>';
                 }
                 bars.classList.remove('hidden');
@@ -689,7 +976,7 @@
                 
             } catch (error) {
                 console.error('Mic error:', error);
-                showStatus('❌ Microphone blocked! Enable in settings', true);
+                showStatus('❌ Microphone access denied. Please enable in settings.', true);
             }
         }
 
@@ -713,8 +1000,8 @@
             const bars = document.querySelectorAll('.bar');
             const step = Math.floor(dataArray.length / bars.length);
             bars.forEach((bar, i) => {
-                const value = dataArray[i * step];
-                bar.style.height = (value / 255 * 50) + 'px';
+                const value = dataArray[i * step] || 0;
+                bar.style.height = (value / 255 * 60) + 'px';
             });
             
             animationId = requestAnimationFrame(updateMeter);
@@ -739,7 +1026,7 @@
             state.analyzing = true;
             document.getElementById('recordBtn').classList.add('analyzing');
             document.getElementById('recordIcon').innerHTML = '<div class="spinner"></div>';
-            showStatus('🔬 Analyzing...', false);
+            showStatus('🔬 Analyzing environmental data...', false);
             
             await new Promise(r => setTimeout(r, 2000));
             
@@ -782,7 +1069,7 @@
             document.getElementById('progressBar').style.width = '0%';
             document.getElementById('locationInput').value = '';
             
-            showStatus(`✅ ${db} dB - ${category}`, false);
+            showStatus(`✅ Recorded: ${db} dB - ${category.toUpperCase()}`, false);
             setTimeout(hideStatus, 3000);
             
             document.getElementById('headerCount').textContent = state.recordings.length;
@@ -810,6 +1097,7 @@
             event.currentTarget.classList.add('active');
             
             if (tab === 'home') renderHome();
+            if (tab === 'record') getEnvData();
             if (tab === 'map') renderMap();
             if (tab === 'data') renderData();
             if (tab === 'analytics') renderAnalytics();
@@ -817,41 +1105,53 @@
 
         function renderHome() {
             if (state.recordings.length === 0) {
-                document.getElementById('homeStats').innerHTML = `
-                    <div style="grid-column: 1/-1">
-                        <div class="empty-state">
-                            <div class="empty-icon">🌿</div>
-                            <div style="font-size: 16px; font-weight: 600; color: #1f2937;">Welcome to EcoSense</div>
-                            <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Start monitoring environmental data</div>
-                        </div>
-                    </div>
-                `;
+                document.getElementById('statsCard').style.display = 'none';
+                document.getElementById('recentCard').style.display = 'none';
                 return;
             }
+            
+            document.getElementById('statsCard').style.display = 'block';
+            document.getElementById('recentCard').style.display = 'block';
             
             const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
             const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
             const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
-            const max = Math.max(...state.recordings.map(r => r.noiseLevel));
             
             document.getElementById('homeStats').innerHTML = `
                 <div class="stat-card">
-                    <div class="stat-label">RECORDINGS</div>
+                    <div class="stat-label">Total</div>
                     <div class="stat-value">${state.recordings.length}</div>
+                    <div class="stat-label">Recordings</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">AVG NOISE</div>
+                    <div class="stat-label">Average</div>
                     <div class="stat-value">${avg} dB</div>
+                    <div class="stat-label">Noise Level</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">AVG TEMP</div>
+                    <div class="stat-label">Temperature</div>
                     <div class="stat-value">${avgTemp}°C</div>
+                    <div class="stat-label">Average</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">AVG HUMIDITY</div>
+                    <div class="stat-label">Humidity</div>
                     <div class="stat-value">${avgHum}%</div>
+                    <div class="stat-label">Average</div>
                 </div>
             `;
+            
+            const recent = state.recordings.slice(0, 3);
+            document.getElementById('recentActivity').innerHTML = recent.map(r => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f9fafb; border-radius: 12px; margin-bottom: 8px;">
+                    <div>
+                        <div style="font-weight: 700; color: #1f2937; font-size: 14px;">${r.locationName}</div>
+                        <div style="font-size: 12px; color: #6b7280; margin-top: 2px;">${r.time}</div>
+                    </div>
+                    <div style="background: ${getColor(r.noiseLevel)}; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 13px;">
+                        ${r.noiseLevel} dB
+                    </div>
+                </div>
+            `).join('');
         }
 
         function renderMap() {
@@ -864,7 +1164,8 @@
                     document.getElementById('map').innerHTML = `
                         <div class="empty-state">
                             <div class="empty-icon">📍</div>
-                            <div style="font-size: 14px; color: #6b7280;">No locations recorded yet</div>
+                            <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No locations yet</div>
+                            <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Start recording to see map data</div>
                         </div>
                     `;
                     return;
@@ -875,23 +1176,34 @@
 
                 state.mapInstance = L.map('map').setView([centerLat, centerLng], 13);
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(state.mapInstance);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap'
+                }).addTo(state.mapInstance);
 
                 state.recordings.forEach(r => {
                     const color = getColor(r.noiseLevel);
                     const icon = L.divIcon({
-                        html: '<div style="background: ' + color + '; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">' + getCategoryIcon(r.category) + '</div>',
-                        iconSize: [30, 30]
+                        html: '<div style="background: ' + color + '; width: 32px; height: 32px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">' + getCategoryIcon(r.category) + '</div>',
+                        iconSize: [32, 32]
                     });
 
                     L.marker([r.location.lat, r.location.lng], { icon })
-                        .bindPopup('<div><strong>' + r.locationName + '</strong><br>' + r.noiseLevel + ' dB - ' + r.category + '<br>' + r.temperature + '°C, ' + r.humidity + '%</div>')
+                        .bindPopup(`
+                            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+                                <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">${r.locationName}</div>
+                                <div style="font-size: 13px; color: #6b7280;">
+                                    🔊 ${r.noiseLevel} dB - ${r.category}<br>
+                                    🌡️ ${r.temperature}°C • 💧 ${r.humidity}%<br>
+                                    📅 ${r.date} ${r.time}
+                                </div>
+                            </div>
+                        `)
                         .addTo(state.mapInstance);
                 });
 
                 if (state.recordings.length > 1) {
                     const heatData = state.recordings.map(r => [r.location.lat, r.location.lng, r.noiseLevel / 100]);
-                    L.heatLayer(heatData, { radius: 25, blur: 15 }).addTo(state.mapInstance);
+                    L.heatLayer(heatData, { radius: 25, blur: 15, maxZoom: 17 }).addTo(state.mapInstance);
                 }
             }, 100);
         }
@@ -904,7 +1216,8 @@
                     <div class="card">
                         <div class="empty-state">
                             <div class="empty-icon">📊</div>
-                            <div style="font-size: 14px; color: #6b7280;">No recordings yet</div>
+                            <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No data yet</div>
+                            <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Start recording to build your dataset</div>
                         </div>
                     </div>
                 `;
@@ -915,7 +1228,7 @@
                 <div class="recording-item">
                     <div class="recording-header">
                         <div class="recording-category">
-                            ${getCategoryIcon(r.category)} ${r.category}
+                            ${getCategoryIcon(r.category)} ${r.category.toUpperCase()}
                         </div>
                         <div class="recording-level" style="background: ${getColor(r.noiseLevel)}">
                             ${r.noiseLevel} dB
@@ -924,12 +1237,12 @@
                     <div class="recording-info">📍 ${r.locationName}</div>
                     <div class="recording-info">📅 ${r.date} • ⏰ ${r.time}</div>
                     <div class="recording-info">🌡️ ${r.temperature}°C • 💧 ${r.humidity}%</div>
-                    <div style="margin-top: 12px;">
+                    <div style="margin-top: 14px;">
                         ${Object.entries(r.confidences).map(([cat, conf]) => `
                             <div class="confidence-bar">
                                 <div class="confidence-label">
-                                    <span>${cat}</span>
-                                    <span>${conf.toFixed(0)}%</span>
+                                    <span>${getCategoryIcon(cat)} ${cat}</span>
+                                    <span style="font-weight: 700;">${conf.toFixed(0)}%</span>
                                 </div>
                                 <div class="confidence-progress">
                                     <div class="confidence-fill" style="width: ${conf}%"></div>
@@ -937,7 +1250,7 @@
                             </div>
                         `).join('')}
                     </div>
-                    <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete</button>
+                    <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete Recording</button>
                 </div>
             `).join('');
         }
@@ -948,7 +1261,8 @@
                     <div class="section-title">📈 Analytics</div>
                     <div class="empty-state">
                         <div class="empty-icon">📈</div>
-                        <div style="font-size: 14px; color: #6b7280;">No data for analytics</div>
+                        <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No analytics available</div>
+                        <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Record more data to see insights</div>
                     </div>
                 `;
                 return;
@@ -969,13 +1283,20 @@
                         labels: Object.keys(categoryCounts).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
                         datasets: [{
                             data: Object.values(categoryCounts),
-                            backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280']
+                            backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280'],
+                            borderWidth: 0
                         }]
                     },
                     options: {
                         responsive: true,
                         plugins: {
-                            legend: { position: 'bottom' }
+                            legend: { 
+                                position: 'bottom',
+                                labels: { 
+                                    padding: 15,
+                                    font: { size: 12, weight: '600' }
+                                }
+                            }
                         }
                     }
                 });
@@ -987,20 +1308,37 @@
                 state.charts.trend = new Chart(trendCtx, {
                     type: 'line',
                     data: {
-                        labels: sortedRecs.map((r, i) => '#' + (i+1)),
+                        labels: sortedRecs.map((r, i) => `#${i+1}`),
                         datasets: [{
                             label: 'Noise Level (dB)',
                             data: sortedRecs.map(r => r.noiseLevel),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             tension: 0.4,
-                            fill: true
+                            fill: true,
+                            borderWidth: 3,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#10b981'
                         }]
                     },
                     options: {
                         responsive: true,
                         scales: {
-                            y: { beginAtZero: true, max: 100 }
+                            y: { 
+                                beginAtZero: true, 
+                                max: 100,
+                                grid: { color: 'rgba(0,0,0,0.05)' }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    font: { size: 12, weight: '600' }
+                                }
+                            }
                         }
                     }
                 });
@@ -1010,24 +1348,24 @@
                 document.getElementById('healthComp').innerHTML = `
                     <div class="health-item" style="background: #dcfce7;">
                         <div>
-                            <div style="font-weight: 600; color: #166534;">WHO Safe (Day)</div>
-                            <div style="font-size: 11px; color: #16a34a;">Recommended limit</div>
+                            <div style="font-weight: 700; color: #166534;">WHO Safe Limit</div>
+                            <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Daytime recommended</div>
                         </div>
-                        <div style="font-size: 20px; font-weight: 700; color: #166534;">55 dB</div>
+                        <div style="font-size: 22px; font-weight: 800; color: #166534;">55 dB</div>
                     </div>
                     <div class="health-item" style="background: ${parseFloat(avg) > 55 ? '#fee2e2' : '#dcfce7'};">
                         <div>
-                            <div style="font-weight: 600; color: #1f2937;">Your Average</div>
-                            <div style="font-size: 11px; color: #6b7280;">Current level</div>
+                            <div style="font-weight: 700; color: #1f2937;">Your Average</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 2px;">Current exposure level</div>
                         </div>
-                        <div style="font-size: 20px; font-weight: 700; color: ${getColor(parseFloat(avg))}">${avg} dB</div>
+                        <div style="font-size: 22px; font-weight: 800; color: ${getColor(parseFloat(avg))}">${avg} dB</div>
                     </div>
                     <div class="health-item" style="background: #fee2e2;">
                         <div>
-                            <div style="font-weight: 600; color: #991b1b;">Damage Risk</div>
-                            <div style="font-size: 11px; color: #dc2626;">Prolonged exposure</div>
+                            <div style="font-weight: 700; color: #991b1b;">Hearing Damage</div>
+                            <div style="font-size: 11px; color: #dc2626; margin-top: 2px;">Risk threshold</div>
                         </div>
-                        <div style="font-size: 20px; font-weight: 700; color: #991b1b;">85 dB</div>
+                        <div style="font-size: 22px; font-weight: 800; color: #991b1b;">85 dB</div>
                     </div>
                 `;
             }, 100);
@@ -1044,13 +1382,13 @@
         }
 
         function clearAll() {
-            if (confirm('⚠️ Delete ALL data? Cannot be undone!')) {
-                if (confirm('Are you absolutely sure?')) {
+            if (confirm('⚠️ Delete ALL recordings? This cannot be undone!')) {
+                if (confirm('Are you absolutely sure? All data will be permanently deleted.')) {
                     state.recordings.forEach(r => localStorage.removeItem('eco_' + r.id));
                     state.recordings = [];
                     document.getElementById('headerCount').textContent = 0;
                     renderHome();
-                    showStatus('✅ All data cleared', false);
+                    showStatus('✅ All data cleared successfully', false);
                     setTimeout(hideStatus, 2000);
                 }
             }
@@ -1058,23 +1396,33 @@
 
         function exportData() {
             if (state.recordings.length === 0) {
-                alert('No data to export');
+                alert('No data to export. Start recording first!');
                 return;
             }
             
             const csv = [
-                ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temp (°C)', 'Humidity (%)'],
-                ...state.recordings.map(r => [r.date, r.time, r.locationName, r.category, r.noiseLevel, r.temperature, r.humidity])
+                ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temperature (°C)', 'Humidity (%)', 'Latitude', 'Longitude'],
+                ...state.recordings.map(r => [
+                    r.date, 
+                    r.time, 
+                    r.locationName, 
+                    r.category, 
+                    r.noiseLevel, 
+                    r.temperature, 
+                    r.humidity,
+                    r.location.lat,
+                    r.location.lng
+                ])
             ].map(row => row.join(',')).join('\n');
             
-            download(csv, 'articul8-data-' + Date.now() + '.csv', 'text/csv');
-            showStatus('✅ CSV exported!', false);
+            download(csv, `articul8-ecosense-data-${Date.now()}.csv`, 'text/csv');
+            showStatus('✅ Data exported successfully!', false);
             setTimeout(hideStatus, 2000);
         }
 
         function exportReport() {
             if (state.recordings.length === 0) {
-                alert('No data to export');
+                alert('No data to export. Start recording first!');
                 return;
             }
             
@@ -1085,19 +1433,55 @@
             const quietest = state.recordings.reduce((min, r) => r.noiseLevel < min.noiseLevel ? r : min);
             const loudest = state.recordings.reduce((max, r) => r.noiseLevel > max.noiseLevel ? r : max);
             
-            const report = 'ARTICUL8 ECOSENSE - ENVIRONMENTAL REPORT\n\n' +
-                'Generated: ' + new Date().toLocaleString() + '\n\n' +
-                'SUMMARY\n' +
-                'Total: ' + state.recordings.length + ' recordings\n' +
-                'Avg Noise: ' + avg + ' dB\n' +
-                'Avg Temp: ' + avgTemp + '°C\n' +
-                'Avg Humidity: ' + avgHum + '%\n\n' +
-                'QUIETEST: ' + quietest.locationName + ' (' + quietest.noiseLevel + ' dB)\n' +
-                'LOUDEST: ' + loudest.locationName + ' (' + loudest.noiseLevel + ' dB)\n\n' +
-                '© Articul8 EcoSense';
+            const categoryCounts = state.recordings.reduce((acc, r) => {
+                acc[r.category] = (acc[r.category] || 0) + 1;
+                return acc;
+            }, {});
             
-            download(report, 'articul8-report-' + Date.now() + '.txt', 'text/plain');
-            showStatus('✅ Report generated!', false);
+            const report = `ARTICUL8 ECOSENSE - ENVIRONMENTAL MONITORING REPORT
+${'='.repeat(60)}
+
+Generated: ${new Date().toLocaleString()}
+Platform: Articul8 EcoSense v1.0
+
+EXECUTIVE SUMMARY
+${'-'.repeat(60)}
+Total Recordings: ${state.recordings.length}
+Average Noise Level: ${avg} dB
+Average Temperature: ${avgTemp}°C
+Average Humidity: ${avgHum}%
+
+SOUND ANALYSIS
+${'-'.repeat(60)}
+Quietest Location: ${quietest.locationName} (${quietest.noiseLevel} dB)
+Loudest Location: ${loudest.locationName} (${loudest.noiseLevel} dB)
+
+Sound Category Distribution:
+${Object.entries(categoryCounts).map(([cat, count]) => `  • ${cat.charAt(0).toUpperCase() + cat.slice(1)}: ${count} (${(count/state.recordings.length*100).toFixed(1)}%)`).join('\n')}
+
+HEALTH COMPARISON
+${'-'.repeat(60)}
+WHO Safe Limit (Day): 55 dB
+Your Average: ${avg} dB ${parseFloat(avg) > 55 ? '⚠️ ABOVE LIMIT' : '✅ WITHIN SAFE RANGE'}
+Hearing Damage Risk: 85 dB
+
+DETAILED RECORDINGS
+${'-'.repeat(60)}
+${state.recordings.map((r, i) => `
+${i + 1}. ${r.locationName}
+   Date/Time: ${r.date} ${r.time}
+   Location: ${r.location.lat.toFixed(4)}, ${r.location.lng.toFixed(4)}
+   Sound: ${r.noiseLevel} dB (${r.category})
+   Environment: ${r.temperature}°C, ${r.humidity}% humidity
+`).join('')}
+
+${'='.repeat(60)}
+© 2024 Articul8 EcoSense
+Environmental Intelligence Platform
+`;
+            
+            download(report, `articul8-ecosense-report-${Date.now()}.txt`, 'text/plain');
+            showStatus('✅ Report generated successfully!', false);
             setTimeout(hideStatus, 2000);
         }
 
@@ -1112,7 +1496,13 @@
         }
 
         function getCategoryIcon(cat) {
-            return {traffic: '🚗', construction: '🏗️', people: '👥', nature: '🌳', silence: '🔇'}[cat] || '🔊';
+            return {
+                traffic: '🚗', 
+                construction: '🏗️', 
+                people: '👥', 
+                nature: '🌳', 
+                silence: '🔇'
+            }[cat] || '🔊';
         }
 
         function getColor(db) {
