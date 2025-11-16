@@ -19,13 +19,44 @@
             -webkit-tap-highlight-color: transparent;
         }
         
+        :root {
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+            --card-bg: rgba(255,255,255,0.98);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --primary-color: #10b981;
+            --primary-dark: #059669;
+        }
+        
+        body.dark-mode {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+            --card-bg: rgba(30,30,46,0.98);
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             padding-bottom: 80px;
             overflow-x: hidden;
             color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
         .header {
@@ -42,6 +73,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .dark-mode-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode-toggle:active {
+            transform: scale(0.9);
         }
         
         .header h1 {
@@ -63,12 +118,12 @@
         }
         
         .card {
-            background: rgba(255,255,255,0.98);
+            background: var(--card-bg);
             border-radius: 24px;
             padding: 24px;
             margin-bottom: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            color: #1f2937;
+            color: var(--text-primary);
             transform: translateY(0);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -96,14 +151,14 @@
         .hero-title {
             font-size: 28px;
             font-weight: 800;
-            color: #1f2937;
+            color: var(--text-primary);
             margin-bottom: 8px;
             letter-spacing: -1px;
         }
         
         .hero-subtitle {
             font-size: 15px;
-            color: #6b7280;
+            color: var(--text-secondary);
             margin-bottom: 24px;
             line-height: 1.6;
         }
@@ -152,14 +207,14 @@
         .feature-label {
             font-size: 12px;
             font-weight: 600;
-            color: #1f2937;
+            color: var(--text-primary);
         }
         
         .section-title {
             font-size: 20px;
             font-weight: 800;
             margin-bottom: 16px;
-            color: #1f2937;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -244,6 +299,10 @@
             margin: 20px 0;
         }
         
+        body.dark-mode .meter-container {
+            background: linear-gradient(135deg, rgba(30,30,46,0.5) 0%, rgba(20,20,35,0.5) 100%);
+        }
+        
         .meter-display {
             font-size: 64px;
             font-weight: 800;
@@ -257,7 +316,7 @@
         
         .meter-label {
             font-size: 11px;
-            color: #6b7280;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             text-align: center;
@@ -272,6 +331,10 @@
             overflow: hidden;
             margin: 16px 0;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode .progress-bar {
+            background: rgba(50,50,70,0.5);
         }
         
         .progress-fill {
@@ -296,11 +359,29 @@
             text-align: center;
             border: 2px solid #e5e7eb;
             transition: all 0.3s;
+            position: relative;
+        }
+        
+        body.dark-mode .env-item {
+            background: linear-gradient(135deg, rgba(40,40,60,0.5) 0%, rgba(30,30,50,0.5) 100%);
+            border-color: rgba(100,100,120,0.3);
         }
         
         .env-item:active {
             transform: scale(0.98);
             border-color: #10b981;
+        }
+        
+        .env-item .loading-spinner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
         
         .env-icon {
@@ -311,13 +392,13 @@
         .env-value {
             font-size: 28px;
             font-weight: 800;
-            color: #1f2937;
+            color: var(--text-primary);
             letter-spacing: -1px;
         }
         
         .env-label {
             font-size: 11px;
-            color: #6b7280;
+            color: var(--text-secondary);
             margin-top: 6px;
             font-weight: 600;
             text-transform: uppercase;
@@ -337,10 +418,43 @@
             font-weight: 500;
         }
         
+        body.dark-mode .location-input {
+            background: rgba(40,40,60,0.5);
+            border-color: rgba(100,100,120,0.3);
+            color: #f9fafb;
+        }
+        
         .location-input:focus {
             outline: none;
             border-color: #10b981;
             box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .filter-tab.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: #10b981;
+            color: white;
         }
         
         .bottom-nav {
@@ -356,6 +470,11 @@
             box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
             z-index: 100;
             border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .bottom-nav {
+            background: rgba(30,30,46,0.98);
+            border-top-color: rgba(255,255,255,0.1);
         }
         
         .nav-item {
@@ -419,6 +538,11 @@
             transition: all 0.3s;
         }
         
+        body.dark-mode .recording-item {
+            background: rgba(40,40,60,0.5);
+            border-color: rgba(100,100,120,0.3);
+        }
+        
         .recording-item:active {
             transform: scale(0.99);
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -448,9 +572,36 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         
+        .recording-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .share-btn, .compare-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .compare-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .share-btn:active, .compare-btn:active {
+            transform: scale(0.98);
+        }
+        
         .recording-info {
             font-size: 13px;
-            color: #6b7280;
+            color: var(--text-secondary);
             margin: 6px 0;
             font-weight: 500;
         }
@@ -569,6 +720,11 @@
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
         
+        .status-msg.warning {
+            background: #f59e0b;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        
         .hidden {
             display: none !important;
         }
@@ -612,6 +768,10 @@
             margin: 14px 0;
         }
         
+        body.dark-mode .health-comparison {
+            background: rgba(40,40,60,0.3);
+        }
+        
         .health-item {
             display: flex;
             justify-content: space-between;
@@ -642,48 +802,184 @@
             overflow: hidden;
         }
         
+        body.dark-mode .confidence-progress {
+            background: rgba(50,50,70,0.5);
+        }
+        
         .confidence-fill {
             height: 100%;
             background: linear-gradient(90deg, #667eea, #764ba2);
             transition: width 0.3s;
         }
         
-        .quick-stats {
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .modal-close {
+            background: #e5e7eb;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            width: 100%;
+            font-weight: 600;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+        
+        body.dark-mode .modal-close {
+            background: rgba(60,60,80,0.5);
+            color: #f9fafb;
+        }
+        
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode .share-option {
+            background: rgba(40,40,60,0.5);
+        }
+        
+        .share-option:active {
+            transform: scale(0.98);
+            background: #e5e7eb;
+        }
+        
+        .share-icon {
+            font-size: 28px;
+        }
+        
+        .share-text {
+            flex: 1;
+        }
+        
+        .share-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+        
+        .share-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        
+        .comparison-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
         }
         
-        .quick-stat {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+        .comparison-item {
+            background: #f9fafb;
             padding: 16px;
-            border-radius: 14px;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid rgba(16, 185, 129, 0.2);
         }
         
-        .quick-stat-value {
+        body.dark-mode .comparison-item {
+            background: rgba(40,40,60,0.3);
+        }
+        
+        .comparison-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .comparison-value {
             font-size: 24px;
             font-weight: 800;
-            color: #1f2937;
+            color: var(--text-primary);
+        }
+        
+        .alert-banner {
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+            z-index: 200;
+            animation: slideDown 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .alert-icon {
+            font-size: 28px;
+        }
+        
+        .alert-content {
+            flex: 1;
+        }
+        
+        .alert-title {
+            font-weight: 700;
+            font-size: 15px;
             margin-bottom: 4px;
         }
         
-        .quick-stat-label {
-            font-size: 11px;
-            color: #6b7280;
-            font-weight: 600;
-            text-transform: uppercase;
+        .alert-message {
+            font-size: 13px;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="header-content">
-            <div>
-                <h1>🌿 Articul8 EcoSense</h1>
-                <div style="font-size: 11px; opacity: 0.85; margin-top: 3px; font-weight: 600;">Environmental Intelligence Platform</div>
+            <div class="header-left">
+                <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()">
+                    <span id="darkModeIcon">🌙</span>
+                </button>
+                <div>
+                    <h1>🌿 Articul8 EcoSense</h1>
+                    <div style="font-size: 11px; opacity: 0.85; margin-top: 3px; font-weight: 600;">Environmental Intelligence</div>
+                </div>
             </div>
             <div class="header-stats">
                 <div style="font-size: 20px; font-weight: 800;" id="headerCount">0</div>
@@ -698,7 +994,7 @@
                 <div class="hero-section">
                     <div class="hero-icon">🌿</div>
                     <div class="hero-title">Monitor Your Environment</div>
-                    <div class="hero-subtitle">AI-powered sound, temperature, and humidity tracking with real-time analysis</div>
+                    <div class="hero-subtitle">AI-powered sound, temperature, and humidity tracking with real-time weather data</div>
                     <button class="cta-button" onclick="switchTab('record')">
                         <span style="font-size: 24px;">🎤</span>
                         Start Recording
@@ -759,11 +1055,13 @@
                 
                 <div class="env-grid">
                     <div class="env-item">
+                        <div class="loading-spinner hidden" id="tempLoader"></div>
                         <div class="env-icon">🌡️</div>
                         <div class="env-value" id="tempDisplay">--</div>
                         <div class="env-label">Temperature °C</div>
                     </div>
                     <div class="env-item">
+                        <div class="loading-spinner hidden" id="humidityLoader"></div>
                         <div class="env-icon">💧</div>
                         <div class="env-value" id="humidityDisplay">--</div>
                         <div class="env-label">Humidity %</div>
@@ -778,13 +1076,19 @@
             <div class="card">
                 <div class="section-title">🗺️ Environmental Map</div>
                 <div id="map"></div>
-                <div style="font-size: 13px; color: #6b7280; text-align: center; margin-top: 12px; font-weight: 600;">
+                <div style="font-size: 13px; color: var(--text-secondary); text-align: center; margin-top: 12px; font-weight: 600;">
                     🟢 Quiet • 🟡 Moderate • 🔴 Loud
                 </div>
             </div>
         </div>
 
         <div id="dataTab" class="tab-content hidden">
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterData('all')">All</button>
+                <button class="filter-tab" onclick="filterData('today')">Today</button>
+                <button class="filter-tab" onclick="filterData('week')">This Week</button>
+                <button class="filter-tab" onclick="filterData('month')">This Month</button>
+            </div>
             <div id="recordingsList"></div>
         </div>
 
@@ -843,6 +1147,8 @@
     </div>
 
     <script>
+        const WEATHER_API_KEY = 'demo'; // Users should get their own free key from openweathermap.org
+        
         let state = {
             isRecording: false,
             analyzing: false,
@@ -853,10 +1159,41 @@
             currentHumidity: 0,
             currentLocation: null,
             mapInstance: null,
-            charts: {}
+            charts: {},
+            darkMode: false,
+            soundEnabled: true,
+            currentFilter: 'all',
+            compareMode: false,
+            selectedForCompare: []
         };
 
         let mediaRecorder, audioContext, analyser, dataArray, animationId, recordingTimeout;
+        
+        // Audio for sound effects
+        const beepSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZijcIGWi77OeeSwgMUKbj77RgGwU'); 
+
+        function vibrate(duration = 50) {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(duration);
+            }
+        }
+
+        function playSound(type = 'beep') {
+            if (state.soundEnabled) {
+                try {
+                    beepSound.currentTime = 0;
+                    beepSound.play().catch(() => {});
+                } catch (e) {}
+            }
+        }
+
+        function toggleDarkMode() {
+            state.darkMode = !state.darkMode;
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('darkModeIcon').textContent = state.darkMode ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', state.darkMode);
+            vibrate(30);
+        }
 
         function loadData() {
             const keys = Object.keys(localStorage).filter(k => k.startsWith('eco_'));
@@ -866,6 +1203,13 @@
             
             if (state.recordings.length > 0) {
                 document.getElementById('recentCard').style.display = 'block';
+            }
+            
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                state.darkMode = true;
+                document.body.classList.add('dark-mode');
+                document.getElementById('darkModeIcon').textContent = '☀️';
             }
         }
 
@@ -877,34 +1221,75 @@
                             lat: pos.coords.latitude,
                             lng: pos.coords.longitude
                         };
+                        getRealWeatherData();
                     },
                     () => {
                         state.currentLocation = { lat: 31.9539, lng: 35.9106 };
+                        getRealWeatherData();
                     }
                 );
             }
         }
 
-        function getEnvData() {
-            const hour = new Date().getHours();
-            let temp, humidity;
+        async function getRealWeatherData() {
+            if (!state.currentLocation) return;
             
-            if (hour >= 6 && hour <= 9) {
-                temp = 18 + Math.random() * 8;
-                humidity = 60 + Math.random() * 20;
-            } else if (hour >= 12 && hour <= 16) {
-                temp = 28 + Math.random() * 10;
-                humidity = 30 + Math.random() * 20;
-            } else if (hour >= 18 && hour <= 22) {
-                temp = 22 + Math.random() * 8;
-                humidity = 50 + Math.random() * 20;
-            } else {
-                temp = 15 + Math.random() * 10;
-                humidity = 65 + Math.random() * 15;
+            document.getElementById('tempLoader').classList.remove('hidden');
+            document.getElementById('humidityLoader').classList.remove('hidden');
+            
+            try {
+                const response = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${state.currentLocation.lat}&lon=${state.currentLocation.lng}&units=metric&appid=${WEATHER_API_KEY}`
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    state.currentTemp = parseFloat(data.main.temp.toFixed(1));
+                    state.currentHumidity = parseFloat(data.main.humidity.toFixed(1));
+                } else {
+                    throw new Error('API limit or invalid key');
+                }
+            } catch (error) {
+                console.log('Using simulated weather data');
+                getSimulatedWeatherData();
             }
             
-            state.currentTemp = parseFloat(temp.toFixed(1));
-            state.currentHumidity = parseFloat(humidity.toFixed(1));
+            document.getElementById('tempDisplay').textContent = state.currentTemp;
+            document.getElementById('humidityDisplay').textContent = state.currentHumidity;
+            document.getElementById('tempLoader').classList.add('hidden');
+            document.getElementById('humidityLoader').classList.add('hidden');
+        }
+
+        function getSimulatedWeatherData() {
+            const hour = new Date().getHours();
+            const month = new Date().getMonth();
+            
+            let baseTemp, baseHumidity;
+            
+            if (month >= 5 && month <= 8) {
+                baseTemp = 30;
+                baseHumidity = 40;
+            } else if (month >= 11 || month <= 2) {
+                baseTemp = 15;
+                baseHumidity = 70;
+            } else {
+                baseTemp = 22;
+                baseHumidity = 55;
+            }
+            
+            if (hour >= 6 && hour <= 9) {
+                state.currentTemp = parseFloat((baseTemp - 5 + Math.random() * 3).toFixed(1));
+                state.currentHumidity = parseFloat((baseHumidity + 15 + Math.random() * 10).toFixed(1));
+            } else if (hour >= 12 && hour <= 16) {
+                state.currentTemp = parseFloat((baseTemp + 5 + Math.random() * 5).toFixed(1));
+                state.currentHumidity = parseFloat((baseHumidity - 15 + Math.random() * 10).toFixed(1));
+            } else if (hour >= 18 && hour <= 22) {
+                state.currentTemp = parseFloat((baseTemp + Math.random() * 3).toFixed(1));
+                state.currentHumidity = parseFloat((baseHumidity + Math.random() * 10).toFixed(1));
+            } else {
+                state.currentTemp = parseFloat((baseTemp - 8 + Math.random() * 3).toFixed(1));
+                state.currentHumidity = parseFloat((baseHumidity + 20 + Math.random() * 10).toFixed(1));
+            }
             
             document.getElementById('tempDisplay').textContent = state.currentTemp;
             document.getElementById('humidityDisplay').textContent = state.currentHumidity;
@@ -912,6 +1297,8 @@
 
         async function toggleRecording() {
             if (state.analyzing) return;
+            
+            vibrate(50);
             
             if (!state.isRecording) {
                 await startRecording();
@@ -933,6 +1320,8 @@
                     }
                 });
 
+                playSound('beep');
+                vibrate(100);
                 showStatus('🔴 Recording... Make some noise!', false);
                 
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -967,7 +1356,7 @@
                 }
                 bars.classList.remove('hidden');
                 
-                getEnvData();
+                await getRealWeatherData();
                 updateMeter();
                 
                 recordingTimeout = setTimeout(() => {
@@ -977,6 +1366,7 @@
             } catch (error) {
                 console.error('Mic error:', error);
                 showStatus('❌ Microphone access denied. Please enable in settings.', true);
+                vibrate([100, 50, 100]);
             }
         }
 
@@ -997,6 +1387,10 @@
             document.getElementById('dbDisplay').textContent = state.currentDb;
             document.getElementById('progressBar').style.width = (state.currentDb / 100 * 100) + '%';
             
+            if (state.currentDb >= 85) {
+                showNoiseAlert();
+            }
+            
             const bars = document.querySelectorAll('.bar');
             const step = Math.floor(dataArray.length / bars.length);
             bars.forEach((bar, i) => {
@@ -1005,6 +1399,29 @@
             });
             
             animationId = requestAnimationFrame(updateMeter);
+        }
+
+        function showNoiseAlert() {
+            const existingAlert = document.getElementById('noiseAlert');
+            if (existingAlert) return;
+            
+            const alert = document.createElement('div');
+            alert.id = 'noiseAlert';
+            alert.className = 'alert-banner';
+            alert.innerHTML = `
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <div class="alert-title">High Noise Level!</div>
+                    <div class="alert-message">Above 85 dB - Risk of hearing damage</div>
+                </div>
+            `;
+            document.body.appendChild(alert);
+            
+            vibrate([100, 50, 100, 50, 100]);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 4000);
         }
 
         function stopRecording() {
@@ -1016,6 +1433,9 @@
             if (mediaRecorder && mediaRecorder.state === 'recording') {
                 mediaRecorder.stop();
             }
+            
+            playSound('beep');
+            vibrate(50);
             
             state.isRecording = false;
             document.getElementById('recordBtn').classList.remove('recording');
@@ -1069,17 +1489,26 @@
             document.getElementById('progressBar').style.width = '0%';
             document.getElementById('locationInput').value = '';
             
-            showStatus(`✅ Recorded: ${db} dB - ${category.toUpperCase()}`, false);
+            if (db >= 85) {
+                showStatus(`⚠️ WARNING: ${db} dB - ${category.toUpperCase()} (DANGEROUS LEVEL!)`, 'warning');
+                vibrate([200, 100, 200]);
+            } else {
+                showStatus(`✅ Recorded: ${db} dB - ${category.toUpperCase()}`, false);
+                vibrate(100);
+            }
+            
             setTimeout(hideStatus, 3000);
             
             document.getElementById('headerCount').textContent = state.recordings.length;
             if (state.currentTab === 'home') renderHome();
         }
 
-        function showStatus(msg, isError) {
+        function showStatus(msg, type) {
             const el = document.getElementById('statusMsg');
             el.textContent = msg;
-            el.className = isError ? 'status-msg error' : 'status-msg';
+            el.className = 'status-msg';
+            if (type === true) el.classList.add('error');
+            if (type === 'warning') el.classList.add('warning');
             el.classList.remove('hidden');
         }
 
@@ -1089,6 +1518,7 @@
 
         function switchTab(tab) {
             state.currentTab = tab;
+            vibrate(30);
             
             document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1097,10 +1527,204 @@
             event.currentTarget.classList.add('active');
             
             if (tab === 'home') renderHome();
-            if (tab === 'record') getEnvData();
+            if (tab === 'record') getRealWeatherData();
             if (tab === 'map') renderMap();
             if (tab === 'data') renderData();
             if (tab === 'analytics') renderAnalytics();
+        }
+
+        function filterData(filter) {
+            state.currentFilter = filter;
+            vibrate(30);
+            
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            renderData();
+        }
+
+        function getFilteredRecordings() {
+            const now = Date.now();
+            const dayMs = 24 * 60 * 60 * 1000;
+            
+            switch(state.currentFilter) {
+                case 'today':
+                    return state.recordings.filter(r => now - r.timestamp < dayMs);
+                case 'week':
+                    return state.recordings.filter(r => now - r.timestamp < 7 * dayMs);
+                case 'month':
+                    return state.recordings.filter(r => now - r.timestamp < 30 * dayMs);
+                default:
+                    return state.recordings;
+            }
+        }
+
+        function shareRecording(recording) {
+            const shareData = {
+                title: 'Articul8 EcoSense Recording',
+                text: `Environmental Recording\n📍 ${recording.locationName}\n🔊 ${recording.noiseLevel} dB (${recording.category})\n🌡️ ${recording.temperature}°C\n💧 ${recording.humidity}%\n📅 ${recording.date} ${recording.time}`,
+                url: 'https://mohammed-01-07.github.io/articul8/'
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData).then(() => {
+                    vibrate(50);
+                    showStatus('✅ Shared successfully!', false);
+                    setTimeout(hideStatus, 2000);
+                }).catch(() => {});
+            } else {
+                showShareModal(recording);
+            }
+        }
+
+        function showShareModal(recording) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-title">Share Recording</div>
+                    
+                    <div class="share-option" onclick="shareVia('whatsapp', ${recording.id})">
+                        <div class="share-icon">💬</div>
+                        <div class="share-text">
+                            <div class="share-label">WhatsApp</div>
+                            <div class="share-desc">Share via WhatsApp</div>
+                        </div>
+                    </div>
+                    
+                    <div class="share-option" onclick="shareVia('email', ${recording.id})">
+                        <div class="share-icon">📧</div>
+                        <div class="share-text">
+                            <div class="share-label">Email</div>
+                            <div class="share-desc">Share via Email</div>
+                        </div>
+                    </div>
+                    
+                    <div class="share-option" onclick="shareVia('copy', ${recording.id})">
+                        <div class="share-icon">📋</div>
+                        <div class="share-text">
+                            <div class="share-label">Copy Text</div>
+                            <div class="share-desc">Copy to clipboard</div>
+                        </div>
+                    </div>
+                    
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">Close</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            vibrate(50);
+        }
+
+        function shareVia(method, recordingId) {
+            const recording = state.recordings.find(r => r.id === recordingId);
+            if (!recording) return;
+            
+            const text = `Environmental Recording from Articul8 EcoSense\n\n📍 Location: ${recording.locationName}\n🔊 Noise: ${recording.noiseLevel} dB (${recording.category})\n🌡️ Temperature: ${recording.temperature}°C\n💧 Humidity: ${recording.humidity}%\n📅 ${recording.date} ${recording.time}\n\nGet the app: https://mohammed-01-07.github.io/articul8/`;
+            
+            if (method === 'whatsapp') {
+                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            } else if (method === 'email') {
+                window.open(`mailto:?subject=Articul8 EcoSense Recording&body=${encodeURIComponent(text)}`, '_blank');
+            } else if (method === 'copy') {
+                navigator.clipboard.writeText(text).then(() => {
+                    showStatus('✅ Copied to clipboard!', false);
+                    setTimeout(hideStatus, 2000);
+                    document.querySelector('.modal').remove();
+                });
+            }
+            
+            vibrate(50);
+        }
+
+        function toggleCompare(recordingId) {
+            vibrate(30);
+            
+            if (state.selectedForCompare.includes(recordingId)) {
+                state.selectedForCompare = state.selectedForCompare.filter(id => id !== recordingId);
+            } else {
+                if (state.selectedForCompare.length >= 2) {
+                    showStatus('⚠️ Maximum 2 recordings for comparison', 'warning');
+                    setTimeout(hideStatus, 2000);
+                    return;
+                }
+                state.selectedForCompare.push(recordingId);
+            }
+            
+            if (state.selectedForCompare.length === 2) {
+                showComparisonModal();
+            }
+            
+            renderData();
+        }
+
+        function showComparisonModal() {
+            const rec1 = state.recordings.find(r => r.id === state.selectedForCompare[0]);
+            const rec2 = state.recordings.find(r => r.id === state.selectedForCompare[1]);
+            
+            if (!rec1 || !rec2) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-title">📊 Location Comparison</div>
+                    
+                    <div style="text-align: center; margin: 16px 0;">
+                        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">${rec1.locationName}</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">vs</div>
+                        <div style="font-weight: 700; color: var(--text-primary); margin-top: 4px;">${rec2.locationName}</div>
+                    </div>
+                    
+                    <div class="comparison-container">
+                        <div class="comparison-item">
+                            <div class="comparison-label">Noise Level</div>
+                            <div class="comparison-value" style="color: ${getColor(rec1.noiseLevel)}">${rec1.noiseLevel} dB</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Noise Level</div>
+                            <div class="comparison-value" style="color: ${getColor(rec2.noiseLevel)}">${rec2.noiseLevel} dB</div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-label">Temperature</div>
+                            <div class="comparison-value">${rec1.temperature}°C</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Temperature</div>
+                            <div class="comparison-value">${rec2.temperature}°C</div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-label">Humidity</div>
+                            <div class="comparison-value">${rec1.humidity}%</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Humidity</div>
+                            <div class="comparison-value">${rec2.humidity}%</div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-label">Category</div>
+                            <div class="comparison-value" style="font-size: 18px;">${getCategoryIcon(rec1.category)}</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">Category</div>
+                            <div class="comparison-value" style="font-size: 18px;">${getCategoryIcon(rec2.category)}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 12px; margin-top: 16px;">
+                        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Analysis</div>
+                        <div style="font-size: 13px; color: var(--text-secondary);">
+                            ${rec1.locationName} is ${Math.abs(rec1.noiseLevel - rec2.noiseLevel)} dB ${rec1.noiseLevel > rec2.noiseLevel ? 'louder' : 'quieter'} than ${rec2.locationName}.
+                        </div>
+                    </div>
+                    
+                    <button class="modal-close" onclick="this.closest('.modal').remove(); state.selectedForCompare = []; renderData();">Close</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            vibrate(50);
         }
 
         function renderHome() {
@@ -1142,10 +1766,10 @@
             
             const recent = state.recordings.slice(0, 3);
             document.getElementById('recentActivity').innerHTML = recent.map(r => `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f9fafb; border-radius: 12px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: ${state.darkMode ? 'rgba(40,40,60,0.3)' : '#f9fafb'}; border-radius: 12px; margin-bottom: 8px;">
                     <div>
-                        <div style="font-weight: 700; color: #1f2937; font-size: 14px;">${r.locationName}</div>
-                        <div style="font-size: 12px; color: #6b7280; margin-top: 2px;">${r.time}</div>
+                        <div style="font-weight: 700; color: var(--text-primary); font-size: 14px;">${r.locationName}</div>
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">${r.time}</div>
                     </div>
                     <div style="background: ${getColor(r.noiseLevel)}; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 13px;">
                         ${r.noiseLevel} dB
@@ -1164,8 +1788,8 @@
                     document.getElementById('map').innerHTML = `
                         <div class="empty-state">
                             <div class="empty-icon">📍</div>
-                            <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No locations yet</div>
-                            <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Start recording to see map data</div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No locations yet</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Start recording to see map data</div>
                         </div>
                     `;
                     return;
@@ -1210,22 +1834,23 @@
 
         function renderData() {
             const list = document.getElementById('recordingsList');
+            const filtered = getFilteredRecordings();
             
-            if (state.recordings.length === 0) {
+            if (filtered.length === 0) {
                 list.innerHTML = `
                     <div class="card">
                         <div class="empty-state">
                             <div class="empty-icon">📊</div>
-                            <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No data yet</div>
-                            <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Start recording to build your dataset</div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No data for this filter</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Try a different time range</div>
                         </div>
                     </div>
                 `;
                 return;
             }
             
-            list.innerHTML = state.recordings.map(r => `
-                <div class="recording-item">
+            list.innerHTML = filtered.map(r => `
+                <div class="recording-item" style="${state.selectedForCompare.includes(r.id) ? 'border: 3px solid #10b981;' : ''}">
                     <div class="recording-header">
                         <div class="recording-category">
                             ${getCategoryIcon(r.category)} ${r.category.toUpperCase()}
@@ -1250,6 +1875,14 @@
                             </div>
                         `).join('')}
                     </div>
+                    <div class="recording-actions">
+                        <button class="share-btn" onclick="shareRecording(state.recordings.find(rec => rec.id === ${r.id}))">
+                            📤 Share
+                        </button>
+                        <button class="compare-btn" onclick="toggleCompare(${r.id})">
+                            ${state.selectedForCompare.includes(r.id) ? '✓ Selected' : '⚖️ Compare'}
+                        </button>
+                    </div>
                     <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete Recording</button>
                 </div>
             `).join('');
@@ -1261,8 +1894,8 @@
                     <div class="section-title">📈 Analytics</div>
                     <div class="empty-state">
                         <div class="empty-icon">📈</div>
-                        <div style="font-size: 16px; font-weight: 700; color: #1f2937;">No analytics available</div>
-                        <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Record more data to see insights</div>
+                        <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No analytics available</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Record more data to see insights</div>
                     </div>
                 `;
                 return;
@@ -1294,7 +1927,8 @@
                                 position: 'bottom',
                                 labels: { 
                                     padding: 15,
-                                    font: { size: 12, weight: '600' }
+                                    font: { size: 12, weight: '600' },
+                                    color: state.darkMode ? '#f9fafb' : '#1f2937'
                                 }
                             }
                         }
@@ -1327,16 +1961,19 @@
                             y: { 
                                 beginAtZero: true, 
                                 max: 100,
-                                grid: { color: 'rgba(0,0,0,0.05)' }
+                                grid: { color: state.darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' },
+                                ticks: { color: state.darkMode ? '#d1d5db' : '#6b7280' }
                             },
                             x: {
-                                grid: { display: false }
+                                grid: { display: false },
+                                ticks: { color: state.darkMode ? '#d1d5db' : '#6b7280' }
                             }
                         },
                         plugins: {
                             legend: {
                                 labels: {
-                                    font: { size: 12, weight: '600' }
+                                    font: { size: 12, weight: '600' },
+                                    color: state.darkMode ? '#f9fafb' : '#1f2937'
                                 }
                             }
                         }
@@ -1373,8 +2010,10 @@
 
         function deleteRecording(id) {
             if (confirm('Delete this recording?')) {
+                vibrate(50);
                 localStorage.removeItem('eco_' + id);
                 state.recordings = state.recordings.filter(r => r.id !== id);
+                state.selectedForCompare = state.selectedForCompare.filter(cid => cid !== id);
                 document.getElementById('headerCount').textContent = state.recordings.length;
                 renderData();
                 if (state.currentTab === 'home') renderHome();
@@ -1384,8 +2023,10 @@
         function clearAll() {
             if (confirm('⚠️ Delete ALL recordings? This cannot be undone!')) {
                 if (confirm('Are you absolutely sure? All data will be permanently deleted.')) {
+                    vibrate([100, 50, 100]);
                     state.recordings.forEach(r => localStorage.removeItem('eco_' + r.id));
                     state.recordings = [];
+                    state.selectedForCompare = [];
                     document.getElementById('headerCount').textContent = 0;
                     renderHome();
                     showStatus('✅ All data cleared successfully', false);
@@ -1400,6 +2041,7 @@
                 return;
             }
             
+            vibrate(50);
             const csv = [
                 ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temperature (°C)', 'Humidity (%)', 'Latitude', 'Longitude'],
                 ...state.recordings.map(r => [
@@ -1426,6 +2068,7 @@
                 return;
             }
             
+            vibrate(50);
             const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
             const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
             const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
@@ -1478,6 +2121,7 @@ ${i + 1}. ${r.locationName}
 ${'='.repeat(60)}
 © 2024 Articul8 EcoSense
 Environmental Intelligence Platform
+Weather data powered by OpenWeatherMap
 `;
             
             download(report, `articul8-ecosense-report-${Date.now()}.txt`, 'text/plain');
@@ -1515,7 +2159,7 @@ Environmental Intelligence Platform
 
         loadData();
         getLocation();
-        getEnvData();
+        getRealWeatherData();
         renderHome();
     </script>
 </body>
