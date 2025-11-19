@@ -1,2166 +1,1188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Articul8 EcoSense</title>
-    <meta name="theme-color" content="#10b981">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        :root {
-            --bg-gradient-start: #667eea;
-            --bg-gradient-end: #764ba2;
-            --card-bg: rgba(255,255,255,0.98);
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --primary-color: #10b981;
-            --primary-dark: #059669;
-        }
-        
-        body.dark-mode {
-            --bg-gradient-start: #1a1a2e;
-            --bg-gradient-end: #16213e;
-            --card-bg: rgba(30,30,46,0.98);
-            --text-primary: #f9fafb;
-            --text-secondary: #d1d5db;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            min-height: 100vh;
-            padding-bottom: 80px;
-            overflow-x: hidden;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 8px;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        .header {
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(20px);
-            padding: 16px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .dark-mode-toggle {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .dark-mode-toggle:active {
-            transform: scale(0.9);
-        }
-        
-        .header h1 {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        
-        .header-stats {
-            text-align: right;
-            font-size: 12px;
-            opacity: 0.9;
-        }
-        
-        .container {
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            color: var(--text-primary);
-            transform: translateY(0);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card:active {
-            transform: translateY(2px);
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: 32px 0;
-        }
-        
-        .hero-icon {
-            font-size: 80px;
-            margin-bottom: 16px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .hero-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-        
-        .hero-subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border: none;
-            padding: 18px 36px;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .cta-button:active {
-            transform: scale(0.97);
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 24px 0;
-        }
-        
-        .feature-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 20px 12px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
-        
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-        
-        .feature-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.5px;
-        }
-        
-        .record-button {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            font-size: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 32px auto;
-            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        
-        .record-button::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            opacity: 0;
-            transition: all 0.4s;
-        }
-        
-        .record-button:active {
-            transform: scale(0.95);
-        }
-        
-        .record-button.recording {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            animation: pulse 1.5s infinite;
-        }
-        
-        .record-button.recording::before {
-            opacity: 1;
-            animation: ripple 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5); }
-            50% { box-shadow: 0 12px 48px rgba(239, 68, 68, 0.8); }
-        }
-        
-        @keyframes ripple {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0; }
-        }
-        
-        .record-button.analyzing {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
-        
-        .spinner {
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top: 5px solid white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .meter-container {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            border-radius: 20px;
-            padding: 24px;
-            margin: 20px 0;
-        }
-        
-        body.dark-mode .meter-container {
-            background: linear-gradient(135deg, rgba(30,30,46,0.5) 0%, rgba(20,20,35,0.5) 100%);
-        }
-        
-        .meter-display {
-            font-size: 64px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #10b981, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            margin: 12px 0;
-            letter-spacing: -2px;
-        }
-        
-        .meter-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-align: center;
-            font-weight: 700;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: #e5e7eb;
-            border-radius: 6px;
-            overflow: hidden;
-            margin: 16px 0;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        body.dark-mode .progress-bar {
-            background: rgba(50,50,70,0.5);
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #10b981, #059669);
-            width: 0%;
-            transition: width 0.3s;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-        
-        .env-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .env-item {
-            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        body.dark-mode .env-item {
-            background: linear-gradient(135deg, rgba(40,40,60,0.5) 0%, rgba(30,30,50,0.5) 100%);
-            border-color: rgba(100,100,120,0.3);
-        }
-        
-        .env-item:active {
-            transform: scale(0.98);
-            border-color: #10b981;
-        }
-        
-        .env-item .loading-spinner {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            border-top-color: #10b981;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        .env-icon {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        
-        .env-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-        
-        .env-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .location-input {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 14px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            background: white;
-            color: #1f2937;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        body.dark-mode .location-input {
-            background: rgba(40,40,60,0.5);
-            border-color: rgba(100,100,120,0.3);
-            color: #f9fafb;
-        }
-        
-        .location-input:focus {
-            outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
-        }
-        
-        .filter-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-        }
-        
-        .filter-tab {
-            padding: 10px 20px;
-            border-radius: 12px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s;
-        }
-        
-        .filter-tab.active {
-            background: linear-gradient(135deg, #10b981, #059669);
-            border-color: #10b981;
-            color: white;
-        }
-        
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 12px 0;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-            z-index: 100;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        body.dark-mode .bottom-nav {
-            background: rgba(30,30,46,0.98);
-            border-top-color: rgba(255,255,255,0.1);
-        }
-        
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            padding: 8px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #9ca3af;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: #10b981;
-            border-radius: 0 0 3px 3px;
-            transition: width 0.3s;
-        }
-        
-        .nav-item.active {
-            color: #10b981;
-        }
-        
-        .nav-item.active::before {
-            width: 40px;
-        }
-        
-        .nav-icon {
-            font-size: 24px;
-            transition: transform 0.3s;
-        }
-        
-        .nav-item.active .nav-icon {
-            transform: scale(1.1);
-        }
-        
-        .nav-label {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        
-        .recording-item {
-            background: white;
-            border-radius: 18px;
-            padding: 18px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 1px solid #f3f4f6;
-            transition: all 0.3s;
-        }
-        
-        body.dark-mode .recording-item {
-            background: rgba(40,40,60,0.5);
-            border-color: rgba(100,100,120,0.3);
-        }
-        
-        .recording-item:active {
-            transform: scale(0.99);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        
-        .recording-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-        
-        .recording-category {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 18px;
-            font-weight: 700;
-        }
-        
-        .recording-level {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 14px;
-            color: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-        
-        .recording-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        
-        .share-btn, .compare-btn {
-            flex: 1;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .compare-btn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-        
-        .share-btn:active, .compare-btn:active {
-            transform: scale(0.98);
-        }
-        
-        .recording-info {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin: 6px 0;
-            font-weight: 500;
-        }
-        
-        .delete-btn {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 12px;
-            width: 100%;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-        }
-        
-        .delete-btn:active {
-            transform: scale(0.98);
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        
-        .empty-icon {
-            font-size: 80px;
-            margin-bottom: 16px;
-            opacity: 0.4;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            padding: 24px 18px;
-            border-radius: 18px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
-            transition: transform 0.3s;
-        }
-        
-        .stat-card:active {
-            transform: scale(0.97);
-        }
-        
-        .stat-value {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 10px 0;
-            letter-spacing: -1px;
-        }
-        
-        .stat-label {
-            font-size: 11px;
-            opacity: 0.95;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .action-btn {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 14px;
-            width: 100%;
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s;
-        }
-        
-        .action-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 3px 12px rgba(99, 102, 241, 0.3);
-        }
-        
-        .status-msg {
-            background: #10b981;
-            color: white;
-            padding: 14px 18px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            animation: slideDown 0.3s ease;
-        }
-        
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .status-msg.error {
-            background: #ef4444;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-        }
-        
-        .status-msg.warning {
-            background: #f59e0b;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .spectrum-bars {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 4px;
-            height: 60px;
-            margin: 20px 0;
-            padding: 10px;
-            background: rgba(16, 185, 129, 0.05);
-            border-radius: 12px;
-        }
-        
-        .bar {
-            width: 6px;
-            background: linear-gradient(to top, #10b981, #34d399);
-            border-radius: 3px;
-            transition: height 0.1s;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-        }
-        
-        #map {
-            height: 320px;
-            border-radius: 16px;
-            margin: 14px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        canvas {
-            max-width: 100%;
-            border-radius: 14px;
-        }
-        
-        .health-comparison {
-            background: #f9fafb;
-            border-radius: 14px;
-            padding: 14px;
-            margin: 14px 0;
-        }
-        
-        body.dark-mode .health-comparison {
-            background: rgba(40,40,60,0.3);
-        }
-        
-        .health-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px;
-            margin: 8px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .confidence-bar {
-            margin: 10px 0;
-        }
-        
-        .confidence-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
-            text-transform: capitalize;
-            font-weight: 600;
-        }
-        
-        .confidence-progress {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        body.dark-mode .confidence-progress {
-            background: rgba(50,50,70,0.5);
-        }
-        
-        .confidence-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transition: width 0.3s;
-        }
-        
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            max-width: 400px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        
-        .modal-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-        
-        .modal-close {
-            background: #e5e7eb;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            width: 100%;
-            font-weight: 600;
-            margin-top: 12px;
-            cursor: pointer;
-        }
-        
-        body.dark-mode .modal-close {
-            background: rgba(60,60,80,0.5);
-            color: #f9fafb;
-        }
-        
-        .share-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px;
-            background: #f9fafb;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        body.dark-mode .share-option {
-            background: rgba(40,40,60,0.5);
-        }
-        
-        .share-option:active {
-            transform: scale(0.98);
-            background: #e5e7eb;
-        }
-        
-        .share-icon {
-            font-size: 28px;
-        }
-        
-        .share-text {
-            flex: 1;
-        }
-        
-        .share-label {
-            font-weight: 700;
-            color: var(--text-primary);
-            font-size: 15px;
-        }
-        
-        .share-desc {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-        
-        .comparison-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        
-        .comparison-item {
-            background: #f9fafb;
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        body.dark-mode .comparison-item {
-            background: rgba(40,40,60,0.3);
-        }
-        
-        .comparison-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .comparison-value {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-        
-        .alert-banner {
-            position: fixed;
-            top: 70px;
-            left: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
-            z-index: 200;
-            animation: slideDown 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .alert-icon {
-            font-size: 28px;
-        }
-        
-        .alert-content {
-            flex: 1;
-        }
-        
-        .alert-title {
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 4px;
-        }
-        
-        .alert-message {
-            font-size: 13px;
-            opacity: 0.9;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="header-content">
-            <div class="header-left">
-                <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()">
-                    <span id="darkModeIcon">🌙</span>
-                </button>
-                <div>
-                    <h1>🌿 Articul8 EcoSense</h1>
-                    <div style="font-size: 11px; opacity: 0.85; margin-top: 3px; font-weight: 600;">Environmental Intelligence</div>
-                </div>
-            </div>
-            <div class="header-stats">
-                <div style="font-size: 20px; font-weight: 800;" id="headerCount">0</div>
-                <div style="font-size: 11px; font-weight: 600;">Recordings</div>
-            </div>
-        </div>
-    </div>
+import React, { useState, useEffect, useRef } from 'react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
-    <div class="container">
-        <div id="homeTab" class="tab-content">
-            <div class="card">
-                <div class="hero-section">
-                    <div class="hero-icon">🌿</div>
-                    <div class="hero-title">Monitor Your Environment</div>
-                    <div class="hero-subtitle">AI-powered sound, temperature, and humidity tracking with real-time weather data</div>
-                    <button class="cta-button" onclick="switchTab('record')">
-                        <span style="font-size: 24px;">🎤</span>
-                        Start Recording
-                    </button>
-                </div>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🔊</div>
-                        <div class="feature-label">Sound</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🌡️</div>
-                        <div class="feature-label">Temperature</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💧</div>
-                        <div class="feature-label">Humidity</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card" id="statsCard">
-                <div class="section-title">📊 Your Statistics</div>
-                <div class="stats-grid" id="homeStats"></div>
-            </div>
-            
-            <div class="card" id="recentCard" style="display: none;">
-                <div class="section-title">⏱️ Recent Activity</div>
-                <div id="recentActivity"></div>
-            </div>
-        </div>
+const TRANSLATIONS = {
+  en: {
+    appTitle: '🌿 Articul8 EcoSense',
+    healthLabel: 'HEARING HEALTH SCORE',
+    healthStatus: 'Excellent Condition',
+    healthExposure: "Today's exposure: {0} minutes above 85 dB",
+    achievementsTitle: '🏆 Achievements',
+    challengesTitle: '🎯 Daily Challenges',
+    statsTitle: '📊 Your Statistics',
+    sleepTitle: 'Sleep Quality Tracker',
+    sleepDesc: 'Monitor noise disruptions during sleep',
+    sleepBtnText: 'Start Sleep Monitoring',
+    recordTitle: '🎤 Environmental Recording',
+    recordStatus: 'Tap to record',
+    filterAll: 'All',
+    filterToday: 'Today',
+    filterWeek: 'This Week',
+    filterMonth: 'This Month',
+    analyticsDistTitle: '📈 Sound Distribution',
+    analyticsTrendTitle: '📉 Noise Trends',
+    analyticsHealthTitle: '🏥 Health Standards',
+    exportCSV: 'Export Data (CSV)',
+    exportReport: 'Generate Report',
+    clearAll: 'Clear All Data',
+    communityMapTitle: '🌍 Community Noise Map',
+    communityNearbyTitle: '📍 Nearby Recordings',
+    navHome: 'Home',
+    navRecord: 'Record',
+    navData: 'Data',
+    navAnalytics: 'Analytics',
+    navCommunity: 'Community',
+    navProfile: 'Profile',
+    deleteBtn: '🗑️ Delete',
+    compareBtn: '⚖️ Compare',
+    selectedText: '✓ Selected',
+    totalRecordings: 'Total Recordings',
+    avgNoiseLevel: 'Avg Noise Level',
+    achievementsUnlocked: 'Achievements Unlocked',
+    hearingHealth: 'Hearing Health',
+    locationPlaceholder: '📍 Location name',
+    profileLevelText: 'Level',
+    profileExplorerText: 'Explorer',
+    profileDayText: 'Day Streak',
+    profileStatsTitle: '📊 Your Statistics',
+    profileProgressTitle: '🏆 Progress Overview',
+    profileLevelProgress: 'Level Progress',
+    profileNextReward: 'Next Level Reward',
+    profileBonus: 'Bonus',
+    profileSettingsTitle: '⚙️ Settings',
+    profileChangeLang: 'Change Language',
+    profileShareApp: 'Share App',
+    profileAboutTitle: 'ℹ️ About',
+    profileAboutDesc: 'Environmental monitoring platform powered by AI. Track sound, temperature, and humidity with real-time analysis.',
+    profileFeaturesTitle: 'Features',
+    profileFeaturesList: 'Gamification, Health Tracking, Community Map, Multi-Language Support, Sleep Monitoring',
+    profileRights: 'All rights reserved.'
+  },
+  ar: {
+    appTitle: '🌿 Articul8 EcoSense',
+    healthLabel: 'درجة صحة السمع',
+    healthStatus: 'حالة ممتازة',
+    healthExposure: 'التعرض اليوم: {0} دقيقة فوق 85 ديسيبل',
+    achievementsTitle: '🏆 الإنجازات',
+    challengesTitle: '🎯 التحديات اليومية',
+    statsTitle: '📊 إحصائياتك',
+    sleepTitle: 'متتبع جودة النوم',
+    sleepDesc: 'راقب اضطرابات الضوضاء أثناء النوم',
+    sleepBtnText: 'بدء مراقبة النوم',
+    recordTitle: '🎤 التسجيل البيئي',
+    recordStatus: 'انقر للتسجيل',
+    filterAll: 'الكل',
+    filterToday: 'اليوم',
+    filterWeek: 'هذا الأسبوع',
+    filterMonth: 'هذا الشهر',
+    deleteBtn: '🗑️ حذف',
+    compareBtn: '⚖️ مقارنة',
+    selectedText: '✓ محدد',
+    locationPlaceholder: '📍 اسم الموقع',
+    navHome: 'الرئيسية',
+    navRecord: 'تسجيل',
+    navData: 'البيانات',
+    navAnalytics: 'التحليلات',
+    navCommunity: 'المجتمع',
+    navProfile: 'الملف'
+  },
+  es: {
+    appTitle: '🌿 Articul8 EcoSense',
+    healthLabel: 'PUNTUACIÓN DE SALUD AUDITIVA',
+    healthStatus: 'Excelente Condición',
+    achievementsTitle: '🏆 Logros',
+    recordTitle: '🎤 Grabación Ambiental',
+    recordStatus: 'Toca para grabar',
+    filterAll: 'Todo',
+    filterToday: 'Hoy',
+    deleteBtn: '🗑️ Eliminar',
+    compareBtn: '⚖️ Comparar',
+    selectedText: '✓ Seleccionado',
+    locationPlaceholder: '📍 Nombre del lugar',
+    navHome: 'Inicio',
+    navRecord: 'Grabar',
+    navData: 'Datos',
+    navAnalytics: 'Análisis',
+    navCommunity: 'Comunidad',
+    navProfile: 'Perfil'
+  },
+  fr: {
+    appTitle: '🌿 Articul8 EcoSense',
+    healthLabel: 'SCORE DE SANTÉ AUDITIVE',
+    healthStatus: 'Excellente Condition',
+    recordTitle: '🎤 Enregistrement',
+    recordStatus: 'Appuyez pour enregistrer',
+    filterAll: 'Tout',
+    filterToday: "Aujourd'hui",
+    deleteBtn: '🗑️ Supprimer',
+    compareBtn: '⚖️ Comparer',
+    locationPlaceholder: '📍 Nom du lieu',
+    navHome: 'Accueil',
+    navRecord: 'Enregistrer',
+    navData: 'Données',
+    navAnalytics: 'Analyse',
+    navCommunity: 'Communauté',
+    navProfile: 'Profil'
+  },
+  de: {
+    appTitle: '🌿 Articul8 EcoSense',
+    healthLabel: 'GEHÖRGESUNDHEITS-SCORE',
+    healthStatus: 'Ausgezeichnet',
+    recordTitle: '🎤 Aufzeichnung',
+    recordStatus: 'Tippen zum Aufnehmen',
+    filterAll: 'Alle',
+    filterToday: 'Heute',
+    deleteBtn: '🗑️ Löschen',
+    compareBtn: '⚖️ Vergleichen',
+    locationPlaceholder: '📍 Ortsname',
+    navHome: 'Startseite',
+    navRecord: 'Aufnehmen',
+    navData: 'Daten',
+    navAnalytics: 'Analyse',
+    navCommunity: 'Gemeinschaft',
+    navProfile: 'Profil'
+  }
+};
 
-        <div id="recordTab" class="tab-content hidden">
-            <div class="card">
-                <div class="section-title">🎤 Environmental Recording</div>
-                <input 
-                    type="text" 
-                    class="location-input" 
-                    id="locationInput" 
-                    placeholder="📍 Location name (e.g., School Plaza)"
+const COLORS = ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280'];
+
+export default function EcoSenseApp() {
+  const [currentTab, setCurrentTab] = useState('home');
+  const [darkMode, setDarkMode] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en');
+  const [xp, setXp] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [streak, setStreak] = useState(0);
+  const [lastRecordDate, setLastRecordDate] = useState(null);
+  const [recordings, setRecordings] = useState([]);
+  const [achievements, setAchievements] = useState({
+    firstRecord: false,
+    tenRecords: false,
+    quietSeeker: false,
+    noiseFinder: false,
+    weekStreak: false,
+    allCategories: false
+  });
+  const [dailyChallenges, setDailyChallenges] = useState({
+    record3: { completed: false, progress: 0, target: 3 },
+    findQuiet: { completed: false, progress: 0, target: 1 },
+    findLoud: { completed: false, progress: 0, target: 1 }
+  });
+  const [hearingHealth, setHearingHealth] = useState({
+    score: 100,
+    dailyExposure: 0,
+    lastReset: new Date().toDateString()
+  });
+  const [isRecording, setIsRecording] = useState(false);
+  const [currentDb, setCurrentDb] = useState(0);
+  const [locationName, setLocationName] = useState('');
+  const [currentFilter, setCurrentFilter] = useState('all');
+  const [selectedForCompare, setSelectedForCompare] = useState([]);
+  const [showLangModal, setShowLangModal] = useState(false);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [notification, setNotification] = useState('');
+  const [sleepMode, setSleepMode] = useState(false);
+
+  const audioContextRef = useRef(null);
+  const analyserRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+
+  // Check if it's a new day and reset challenges
+  useEffect(() => {
+    const today = new Date().toDateString();
+    if (lastRecordDate && lastRecordDate !== today) {
+      setDailyChallenges({
+        record3: { completed: false, progress: 0, target: 3 },
+        findQuiet: { completed: false, progress: 0, target: 1 },
+        findLoud: { completed: false, progress: 0, target: 1 }
+      });
+    }
+    if (hearingHealth.lastReset !== today) {
+      setHearingHealth(prev => ({ ...prev, dailyExposure: 0, lastReset: today }));
+    }
+  }, [lastRecordDate, hearingHealth.lastReset]);
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => setNotification(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
+
+  // Cleanup audio context on unmount
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(t => t.stop());
+      }
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+
+  // Show comparison modal when 2 recordings selected
+  useEffect(() => {
+    if (selectedForCompare.length === 2) {
+      setShowCompareModal(true);
+    }
+  }, [selectedForCompare]);
+
+  const addXP = (amount) => {
+    const newXp = xp + amount;
+    const xpForNextLevel = level * 100;
+    if (newXp >= xpForNextLevel) {
+      setLevel(level + 1);
+      setXp(newXp - xpForNextLevel);
+      showNotification(`🎉 Level Up! You're now Level ${level + 1}!`);
+    } else {
+      setXp(newXp);
+    }
+  };
+
+  const showNotification = (msg) => {
+    setNotification(msg);
+  };
+
+  const updateStreak = () => {
+    const today = new Date().toDateString();
+    if (lastRecordDate === today) return;
+    
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    if (lastRecordDate === yesterday.toDateString()) {
+      setStreak(prev => prev + 1);
+      showNotification(`🔥 ${streak + 1} Day Streak!`);
+    } else {
+      setStreak(1);
+    }
+    setLastRecordDate(today);
+  };
+
+  const startRecording = async () => {
+    if (isRecording) return;
+    if (sleepMode) {
+      toggleSleepMode();
+      return;
+    }
+
+    try {
+      setIsRecording(true);
+      
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Microphone not supported in this browser');
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false
+        }
+      });
+
+      streamRef.current = stream;
+      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      analyserRef.current = audioContextRef.current.createAnalyser();
+      const source = audioContextRef.current.createMediaStreamSource(stream);
+      source.connect(analyserRef.current);
+      analyserRef.current.fftSize = 256;
+      analyserRef.current.smoothingTimeConstant = 0.3;
+
+      const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
+      let maxDb = 0;
+      let animationId;
+
+      const updateMeter = () => {
+        if (!isRecording) return;
+        analyserRef.current.getByteFrequencyData(dataArray);
+        const avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
+        const db = Math.round(Math.min(100, Math.max(30, (avg / 255) * 70 + 30)));
+        maxDb = Math.max(maxDb, db);
+        setCurrentDb(db);
+        animationId = requestAnimationFrame(updateMeter);
+      };
+      updateMeter();
+
+      setTimeout(() => {
+        if (animationId) cancelAnimationFrame(animationId);
+        stopRecording(maxDb, dataArray);
+      }, 5000);
+    } catch (err) {
+      console.error('Microphone error:', err);
+      setIsRecording(false);
+      setCurrentDb(0);
+      
+      if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+        showNotification('❌ Please allow microphone access in your browser settings');
+      } else if (err.name === 'NotFoundError') {
+        showNotification('❌ No microphone found on this device');
+      } else {
+        showNotification('❌ Unable to access microphone. Try refreshing the page.');
+      }
+    }
+  };
+
+  const stopRecording = (maxDb, dataArray) => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(t => t.stop());
+    }
+    setIsRecording(false);
+    setCurrentDb(0);
+
+    const { category, confidences } = analyzeFrequency(dataArray);
+    const recording = {
+      id: Date.now(),
+      timestamp: Date.now(),
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      locationName: locationName || 'Unnamed Location',
+      category,
+      confidences,
+      noiseLevel: maxDb,
+      temperature: 20 + Math.floor(Math.random() * 15),
+      humidity: 40 + Math.floor(Math.random() * 40)
+    };
+
+    setRecordings(prev => [recording, ...prev]);
+    setLocationName('');
+    addXP(10);
+    updateStreak();
+    checkAchievements([recording, ...recordings]);
+    updateDailyChallenges(recording);
+    updateHearingHealth(recording);
+    showNotification(`✅ Recorded: ${maxDb} dB - ${category}`);
+  };
+
+  const analyzeFrequency = (dataArray) => {
+    const binCount = dataArray.length;
+    const lowEnd = Math.floor(binCount * 0.2);
+    const midEnd = Math.floor(binCount * 0.6);
+    
+    let lowFreq = 0, midFreq = 0, highFreq = 0, total = 0;
+    
+    for (let i = 0; i < lowEnd; i++) { lowFreq += dataArray[i]; total += dataArray[i]; }
+    for (let i = lowEnd; i < midEnd; i++) { midFreq += dataArray[i]; total += dataArray[i]; }
+    for (let i = midEnd; i < binCount; i++) { highFreq += dataArray[i]; total += dataArray[i]; }
+    
+    if (total === 0) {
+      return { category: 'silence', confidences: { silence: 95, nature: 3, people: 1, traffic: 1, construction: 0 } };
+    }
+    
+    const lowPercent = (lowFreq / total) * 100;
+    const midPercent = (midFreq / total) * 100;
+    const highPercent = (highFreq / total) * 100;
+    
+    let variance = 0;
+    const mean = total / binCount;
+    for (let i = 0; i < binCount; i++) {
+      variance += Math.pow(dataArray[i] - mean, 2);
+    }
+    const complexity = Math.sqrt(variance / binCount);
+    
+    const confidences = { traffic: 10, construction: 10, people: 10, nature: 10, silence: 10 };
+    
+    if (midPercent > 45 && complexity > 30) {
+      confidences.people = 70 + Math.random() * 20;
+    } else if (lowPercent > 50 && complexity < 50) {
+      confidences.traffic = 70 + Math.random() * 20;
+    } else if (highPercent > 40) {
+      confidences.nature = 70 + Math.random() * 20;
+    } else if (complexity > 60) {
+      confidences.construction = 70 + Math.random() * 20;
+    } else {
+      confidences.silence = 70 + Math.random() * 20;
+    }
+    
+    const category = Object.entries(confidences).reduce((a, b) => confidences[a[0]] > confidences[b[0]] ? a : b)[0];
+    return { category, confidences };
+  };
+
+  const checkAchievements = (recs) => {
+    const newAch = { ...achievements };
+    let changed = false;
+
+    if (!newAch.firstRecord && recs.length >= 1) {
+      newAch.firstRecord = true;
+      addXP(50);
+      showNotification('🏆 Achievement: First Recording!');
+      changed = true;
+    }
+    if (!newAch.tenRecords && recs.length >= 10) {
+      newAch.tenRecords = true;
+      addXP(100);
+      showNotification('🏆 Achievement: Data Collector!');
+      changed = true;
+    }
+    if (!newAch.quietSeeker && recs.filter(r => r.noiseLevel < 40).length >= 5) {
+      newAch.quietSeeker = true;
+      addXP(75);
+      showNotification('🏆 Achievement: Quiet Seeker!');
+      changed = true;
+    }
+    if (!newAch.noiseFinder && recs.filter(r => r.noiseLevel > 80).length >= 3) {
+      newAch.noiseFinder = true;
+      addXP(75);
+      showNotification('🏆 Achievement: Noise Finder!');
+      changed = true;
+    }
+    if (!newAch.weekStreak && streak >= 7) {
+      newAch.weekStreak = true;
+      addXP(200);
+      showNotification('🏆 Achievement: Week Warrior!');
+      changed = true;
+    }
+    const categories = [...new Set(recs.map(r => r.category))];
+    if (!newAch.allCategories && categories.length >= 5) {
+      newAch.allCategories = true;
+      addXP(150);
+      showNotification('🏆 Achievement: Category Master!');
+      changed = true;
+    }
+
+    if (changed) setAchievements(newAch);
+  };
+
+  const updateDailyChallenges = (recording) => {
+    setDailyChallenges(prev => {
+      const updated = { ...prev };
+      let changed = false;
+
+      if (!updated.record3.completed) {
+        updated.record3.progress++;
+        if (updated.record3.progress >= 3) {
+          updated.record3.completed = true;
+          addXP(50);
+          showNotification('✅ Challenge Complete: 3 Recordings!');
+        }
+        changed = true;
+      }
+      if (!updated.findQuiet.completed && recording.noiseLevel < 45) {
+        updated.findQuiet.progress = 1;
+        updated.findQuiet.completed = true;
+        addXP(30);
+        showNotification('✅ Challenge: Found Quiet Spot!');
+        changed = true;
+      }
+      if (!updated.findLoud.completed && recording.noiseLevel > 75) {
+        updated.findLoud.progress = 1;
+        updated.findLoud.completed = true;
+        addXP(30);
+        showNotification('✅ Challenge: Found Loud Spot!');
+        changed = true;
+      }
+
+      return changed ? updated : prev;
+    });
+  };
+
+  const updateHearingHealth = (recording) => {
+    if (recording.noiseLevel >= 85) {
+      setHearingHealth(prev => {
+        const newExposure = prev.dailyExposure + 5;
+        let score = 100;
+        if (newExposure > 480) score = 20;
+        else if (newExposure > 240) score = 40;
+        else if (newExposure > 120) score = 60;
+        else if (newExposure > 60) score = 80;
+        else if (newExposure > 15) score = 90;
+        
+        if (score < 70) showNotification('⚠️ Warning: High noise exposure!');
+        return { ...prev, score, dailyExposure: newExposure };
+      });
+    }
+  };
+
+  const getNoiseColor = (db) => {
+    if (db < 40) return '#10b981';
+    if (db < 55) return '#84cc16';
+    if (db < 70) return '#f59e0b';
+    if (db < 85) return '#f97316';
+    return '#ef4444';
+  };
+
+  const deleteRecording = (id) => {
+    if (window.confirm('Delete this recording?')) {
+      setRecordings(prev => prev.filter(r => r.id !== id));
+      setSelectedForCompare(prev => prev.filter(i => i !== id));
+      showNotification('✅ Recording deleted');
+    }
+  };
+
+  const toggleCompare = (id) => {
+    if (selectedForCompare.includes(id)) {
+      setSelectedForCompare(prev => prev.filter(i => i !== id));
+    } else {
+      if (selectedForCompare.length >= 2) {
+        showNotification('⚠️ Maximum 2 recordings for comparison');
+        return;
+      }
+      setSelectedForCompare(prev => [...prev, id]);
+    }
+  };
+
+  const getFilteredRecordings = () => {
+    const now = Date.now();
+    const day = 24 * 60 * 60 * 1000;
+    switch (currentFilter) {
+      case 'today':
+        return recordings.filter(r => now - r.timestamp < day);
+      case 'week':
+        return recordings.filter(r => now - r.timestamp < 7 * day);
+      case 'month':
+        return recordings.filter(r => now - r.timestamp < 30 * day);
+      default:
+        return recordings;
+    }
+  };
+
+  const exportData = () => {
+    if (recordings.length === 0) {
+      alert('No data to export');
+      return;
+    }
+    const csv = [
+      ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temperature (°C)', 'Humidity (%)'],
+      ...recordings.map(r => [r.date, r.time, r.locationName, r.category, r.noiseLevel, r.temperature, r.humidity])
+    ].map(row => row.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `articul8-data-${Date.now()}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showNotification('✅ Data exported!');
+  };
+
+  const exportReport = () => {
+    if (recordings.length === 0) {
+      alert('No data to export');
+      return;
+    }
+    const avg = (recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1);
+    const report = `ARTICUL8 ECOSENSE - REPORT\n${'='.repeat(50)}\n\nGenerated: ${new Date().toLocaleString()}\n\nSUMMARY\nTotal: ${recordings.length}\nAvg Noise: ${avg} dB\nHealth Score: ${hearingHealth.score}\n\n© 2024 Articul8 EcoSense`;
+    const blob = new Blob([report], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `articul8-report-${Date.now()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showNotification('✅ Report generated!');
+  };
+
+  const clearAll = () => {
+    if (window.confirm('⚠️ Delete ALL data?')) {
+      if (window.confirm('Are you absolutely sure?')) {
+        setRecordings([]);
+        setSelectedForCompare([]);
+        showNotification('✅ All data cleared');
+      }
+    }
+  };
+
+  const toggleSleepMode = () => {
+    setSleepMode(prev => !prev);
+    showNotification(sleepMode ? '⏰ Sleep monitoring ended' : '😴 Sleep mode activated!');
+  };
+
+  const shareApp = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Articul8 EcoSense',
+        text: 'Check out this environmental monitoring app!',
+        url: window.location.href
+      });
+    } else {
+      showNotification('📋 Share: ' + window.location.href);
+    }
+  };
+
+  const xpProgress = (xp / (level * 100)) * 100;
+
+  const achievementsList = [
+    { id: 'firstRecord', icon: '🎤', name: 'First Steps' },
+    { id: 'tenRecords', icon: '📊', name: 'Data Collector' },
+    { id: 'quietSeeker', icon: '🤫', name: 'Quiet Seeker' },
+    { id: 'noiseFinder', icon: '📢', name: 'Noise Finder' },
+    { id: 'weekStreak', icon: '🔥', name: 'Week Warrior' },
+    { id: 'allCategories', icon: '🌟', name: 'Category Master' }
+  ];
+
+  const challengesList = [
+    { id: 'record3', title: 'Record 3 Times', desc: 'Make 3 recordings today' },
+    { id: 'findQuiet', title: 'Find Peace', desc: 'Record under 45 dB' },
+    { id: 'findLoud', title: 'Find Noise', desc: 'Record above 75 dB' }
+  ];
+
+  const categoryCounts = recordings.reduce((acc, r) => {
+    acc[r.category] = (acc[r.category] || 0) + 1;
+    return acc;
+  }, {});
+
+  const chartData = Object.entries(categoryCounts).map(([name, value]) => ({
+    name: name.charAt(0).toUpperCase() + name.slice(1),
+    value
+  }));
+
+  const trendData = [...recordings].reverse().slice(0, 10).map((r, i) => ({
+    name: `#${i + 1}`,
+    db: r.noiseLevel
+  }));
+
+  const compareRecordings = selectedForCompare.map(id => recordings.find(r => r.id === id)).filter(Boolean);
+
+  return (
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950' : 'bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500'} pb-20 relative overflow-hidden`}>
+      {/* Animated background elements */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+      </div>
+
+      {/* Header */}
+      <div className="bg-black bg-opacity-40 backdrop-blur-2xl p-4 sticky top-0 z-50 border-b border-white border-opacity-10 shadow-2xl">
+        <div className="flex justify-between items-center max-w-2xl mx-auto">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-lg shadow-cyan-500/50 flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300"
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+            <button
+              onClick={() => setShowLangModal(true)}
+              className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 shadow-lg shadow-purple-500/50 flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300"
+            >
+              🌐
+            </button>
+            <h1 className="text-xl font-bold text-white drop-shadow-lg tracking-wide">{t.appTitle}</h1>
+          </div>
+          <div className="text-right text-sm text-white">
+            <div className="font-bold tracking-wider drop-shadow-lg">Lvl {level} • {xp} XP</div>
+            <div className="w-32 h-1 bg-white bg-opacity-20 rounded-full mt-1 overflow-hidden shadow-inner">
+              <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full shadow-lg animate-pulse" style={{ width: `${xpProgress}%` }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Notification */}
+      {notification && (
+        <div className="fixed top-20 left-4 right-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white p-4 rounded-2xl shadow-2xl shadow-purple-500/50 z-50 animate-bounce backdrop-blur-xl border border-white border-opacity-20">
+          <div className="font-bold drop-shadow-lg">{notification}</div>
+        </div>
+      )}
+
+      {/* Language Modal */}
+      {showLangModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowLangModal(false)}>
+          <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900' : 'bg-gradient-to-br from-white to-purple-50'} rounded-3xl p-6 max-w-md w-full border-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'} shadow-2xl shadow-purple-500/50`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>Select Language / اختر اللغة</h2>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {[
+                { code: 'en', label: '🇬🇧 English' },
+                { code: 'ar', label: '🇸🇦 العربية' },
+                { code: 'es', label: '🇪🇸 Español' },
+                { code: 'fr', label: '🇫🇷 Français' },
+                { code: 'de', label: '🇩🇪 Deutsch' }
+              ].map(lang => (
+                <button
+                  key={lang.code}
+                  onClick={() => { setCurrentLang(lang.code); setShowLangModal(false); }}
+                  className={`px-4 py-2 rounded-full font-semibold transition-all duration-300 ${currentLang === lang.code ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-105' : 'bg-white bg-opacity-10 text-white hover:scale-105'}`}
                 >
-                
-                <button class="record-button" id="recordBtn" onclick="toggleRecording()">
-                    <span id="recordIcon">🎤</span>
+                  {lang.label}
                 </button>
-                
-                <div class="meter-container">
-                    <div class="meter-label">SOUND LEVEL</div>
-                    <div class="meter-display" id="dbDisplay">0</div>
-                    <div class="meter-label">DECIBELS (dB)</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressBar"></div>
+              ))}
+            </div>
+            <button onClick={() => setShowLangModal(false)} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white py-3 rounded-2xl font-bold shadow-lg shadow-purple-500/50 hover:scale-105 transition-transform">Close</button>
+          </div>
+        </div>
+      )}
+
+      {/* Comparison Modal */}
+      {showCompareModal && compareRecordings.length === 2 && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }}>
+          <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900' : 'bg-gradient-to-br from-white to-purple-50'} rounded-3xl p-6 max-w-md w-full border-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'} shadow-2xl shadow-purple-500/50`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>📊 Location Comparison</h2>
+            <div className="text-center mb-4">
+              <div className={`font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].locationName}</div>
+              <div className="text-sm text-gray-500">vs</div>
+              <div className={`font-bold mt-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].locationName}</div>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="text-center p-3 bg-gradient-to-br from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                <div className="text-xs text-gray-300 mb-1">Noise Level</div>
+                <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[0].noiseLevel) }}>{compareRecordings[0].noiseLevel} dB</div>
+              </div>
+              <div className="text-center p-3 bg-gradient-to-br from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                <div className="text-xs text-gray-300 mb-1">Noise Level</div>
+                <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[1].noiseLevel) }}>{compareRecordings[1].noiseLevel} dB</div>
+              </div>
+              <div className="text-center p-3 bg-gradient-to-br from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                <div className="text-xs text-gray-300 mb-1">Temperature</div>
+                <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].temperature}°C</div>
+              </div>
+              <div className="text-center p-3 bg-gradient-to-br from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                <div className="text-xs text-gray-300 mb-1">Temperature</div>
+                <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].temperature}°C</div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-r from-green-500/20 to-emerald-600/20 p-3 rounded-xl backdrop-blur-sm border border-white border-opacity-10 mb-4">
+              <div className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Analysis</div>
+              <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {compareRecordings[0].locationName} is {Math.abs(compareRecordings[0].noiseLevel - compareRecordings[1].noiseLevel)} dB {compareRecordings[0].noiseLevel > compareRecordings[1].noiseLevel ? 'louder' : 'quieter'} than {compareRecordings[1].locationName}.
+              </div>
+            </div>
+            <button onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white py-3 rounded-2xl font-bold shadow-lg shadow-purple-500/50 hover:scale-105 transition-transform">Close</button>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content */}
+      <div className="max-w-2xl mx-auto p-4">
+        {/* Home Tab */}
+        {currentTab === 'home' && (
+          <div className="relative z-10">
+            <div className="bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 rounded-3xl p-6 mb-4 text-white shadow-2xl shadow-cyan-500/50 border border-white border-opacity-20 backdrop-blur-xl transform hover:scale-105 transition-transform duration-300">
+              <div className="text-center text-sm opacity-90 tracking-wider uppercase">{t.healthLabel}</div>
+              <div className="text-7xl font-bold text-center my-4 drop-shadow-2xl animate-pulse">{hearingHealth.score}</div>
+              <div className="text-center text-sm opacity-90 tracking-wide">{t.healthStatus}</div>
+              <div className="w-full h-3 bg-white bg-opacity-20 rounded-full mt-4 overflow-hidden shadow-inner backdrop-blur-sm">
+                <div className="h-full bg-gradient-to-r from-cyan-300 to-white rounded-full shadow-lg animate-pulse" style={{ width: `${hearingHealth.score}%` }} />
+              </div>
+              <div className="text-center text-sm mt-4 opacity-90">
+                {t.healthExposure.replace('{0}', Math.round(hearingHealth.dailyExposure / 60))}
+              </div>
+            </div>
+
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.achievementsTitle}</h2>
+              <div className="grid grid-cols-3 gap-3">
+                {achievementsList.map(a => (
+                  <div
+                    key={a.id}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 ${achievements[a.id] ? 'bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg shadow-yellow-500/50 scale-105 border-2 border-yellow-300' : 'bg-white bg-opacity-10 opacity-50 backdrop-blur-sm'}`}
+                  >
+                    <div className="text-3xl mb-2 drop-shadow-lg">{a.icon}</div>
+                    <div className={`text-xs font-semibold ${achievements[a.id] ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{a.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.challengesTitle}</h2>
+              {challengesList.map(c => {
+                const ch = dailyChallenges[c.id];
+                const progress = (ch.progress / ch.target) * 100;
+                return (
+                  <div key={c.id} className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-2xl mb-3 backdrop-blur-sm border border-white border-opacity-10 shadow-lg">
+                    <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{ch.completed ? '✅' : '⭕'} {c.title}</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>{c.desc}</div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1 h-2 bg-white bg-opacity-20 rounded-full overflow-hidden backdrop-blur-sm">
+                        <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full shadow-lg" style={{ width: `${progress}%` }} />
+                      </div>
+                      <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{ch.progress}/{ch.target}</div>
                     </div>
-                </div>
-                
-                <div class="spectrum-bars hidden" id="spectrumBars"></div>
-                
-                <div class="env-grid">
-                    <div class="env-item">
-                        <div class="loading-spinner hidden" id="tempLoader"></div>
-                        <div class="env-icon">🌡️</div>
-                        <div class="env-value" id="tempDisplay">--</div>
-                        <div class="env-label">Temperature °C</div>
-                    </div>
-                    <div class="env-item">
-                        <div class="loading-spinner hidden" id="humidityLoader"></div>
-                        <div class="env-icon">💧</div>
-                        <div class="env-value" id="humidityDisplay">--</div>
-                        <div class="env-label">Humidity %</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="statusMsg" class="status-msg hidden"></div>
-        </div>
-
-        <div id="mapTab" class="tab-content hidden">
-            <div class="card">
-                <div class="section-title">🗺️ Environmental Map</div>
-                <div id="map"></div>
-                <div style="font-size: 13px; color: var(--text-secondary); text-align: center; margin-top: 12px; font-weight: 600;">
-                    🟢 Quiet • 🟡 Moderate • 🔴 Loud
-                </div>
-            </div>
-        </div>
-
-        <div id="dataTab" class="tab-content hidden">
-            <div class="filter-tabs">
-                <button class="filter-tab active" onclick="filterData('all')">All</button>
-                <button class="filter-tab" onclick="filterData('today')">Today</button>
-                <button class="filter-tab" onclick="filterData('week')">This Week</button>
-                <button class="filter-tab" onclick="filterData('month')">This Month</button>
-            </div>
-            <div id="recordingsList"></div>
-        </div>
-
-        <div id="analyticsTab" class="tab-content hidden">
-            <div class="card">
-                <div class="section-title">📈 Sound Distribution</div>
-                <canvas id="categoryChart" style="margin: 18px 0;"></canvas>
-            </div>
-            
-            <div class="card">
-                <div class="section-title">📉 Noise Trends</div>
-                <canvas id="trendChart" style="margin: 18px 0;"></canvas>
-            </div>
-            
-            <div class="card">
-                <div class="section-title">🏥 Health Standards</div>
-                <div class="health-comparison" id="healthComp"></div>
-            </div>
-            
-            <button class="action-btn" onclick="exportData()">
-                <span style="font-size: 20px;">📥</span>
-                Export Data (CSV)
-            </button>
-            <button class="action-btn" onclick="exportReport()">
-                <span style="font-size: 20px;">📄</span>
-                Generate Report
-            </button>
-            <button class="action-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);" onclick="clearAll()">
-                <span style="font-size: 20px;">🗑️</span>
-                Clear All Data
-            </button>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home')">
-            <div class="nav-icon">🏠</div>
-            <div class="nav-label">Home</div>
-        </button>
-        <button class="nav-item" onclick="switchTab('record')">
-            <div class="nav-icon">🎤</div>
-            <div class="nav-label">Record</div>
-        </button>
-        <button class="nav-item" onclick="switchTab('map')">
-            <div class="nav-icon">🗺️</div>
-            <div class="nav-label">Map</div>
-        </button>
-        <button class="nav-item" onclick="switchTab('data')">
-            <div class="nav-icon">📊</div>
-            <div class="nav-label">Data</div>
-        </button>
-        <button class="nav-item" onclick="switchTab('analytics')">
-            <div class="nav-icon">📈</div>
-            <div class="nav-label">Analytics</div>
-        </button>
-    </div>
-
-    <script>
-        const WEATHER_API_KEY = 'demo'; // Users should get their own free key from openweathermap.org
-        
-        let state = {
-            isRecording: false,
-            analyzing: false,
-            recordings: [],
-            currentTab: 'home',
-            currentDb: 0,
-            currentTemp: 0,
-            currentHumidity: 0,
-            currentLocation: null,
-            mapInstance: null,
-            charts: {},
-            darkMode: false,
-            soundEnabled: true,
-            currentFilter: 'all',
-            compareMode: false,
-            selectedForCompare: []
-        };
-
-        let mediaRecorder, audioContext, analyser, dataArray, animationId, recordingTimeout;
-        
-        // Audio for sound effects
-        const beepSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZijcIGWi77OeeSwgMUKbj77RgGwU'); 
-
-        function vibrate(duration = 50) {
-            if ('vibrate' in navigator) {
-                navigator.vibrate(duration);
-            }
-        }
-
-        function playSound(type = 'beep') {
-            if (state.soundEnabled) {
-                try {
-                    beepSound.currentTime = 0;
-                    beepSound.play().catch(() => {});
-                } catch (e) {}
-            }
-        }
-
-        function toggleDarkMode() {
-            state.darkMode = !state.darkMode;
-            document.body.classList.toggle('dark-mode');
-            document.getElementById('darkModeIcon').textContent = state.darkMode ? '☀️' : '🌙';
-            localStorage.setItem('darkMode', state.darkMode);
-            vibrate(30);
-        }
-
-        function loadData() {
-            const keys = Object.keys(localStorage).filter(k => k.startsWith('eco_'));
-            state.recordings = keys.map(k => JSON.parse(localStorage.getItem(k)))
-                .sort((a, b) => b.timestamp - a.timestamp);
-            document.getElementById('headerCount').textContent = state.recordings.length;
-            
-            if (state.recordings.length > 0) {
-                document.getElementById('recentCard').style.display = 'block';
-            }
-            
-            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-            if (savedDarkMode) {
-                state.darkMode = true;
-                document.body.classList.add('dark-mode');
-                document.getElementById('darkModeIcon').textContent = '☀️';
-            }
-        }
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    pos => {
-                        state.currentLocation = {
-                            lat: pos.coords.latitude,
-                            lng: pos.coords.longitude
-                        };
-                        getRealWeatherData();
-                    },
-                    () => {
-                        state.currentLocation = { lat: 31.9539, lng: 35.9106 };
-                        getRealWeatherData();
-                    }
+                  </div>
                 );
-            }
-        }
+              })}
+            </div>
 
-        async function getRealWeatherData() {
-            if (!state.currentLocation) return;
-            
-            document.getElementById('tempLoader').classList.remove('hidden');
-            document.getElementById('humidityLoader').classList.remove('hidden');
-            
-            try {
-                const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${state.currentLocation.lat}&lon=${state.currentLocation.lng}&units=metric&appid=${WEATHER_API_KEY}`
-                );
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    state.currentTemp = parseFloat(data.main.temp.toFixed(1));
-                    state.currentHumidity = parseFloat(data.main.humidity.toFixed(1));
-                } else {
-                    throw new Error('API limit or invalid key');
-                }
-            } catch (error) {
-                console.log('Using simulated weather data');
-                getSimulatedWeatherData();
-            }
-            
-            document.getElementById('tempDisplay').textContent = state.currentTemp;
-            document.getElementById('humidityDisplay').textContent = state.currentHumidity;
-            document.getElementById('tempLoader').classList.add('hidden');
-            document.getElementById('humidityLoader').classList.add('hidden');
-        }
-
-        function getSimulatedWeatherData() {
-            const hour = new Date().getHours();
-            const month = new Date().getMonth();
-            
-            let baseTemp, baseHumidity;
-            
-            if (month >= 5 && month <= 8) {
-                baseTemp = 30;
-                baseHumidity = 40;
-            } else if (month >= 11 || month <= 2) {
-                baseTemp = 15;
-                baseHumidity = 70;
-            } else {
-                baseTemp = 22;
-                baseHumidity = 55;
-            }
-            
-            if (hour >= 6 && hour <= 9) {
-                state.currentTemp = parseFloat((baseTemp - 5 + Math.random() * 3).toFixed(1));
-                state.currentHumidity = parseFloat((baseHumidity + 15 + Math.random() * 10).toFixed(1));
-            } else if (hour >= 12 && hour <= 16) {
-                state.currentTemp = parseFloat((baseTemp + 5 + Math.random() * 5).toFixed(1));
-                state.currentHumidity = parseFloat((baseHumidity - 15 + Math.random() * 10).toFixed(1));
-            } else if (hour >= 18 && hour <= 22) {
-                state.currentTemp = parseFloat((baseTemp + Math.random() * 3).toFixed(1));
-                state.currentHumidity = parseFloat((baseHumidity + Math.random() * 10).toFixed(1));
-            } else {
-                state.currentTemp = parseFloat((baseTemp - 8 + Math.random() * 3).toFixed(1));
-                state.currentHumidity = parseFloat((baseHumidity + 20 + Math.random() * 10).toFixed(1));
-            }
-            
-            document.getElementById('tempDisplay').textContent = state.currentTemp;
-            document.getElementById('humidityDisplay').textContent = state.currentHumidity;
-        }
-
-        async function toggleRecording() {
-            if (state.analyzing) return;
-            
-            vibrate(50);
-            
-            if (!state.isRecording) {
-                await startRecording();
-            } else {
-                stopRecording();
-            }
-        }
-
-        async function startRecording() {
-            try {
-                showStatus('🎤 Requesting microphone access...', false);
-                
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    audio: {
-                        echoCancellation: false,
-                        noiseSuppression: false,
-                        autoGainControl: false,
-                        sampleRate: 48000
-                    }
-                });
-
-                playSound('beep');
-                vibrate(100);
-                showStatus('🔴 Recording... Make some noise!', false);
-                
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                const source = audioContext.createMediaStreamSource(stream);
-                source.connect(analyser);
-                analyser.fftSize = 256;
-                analyser.smoothingTimeConstant = 0.3;
-                
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                
-                mediaRecorder = new MediaRecorder(stream);
-                const chunks = [];
-                
-                mediaRecorder.ondataavailable = e => chunks.push(e.data);
-                mediaRecorder.onstop = () => {
-                    stream.getTracks().forEach(t => t.stop());
-                    analyzeRecording();
-                };
-                
-                mediaRecorder.start();
-                state.isRecording = true;
-                state.currentDb = 0;
-                
-                document.getElementById('recordBtn').classList.add('recording');
-                document.getElementById('recordIcon').textContent = '⏹️';
-                
-                const bars = document.getElementById('spectrumBars');
-                bars.innerHTML = '';
-                for(let i = 0; i < 12; i++) {
-                    bars.innerHTML += '<div class="bar"></div>';
-                }
-                bars.classList.remove('hidden');
-                
-                await getRealWeatherData();
-                updateMeter();
-                
-                recordingTimeout = setTimeout(() => {
-                    if (state.isRecording) stopRecording();
-                }, 5000);
-                
-            } catch (error) {
-                console.error('Mic error:', error);
-                showStatus('❌ Microphone access denied. Please enable in settings.', true);
-                vibrate([100, 50, 100]);
-            }
-        }
-
-        function updateMeter() {
-            if (!state.isRecording || !analyser) return;
-            
-            analyser.getByteFrequencyData(dataArray);
-            
-            let sum = 0;
-            for (let i = 0; i < dataArray.length; i++) {
-                sum += dataArray[i];
-            }
-            const average = sum / dataArray.length;
-            
-            const db = Math.round(Math.min(100, Math.max(30, (average / 255) * 70 + 30)));
-            state.currentDb = Math.max(state.currentDb, db);
-            
-            document.getElementById('dbDisplay').textContent = state.currentDb;
-            document.getElementById('progressBar').style.width = (state.currentDb / 100 * 100) + '%';
-            
-            if (state.currentDb >= 85) {
-                showNoiseAlert();
-            }
-            
-            const bars = document.querySelectorAll('.bar');
-            const step = Math.floor(dataArray.length / bars.length);
-            bars.forEach((bar, i) => {
-                const value = dataArray[i * step] || 0;
-                bar.style.height = (value / 255 * 60) + 'px';
-            });
-            
-            animationId = requestAnimationFrame(updateMeter);
-        }
-
-        function showNoiseAlert() {
-            const existingAlert = document.getElementById('noiseAlert');
-            if (existingAlert) return;
-            
-            const alert = document.createElement('div');
-            alert.id = 'noiseAlert';
-            alert.className = 'alert-banner';
-            alert.innerHTML = `
-                <div class="alert-icon">⚠️</div>
-                <div class="alert-content">
-                    <div class="alert-title">High Noise Level!</div>
-                    <div class="alert-message">Above 85 dB - Risk of hearing damage</div>
+            {recordings.length > 0 && (
+              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+                <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.statsTitle}</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-6 rounded-2xl text-center text-white shadow-xl shadow-emerald-500/50 transform hover:scale-105 transition-transform border border-white border-opacity-20">
+                    <div className="text-sm opacity-90">Total</div>
+                    <div className="text-4xl font-bold my-2 drop-shadow-lg">{recordings.length}</div>
+                    <div className="text-sm opacity-90">Recordings</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-500 to-pink-600 p-6 rounded-2xl text-center text-white shadow-xl shadow-pink-500/50 transform hover:scale-105 transition-transform border border-white border-opacity-20">
+                    <div className="text-sm opacity-90">Streak</div>
+                    <div className="text-4xl font-bold my-2 drop-shadow-lg">{streak} 🔥</div>
+                    <div className="text-sm opacity-90">Days</div>
+                  </div>
                 </div>
-            `;
-            document.body.appendChild(alert);
-            
-            vibrate([100, 50, 100, 50, 100]);
-            
-            setTimeout(() => {
-                alert.remove();
-            }, 4000);
-        }
+              </div>
+            )}
+          </div>
+        )}
 
-        function stopRecording() {
-            if (!state.isRecording) return;
-            
-            clearTimeout(recordingTimeout);
-            cancelAnimationFrame(animationId);
-            
-            if (mediaRecorder && mediaRecorder.state === 'recording') {
-                mediaRecorder.stop();
-            }
-            
-            playSound('beep');
-            vibrate(50);
-            
-            state.isRecording = false;
-            document.getElementById('recordBtn').classList.remove('recording');
-            document.getElementById('spectrumBars').classList.add('hidden');
-        }
+        {/* Record Tab */}
+        {currentTab === 'record' && (
+          <div className="relative z-10">
+            <div className="bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-3xl p-6 mb-4 text-white shadow-2xl shadow-blue-500/50 border border-white border-opacity-20">
+              <div className="text-center">
+                <div className="text-5xl mb-3">😴</div>
+                <div className="text-xl font-bold mb-2">{t.sleepTitle}</div>
+                <div className="text-sm opacity-90 mb-4">{t.sleepDesc}</div>
+                <button
+                  onClick={toggleSleepMode}
+                  className="w-full bg-white text-blue-600 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform"
+                >
+                  <span className="text-2xl">🌙</span>
+                  <span>{sleepMode ? 'Stop Sleep Monitoring' : t.sleepBtnText}</span>
+                </button>
+              </div>
+            </div>
 
-        async function analyzeRecording() {
-            state.analyzing = true;
-            document.getElementById('recordBtn').classList.add('analyzing');
-            document.getElementById('recordIcon').innerHTML = '<div class="spinner"></div>';
-            showStatus('🔬 Analyzing environmental data...', false);
-            
-            await new Promise(r => setTimeout(r, 2000));
-            
-            const db = state.currentDb;
-            const category = db < 40 ? 'silence' : db < 55 ? 'nature' : db < 70 ? 'people' : db < 85 ? 'traffic' : 'construction';
-            
-            const confidences = {
-                traffic: 15 + Math.random() * 20,
-                construction: 15 + Math.random() * 20,
-                people: 15 + Math.random() * 20,
-                nature: 15 + Math.random() * 20,
-                silence: 15 + Math.random() * 20
-            };
-            confidences[category] = 60 + Math.random() * 30;
-            
-            const recording = {
-                id: Date.now(),
-                timestamp: Date.now(),
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString(),
-                hour: new Date().getHours(),
-                location: state.currentLocation || { lat: 31.9539, lng: 35.9106 },
-                locationName: document.getElementById('locationInput').value || 'Unnamed Location',
-                category,
-                confidences,
-                noiseLevel: db,
-                temperature: state.currentTemp,
-                humidity: state.currentHumidity
-            };
-            
-            localStorage.setItem(`eco_${recording.id}`, JSON.stringify(recording));
-            state.recordings.unshift(recording);
-            
-            state.analyzing = false;
-            state.currentDb = 0;
-            
-            document.getElementById('recordBtn').classList.remove('analyzing');
-            document.getElementById('recordIcon').textContent = '🎤';
-            document.getElementById('dbDisplay').textContent = '0';
-            document.getElementById('progressBar').style.width = '0%';
-            document.getElementById('locationInput').value = '';
-            
-            if (db >= 85) {
-                showStatus(`⚠️ WARNING: ${db} dB - ${category.toUpperCase()} (DANGEROUS LEVEL!)`, 'warning');
-                vibrate([200, 100, 200]);
-            } else {
-                showStatus(`✅ Recorded: ${db} dB - ${category.toUpperCase()}`, false);
-                vibrate(100);
-            }
-            
-            setTimeout(hideStatus, 3000);
-            
-            document.getElementById('headerCount').textContent = state.recordings.length;
-            if (state.currentTab === 'home') renderHome();
-        }
-
-        function showStatus(msg, type) {
-            const el = document.getElementById('statusMsg');
-            el.textContent = msg;
-            el.className = 'status-msg';
-            if (type === true) el.classList.add('error');
-            if (type === 'warning') el.classList.add('warning');
-            el.classList.remove('hidden');
-        }
-
-        function hideStatus() {
-            document.getElementById('statusMsg').classList.add('hidden');
-        }
-
-        function switchTab(tab) {
-            state.currentTab = tab;
-            vibrate(30);
-            
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            document.getElementById(tab + 'Tab').classList.remove('hidden');
-            event.currentTarget.classList.add('active');
-            
-            if (tab === 'home') renderHome();
-            if (tab === 'record') getRealWeatherData();
-            if (tab === 'map') renderMap();
-            if (tab === 'data') renderData();
-            if (tab === 'analytics') renderAnalytics();
-        }
-
-        function filterData(filter) {
-            state.currentFilter = filter;
-            vibrate(30);
-            
-            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            renderData();
-        }
-
-        function getFilteredRecordings() {
-            const now = Date.now();
-            const dayMs = 24 * 60 * 60 * 1000;
-            
-            switch(state.currentFilter) {
-                case 'today':
-                    return state.recordings.filter(r => now - r.timestamp < dayMs);
-                case 'week':
-                    return state.recordings.filter(r => now - r.timestamp < 7 * dayMs);
-                case 'month':
-                    return state.recordings.filter(r => now - r.timestamp < 30 * dayMs);
-                default:
-                    return state.recordings;
-            }
-        }
-
-        function shareRecording(recording) {
-            const shareData = {
-                title: 'Articul8 EcoSense Recording',
-                text: `Environmental Recording\n📍 ${recording.locationName}\n🔊 ${recording.noiseLevel} dB (${recording.category})\n🌡️ ${recording.temperature}°C\n💧 ${recording.humidity}%\n📅 ${recording.date} ${recording.time}`,
-                url: 'https://mohammed-01-07.github.io/articul8/'
-            };
-            
-            if (navigator.share) {
-                navigator.share(shareData).then(() => {
-                    vibrate(50);
-                    showStatus('✅ Shared successfully!', false);
-                    setTimeout(hideStatus, 2000);
-                }).catch(() => {});
-            } else {
-                showShareModal(recording);
-            }
-        }
-
-        function showShareModal(recording) {
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-title">Share Recording</div>
-                    
-                    <div class="share-option" onclick="shareVia('whatsapp', ${recording.id})">
-                        <div class="share-icon">💬</div>
-                        <div class="share-text">
-                            <div class="share-label">WhatsApp</div>
-                            <div class="share-desc">Share via WhatsApp</div>
-                        </div>
-                    </div>
-                    
-                    <div class="share-option" onclick="shareVia('email', ${recording.id})">
-                        <div class="share-icon">📧</div>
-                        <div class="share-text">
-                            <div class="share-label">Email</div>
-                            <div class="share-desc">Share via Email</div>
-                        </div>
-                    </div>
-                    
-                    <div class="share-option" onclick="shareVia('copy', ${recording.id})">
-                        <div class="share-icon">📋</div>
-                        <div class="share-text">
-                            <div class="share-label">Copy Text</div>
-                            <div class="share-desc">Copy to clipboard</div>
-                        </div>
-                    </div>
-                    
-                    <button class="modal-close" onclick="this.closest('.modal').remove()">Close</button>
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.recordTitle}</h2>
+              <input
+                type="text"
+                value={locationName}
+                onChange={(e) => setLocationName(e.target.value)}
+                placeholder={t.locationPlaceholder}
+                className={`w-full p-4 border-2 ${darkMode ? 'border-purple-500 bg-slate-800 text-white placeholder-gray-500' : 'border-purple-200 bg-white text-gray-900'} rounded-2xl mb-4 shadow-inner backdrop-blur-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all`}
+              />
+              <button
+                onClick={startRecording}
+                disabled={isRecording}
+                className={`w-40 h-40 rounded-full mx-auto flex items-center justify-center text-6xl ${
+                  isRecording 
+                    ? 'bg-gradient-to-br from-red-500 via-pink-500 to-purple-600 shadow-2xl shadow-red-500/50 cursor-not-allowed' 
+                    : 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 shadow-2xl shadow-cyan-500/50 hover:scale-110 cursor-pointer'
+                } text-white mb-4 transition-all duration-300 border-4 border-white border-opacity-20 backdrop-blur-sm ${isRecording ? 'animate-pulse' : ''}`}
+              >
+                {isRecording ? '⏹️' : '🎤'}
+              </button>
+              <div className="text-center">
+                <div className={`text-5xl font-bold mb-2 drop-shadow-2xl ${isRecording ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 animate-pulse' : 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500'}`}>
+                  {currentDb} dB
                 </div>
-            `;
-            document.body.appendChild(modal);
-            vibrate(50);
-        }
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {isRecording ? 'Recording...' : t.recordStatus}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
-        function shareVia(method, recordingId) {
-            const recording = state.recordings.find(r => r.id === recordingId);
-            if (!recording) return;
-            
-            const text = `Environmental Recording from Articul8 EcoSense\n\n📍 Location: ${recording.locationName}\n🔊 Noise: ${recording.noiseLevel} dB (${recording.category})\n🌡️ Temperature: ${recording.temperature}°C\n💧 Humidity: ${recording.humidity}%\n📅 ${recording.date} ${recording.time}\n\nGet the app: https://mohammed-01-07.github.io/articul8/`;
-            
-            if (method === 'whatsapp') {
-                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-            } else if (method === 'email') {
-                window.open(`mailto:?subject=Articul8 EcoSense Recording&body=${encodeURIComponent(text)}`, '_blank');
-            } else if (method === 'copy') {
-                navigator.clipboard.writeText(text).then(() => {
-                    showStatus('✅ Copied to clipboard!', false);
-                    setTimeout(hideStatus, 2000);
-                    document.querySelector('.modal').remove();
-                });
-            }
-            
-            vibrate(50);
-        }
+        {/* Data Tab - Continue in next message */}
+        {currentTab === 'data' && (
+          <div className="relative z-10">
+            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+              {['all', 'today', 'week', 'month'].map(filter => (
+                <button
+                  key={filter}
+                  onClick={() => setCurrentFilter(filter)}
+                  className={`px-4 py-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ${
+                    currentFilter === filter 
+                      ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-105' 
+                      : 'bg-white bg-opacity-20 text-white hover:scale-105 backdrop-blur-sm'
+                  }`}
+                >
+                  {t[`filter${filter.charAt(0).toUpperCase() + filter.slice(1)}`] || filter}
+                </button>
+              ))}
+            </div>
 
-        function toggleCompare(recordingId) {
-            vibrate(30);
-            
-            if (state.selectedForCompare.includes(recordingId)) {
-                state.selectedForCompare = state.selectedForCompare.filter(id => id !== recordingId);
-            } else {
-                if (state.selectedForCompare.length >= 2) {
-                    showStatus('⚠️ Maximum 2 recordings for comparison', 'warning');
-                    setTimeout(hideStatus, 2000);
-                    return;
-                }
-                state.selectedForCompare.push(recordingId);
-            }
-            
-            if (state.selectedForCompare.length === 2) {
-                showComparisonModal();
-            }
-            
-            renderData();
-        }
-
-        function showComparisonModal() {
-            const rec1 = state.recordings.find(r => r.id === state.selectedForCompare[0]);
-            const rec2 = state.recordings.find(r => r.id === state.selectedForCompare[1]);
-            
-            if (!rec1 || !rec2) return;
-            
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-title">📊 Location Comparison</div>
-                    
-                    <div style="text-align: center; margin: 16px 0;">
-                        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">${rec1.locationName}</div>
-                        <div style="font-size: 12px; color: var(--text-secondary);">vs</div>
-                        <div style="font-weight: 700; color: var(--text-primary); margin-top: 4px;">${rec2.locationName}</div>
-                    </div>
-                    
-                    <div class="comparison-container">
-                        <div class="comparison-item">
-                            <div class="comparison-label">Noise Level</div>
-                            <div class="comparison-value" style="color: ${getColor(rec1.noiseLevel)}">${rec1.noiseLevel} dB</div>
-                        </div>
-                        <div class="comparison-item">
-                            <div class="comparison-label">Noise Level</div>
-                            <div class="comparison-value" style="color: ${getColor(rec2.noiseLevel)}">${rec2.noiseLevel} dB</div>
-                        </div>
-                        
-                        <div class="comparison-item">
-                            <div class="comparison-label">Temperature</div>
-                            <div class="comparison-value">${rec1.temperature}°C</div>
-                        </div>
-                        <div class="comparison-item">
-                            <div class="comparison-label">Temperature</div>
-                            <div class="comparison-value">${rec2.temperature}°C</div>
-                        </div>
-                        
-                        <div class="comparison-item">
-                            <div class="comparison-label">Humidity</div>
-                            <div class="comparison-value">${rec1.humidity}%</div>
-                        </div>
-                        <div class="comparison-item">
-                            <div class="comparison-label">Humidity</div>
-                            <div class="comparison-value">${rec2.humidity}%</div>
-                        </div>
-                        
-                        <div class="comparison-item">
-                            <div class="comparison-label">Category</div>
-                            <div class="comparison-value" style="font-size: 18px;">${getCategoryIcon(rec1.category)}</div>
-                        </div>
-                        <div class="comparison-item">
-                            <div class="comparison-label">Category</div>
-                            <div class="comparison-value" style="font-size: 18px;">${getCategoryIcon(rec2.category)}</div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 12px; margin-top: 16px;">
-                        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Analysis</div>
-                        <div style="font-size: 13px; color: var(--text-secondary);">
-                            ${rec1.locationName} is ${Math.abs(rec1.noiseLevel - rec2.noiseLevel)} dB ${rec1.noiseLevel > rec2.noiseLevel ? 'louder' : 'quieter'} than ${rec2.locationName}.
-                        </div>
-                    </div>
-                    
-                    <button class="modal-close" onclick="this.closest('.modal').remove(); state.selectedForCompare = []; renderData();">Close</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            vibrate(50);
-        }
-
-        function renderHome() {
-            if (state.recordings.length === 0) {
-                document.getElementById('statsCard').style.display = 'none';
-                document.getElementById('recentCard').style.display = 'none';
-                return;
-            }
-            
-            document.getElementById('statsCard').style.display = 'block';
-            document.getElementById('recentCard').style.display = 'block';
-            
-            const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
-            const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
-            const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
-            
-            document.getElementById('homeStats').innerHTML = `
-                <div class="stat-card">
-                    <div class="stat-label">Total</div>
-                    <div class="stat-value">${state.recordings.length}</div>
-                    <div class="stat-label">Recordings</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Average</div>
-                    <div class="stat-value">${avg} dB</div>
-                    <div class="stat-label">Noise Level</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Temperature</div>
-                    <div class="stat-value">${avgTemp}°C</div>
-                    <div class="stat-label">Average</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Humidity</div>
-                    <div class="stat-value">${avgHum}%</div>
-                    <div class="stat-label">Average</div>
-                </div>
-            `;
-            
-            const recent = state.recordings.slice(0, 3);
-            document.getElementById('recentActivity').innerHTML = recent.map(r => `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: ${state.darkMode ? 'rgba(40,40,60,0.3)' : '#f9fafb'}; border-radius: 12px; margin-bottom: 8px;">
+            {getFilteredRecordings().length === 0 ? (
+              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-12 text-center shadow-2xl backdrop-blur-xl`}>
+                <div className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>No recordings found</div>
+              </div>
+            ) : (
+              getFilteredRecordings().map(r => (
+                <div
+                  key={r.id}
+                  className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 ${
+                    selectedForCompare.includes(r.id) ? 'ring-4 ring-cyan-400 shadow-cyan-500/50' : ''
+                  }`}
+                >
+                  <div className="flex justify-between items-start mb-4">
                     <div>
-                        <div style="font-weight: 700; color: var(--text-primary); font-size: 14px;">${r.locationName}</div>
-                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">${r.time}</div>
+                      <div className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'} drop-shadow-lg`}>{r.locationName}</div>
+                      <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>📅 {r.date} • ⏰ {r.time}</div>
                     </div>
-                    <div style="background: ${getColor(r.noiseLevel)}; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 13px;">
-                        ${r.noiseLevel} dB
+                    <div className="px-4 py-2 rounded-full text-white font-bold shadow-lg backdrop-blur-sm border-2 border-white border-opacity-20" style={{ backgroundColor: getNoiseColor(r.noiseLevel) }}>
+                      {r.noiseLevel} dB
                     </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    <div className="text-center p-3 bg-gradient-to-br from-purple-400/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div className="text-xs text-gray-300">Category</div>
+                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.category}</div>
+                    </div>
+                    <div className="text-center p-3 bg-gradient-to-br from-orange-400/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div className="text-xs text-gray-300">Temp</div>
+                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.temperature}°C</div>
+                    </div>
+                    <div className="text-center p-3 bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div className="text-xs text-gray-300">Humidity</div>
+                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.humidity}%</div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => toggleCompare(r.id)}
+                      className="flex-1 bg-gradient-to-r from-orange-500 to-pink-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-pink-500/50 hover:scale-105 transition-transform"
+                    >
+                      {selectedForCompare.includes(r.id) ? t.selectedText : t.compareBtn}
+                    </button>
+                    <button
+                      onClick={() => deleteRecording(r.id)}
+                      className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-red-500/50 hover:scale-105 transition-transform"
+                    >
+                      {t.deleteBtn}
+                    </button>
+                  </div>
                 </div>
-            `).join('');
-        }
+              ))
+            )}
+          </div>
+        )}
 
-        function renderMap() {
-            setTimeout(() => {
-                if (state.mapInstance) {
-                    state.mapInstance.remove();
-                }
-                
-                if (state.recordings.length === 0) {
-                    document.getElementById('map').innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-icon">📍</div>
-                            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No locations yet</div>
-                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Start recording to see map data</div>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                const centerLat = state.recordings[0].location.lat;
-                const centerLng = state.recordings[0].location.lng;
-
-                state.mapInstance = L.map('map').setView([centerLat, centerLng], 13);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap'
-                }).addTo(state.mapInstance);
-
-                state.recordings.forEach(r => {
-                    const color = getColor(r.noiseLevel);
-                    const icon = L.divIcon({
-                        html: '<div style="background: ' + color + '; width: 32px; height: 32px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">' + getCategoryIcon(r.category) + '</div>',
-                        iconSize: [32, 32]
-                    });
-
-                    L.marker([r.location.lat, r.location.lng], { icon })
-                        .bindPopup(`
-                            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
-                                <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">${r.locationName}</div>
-                                <div style="font-size: 13px; color: #6b7280;">
-                                    🔊 ${r.noiseLevel} dB - ${r.category}<br>
-                                    🌡️ ${r.temperature}°C • 💧 ${r.humidity}%<br>
-                                    📅 ${r.date} ${r.time}
-                                </div>
-                            </div>
-                        `)
-                        .addTo(state.mapInstance);
-                });
-
-                if (state.recordings.length > 1) {
-                    const heatData = state.recordings.map(r => [r.location.lat, r.location.lng, r.noiseLevel / 100]);
-                    L.heatLayer(heatData, { radius: 25, blur: 15, maxZoom: 17 }).addTo(state.mapInstance);
-                }
-            }, 100);
-        }
-
-        function renderData() {
-            const list = document.getElementById('recordingsList');
-            const filtered = getFilteredRecordings();
-            
-            if (filtered.length === 0) {
-                list.innerHTML = `
-                    <div class="card">
-                        <div class="empty-state">
-                            <div class="empty-icon">📊</div>
-                            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No data for this filter</div>
-                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Try a different time range</div>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-            
-            list.innerHTML = filtered.map(r => `
-                <div class="recording-item" style="${state.selectedForCompare.includes(r.id) ? 'border: 3px solid #10b981;' : ''}">
-                    <div class="recording-header">
-                        <div class="recording-category">
-                            ${getCategoryIcon(r.category)} ${r.category.toUpperCase()}
-                        </div>
-                        <div class="recording-level" style="background: ${getColor(r.noiseLevel)}">
-                            ${r.noiseLevel} dB
-                        </div>
-                    </div>
-                    <div class="recording-info">📍 ${r.locationName}</div>
-                    <div class="recording-info">📅 ${r.date} • ⏰ ${r.time}</div>
-                    <div class="recording-info">🌡️ ${r.temperature}°C • 💧 ${r.humidity}%</div>
-                    <div style="margin-top: 14px;">
-                        ${Object.entries(r.confidences).map(([cat, conf]) => `
-                            <div class="confidence-bar">
-                                <div class="confidence-label">
-                                    <span>${getCategoryIcon(cat)} ${cat}</span>
-                                    <span style="font-weight: 700;">${conf.toFixed(0)}%</span>
-                                </div>
-                                <div class="confidence-progress">
-                                    <div class="confidence-fill" style="width: ${conf}%"></div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="recording-actions">
-                        <button class="share-btn" onclick="shareRecording(state.recordings.find(rec => rec.id === ${r.id}))">
-                            📤 Share
-                        </button>
-                        <button class="compare-btn" onclick="toggleCompare(${r.id})">
-                            ${state.selectedForCompare.includes(r.id) ? '✓ Selected' : '⚖️ Compare'}
-                        </button>
-                    </div>
-                    <button class="delete-btn" onclick="deleteRecording(${r.id})">🗑️ Delete Recording</button>
+        {/* Analytics Tab */}
+        {currentTab === 'analytics' && (
+          <div className="relative z-10">
+            {recordings.length === 0 ? (
+              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-12 text-center shadow-2xl backdrop-blur-xl`}>
+                <div className="text-6xl mb-4">📊</div>
+                <div className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>No Data Yet</div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Record some environmental data to see analytics and insights!
                 </div>
-            `).join('');
-        }
+              </div>
+            ) : (
+              <>
+                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsDistTitle}</h2>
+                  <ResponsiveContainer width="100%" height={250}>
+                    <PieChart>
+                      <Pie data={chartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
+                        {chartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Legend />
+                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1e1e2e' : '#fff', border: '2px solid #a855f7', borderRadius: '12px' }} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
 
-        function renderAnalytics() {
-            if (state.recordings.length === 0) {
-                document.getElementById('categoryChart').parentElement.innerHTML = `
-                    <div class="section-title">📈 Analytics</div>
-                    <div class="empty-state">
-                        <div class="empty-icon">📈</div>
-                        <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">No analytics available</div>
-                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Record more data to see insights</div>
+                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsTrendTitle}</h2>
+                  <ResponsiveContainer width="100%" height={250}>
+                    <LineChart data={trendData}>
+                      <XAxis dataKey="name" stroke={darkMode ? '#d1d5db' : '#6b7280'} />
+                      <YAxis stroke={darkMode ? '#d1d5db' : '#6b7280'} domain={[0, 100]} />
+                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1e1e2e' : '#fff', border: '2px solid #a855f7', borderRadius: '12px' }} />
+                      <Line type="monotone" dataKey="db" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', r: 5 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+
+                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsHealthTitle}</h2>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div>
+                        <div className={`font-bold ${darkMode ? 'text-emerald-300' : 'text-green-900'}`}>WHO Safe Limit</div>
+                        <div className={`text-xs ${darkMode ? 'text-emerald-400' : 'text-green-700'}`}>Daytime</div>
+                      </div>
+                      <div className={`text-2xl font-bold ${darkMode ? 'text-emerald-300' : 'text-green-900'}`}>55 dB</div>
                     </div>
-                `;
-                return;
-            }
-            
-            setTimeout(() => {
-                const categoryCounts = state.recordings.reduce((acc, r) => {
-                    acc[r.category] = (acc[r.category] || 0) + 1;
-                    return acc;
-                }, {});
-                
-                const catCtx = document.getElementById('categoryChart');
-                if (state.charts.category) state.charts.category.destroy();
-                
-                state.charts.category = new Chart(catCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: Object.keys(categoryCounts).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
-                        datasets: [{
-                            data: Object.values(categoryCounts),
-                            backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280'],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: { 
-                                position: 'bottom',
-                                labels: { 
-                                    padding: 15,
-                                    font: { size: 12, weight: '600' },
-                                    color: state.darkMode ? '#f9fafb' : '#1f2937'
-                                }
-                            }
-                        }
-                    }
-                });
-
-                const trendCtx = document.getElementById('trendChart');
-                if (state.charts.trend) state.charts.trend.destroy();
-                
-                const sortedRecs = [...state.recordings].reverse();
-                state.charts.trend = new Chart(trendCtx, {
-                    type: 'line',
-                    data: {
-                        labels: sortedRecs.map((r, i) => `#${i+1}`),
-                        datasets: [{
-                            label: 'Noise Level (dB)',
-                            data: sortedRecs.map(r => r.noiseLevel),
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            borderWidth: 3,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#10b981'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: { 
-                                beginAtZero: true, 
-                                max: 100,
-                                grid: { color: state.darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' },
-                                ticks: { color: state.darkMode ? '#d1d5db' : '#6b7280' }
-                            },
-                            x: {
-                                grid: { display: false },
-                                ticks: { color: state.darkMode ? '#d1d5db' : '#6b7280' }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    font: { size: 12, weight: '600' },
-                                    color: state.darkMode ? '#f9fafb' : '#1f2937'
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
-                
-                document.getElementById('healthComp').innerHTML = `
-                    <div class="health-item" style="background: #dcfce7;">
-                        <div>
-                            <div style="font-weight: 700; color: #166534;">WHO Safe Limit</div>
-                            <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Daytime recommended</div>
-                        </div>
-                        <div style="font-size: 22px; font-weight: 800; color: #166534;">55 dB</div>
+                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-500/30 to-cyan-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div>
+                        <div className={`font-bold ${darkMode ? 'text-cyan-300' : 'text-blue-900'}`}>Your Average</div>
+                        <div className={`text-xs ${darkMode ? 'text-cyan-400' : 'text-blue-700'}`}>Current</div>
+                      </div>
+                      <div className={`text-2xl font-bold ${darkMode ? 'text-cyan-300' : 'text-blue-900'}`}>
+                        {(recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1)} dB
+                      </div>
                     </div>
-                    <div class="health-item" style="background: ${parseFloat(avg) > 55 ? '#fee2e2' : '#dcfce7'};">
-                        <div>
-                            <div style="font-weight: 700; color: #1f2937;">Your Average</div>
-                            <div style="font-size: 11px; color: #6b7280; margin-top: 2px;">Current exposure level</div>
-                        </div>
-                        <div style="font-size: 22px; font-weight: 800; color: ${getColor(parseFloat(avg))}">${avg} dB</div>
+                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-red-500/30 to-pink-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                      <div>
+                        <div className={`font-bold ${darkMode ? 'text-red-300' : 'text-red-900'}`}>Damage Risk</div>
+                        <div className={`text-xs ${darkMode ? 'text-red-400' : 'text-red-700'}`}>Threshold</div>
+                      </div>
+                      <div className={`text-2xl font-bold ${darkMode ? 'text-red-300' : 'text-red-900'}`}>85 dB</div>
                     </div>
-                    <div class="health-item" style="background: #fee2e2;">
-                        <div>
-                            <div style="font-weight: 700; color: #991b1b;">Hearing Damage</div>
-                            <div style="font-size: 11px; color: #dc2626; margin-top: 2px;">Risk threshold</div>
-                        </div>
-                        <div style="font-size: 22px; font-weight: 800; color: #991b1b;">85 dB</div>
-                    </div>
-                `;
-            }, 100);
-        }
+                  </div>
+                </div>
 
-        function deleteRecording(id) {
-            if (confirm('Delete this recording?')) {
-                vibrate(50);
-                localStorage.removeItem('eco_' + id);
-                state.recordings = state.recordings.filter(r => r.id !== id);
-                state.selectedForCompare = state.selectedForCompare.filter(cid => cid !== id);
-                document.getElementById('headerCount').textContent = state.recordings.length;
-                renderData();
-                if (state.currentTab === 'home') renderHome();
-            }
-        }
+                <button
+                  onClick={exportData}
+                  className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 rounded-2xl font-bold text-lg mb-3 flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/50 hover:scale-105 transition-transform"
+                >
+                  <span className="text-2xl">📥</span>
+                  {t.exportCSV}
+                </button>
 
-        function clearAll() {
-            if (confirm('⚠️ Delete ALL recordings? This cannot be undone!')) {
-                if (confirm('Are you absolutely sure? All data will be permanently deleted.')) {
-                    vibrate([100, 50, 100]);
-                    state.recordings.forEach(r => localStorage.removeItem('eco_' + r.id));
-                    state.recordings = [];
-                    state.selectedForCompare = [];
-                    document.getElementById('headerCount').textContent = 0;
-                    renderHome();
-                    showStatus('✅ All data cleared successfully', false);
-                    setTimeout(hideStatus, 2000);
-                }
-            }
-        }
+                <button
+                  onClick={exportReport}
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 rounded-2xl font-bold text-lg mb-3 flex items-center justify-center gap-3 shadow-lg shadow-blue-500/50 hover:scale-105 transition-transform"
+                >
+                  <span className="text-2xl">📄</span>
+                  {t.exportReport}
+                </button>
 
-        function exportData() {
-            if (state.recordings.length === 0) {
-                alert('No data to export. Start recording first!');
-                return;
-            }
-            
-            vibrate(50);
-            const csv = [
-                ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temperature (°C)', 'Humidity (%)', 'Latitude', 'Longitude'],
-                ...state.recordings.map(r => [
-                    r.date, 
-                    r.time, 
-                    r.locationName, 
-                    r.category, 
-                    r.noiseLevel, 
-                    r.temperature, 
-                    r.humidity,
-                    r.location.lat,
-                    r.location.lng
-                ])
-            ].map(row => row.join(',')).join('\n');
-            
-            download(csv, `articul8-ecosense-data-${Date.now()}.csv`, 'text/csv');
-            showStatus('✅ Data exported successfully!', false);
-            setTimeout(hideStatus, 2000);
-        }
+                <button
+                  onClick={clearAll}
+                  className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg shadow-red-500/50 hover:scale-105 transition-transform"
+                >
+                  <span className="text-2xl">🗑️</span>
+                  {t.clearAll}
+                </button>
+              </>
+            )}
+          </div>
+        )}
 
-        function exportReport() {
-            if (state.recordings.length === 0) {
-                alert('No data to export. Start recording first!');
-                return;
-            }
-            
-            vibrate(50);
-            const avg = (state.recordings.reduce((s, r) => s + r.noiseLevel, 0) / state.recordings.length).toFixed(1);
-            const avgTemp = (state.recordings.reduce((s, r) => s + r.temperature, 0) / state.recordings.length).toFixed(1);
-            const avgHum = (state.recordings.reduce((s, r) => s + r.humidity, 0) / state.recordings.length).toFixed(1);
-            
-            const quietest = state.recordings.reduce((min, r) => r.noiseLevel < min.noiseLevel ? r : min);
-            const loudest = state.recordings.reduce((max, r) => r.noiseLevel > max.noiseLevel ? r : max);
-            
-            const categoryCounts = state.recordings.reduce((acc, r) => {
-                acc[r.category] = (acc[r.category] || 0) + 1;
-                return acc;
-            }, {});
-            
-            const report = `ARTICUL8 ECOSENSE - ENVIRONMENTAL MONITORING REPORT
-${'='.repeat(60)}
+        {/* Community Tab */}
+        {currentTab === 'community' && (
+          <div className="relative z-10">
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.communityMapTitle}</h2>
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">🌍</div>
+                <div className={`text-lg font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Community Map</div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Share your recordings to see them on the community map!
+                </div>
+              </div>
+            </div>
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.communityNearbyTitle}</h2>
+              <div className="text-center py-8">
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  No community recordings nearby yet
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
-Generated: ${new Date().toLocaleString()}
-Platform: Articul8 EcoSense v1.0
+        {/* Profile Tab */}
+        {currentTab === 'profile' && (
+          <div className="relative z-10">
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <div className="text-center py-6">
+                <div className="text-8xl mb-4 drop-shadow-2xl">👤</div>
+                <div className={`text-3xl font-bold mb-2 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>
+                  {t.profileLevelText} {level} {t.profileExplorerText}
+                </div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {xp} XP • {streak} 🔥 {t.profileDayText}
+                </div>
+              </div>
+            </div>
 
-EXECUTIVE SUMMARY
-${'-'.repeat(60)}
-Total Recordings: ${state.recordings.length}
-Average Noise Level: ${avg} dB
-Average Temperature: ${avgTemp}°C
-Average Humidity: ${avgHum}%
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileStatsTitle}</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.totalRecordings}</span>
+                  <span className={`font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>{recordings.length}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.avgNoiseLevel}</span>
+                  <span className={`font-bold ${darkMode ? 'text-emerald-300' : 'text-green-600'}`}>
+                    {recordings.length > 0 ? (recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1) : 0} dB
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.achievementsUnlocked}</span>
+                  <span className={`font-bold ${darkMode ? 'text-orange-300' : 'text-orange-600'}`}>
+                    {Object.values(achievements).filter(a => a).length}/6
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-red-500/30 to-pink-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.hearingHealth}</span>
+                  <span className={`font-bold ${darkMode ? 'text-pink-300' : 'text-red-600'}`}>{hearingHealth.score}</span>
+                </div>
+              </div>
+            </div>
 
-SOUND ANALYSIS
-${'-'.repeat(60)}
-Quietest Location: ${quietest.locationName} (${quietest.noiseLevel} dB)
-Loudest Location: ${loudest.locationName} (${loudest.noiseLevel} dB)
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileProgressTitle}</h2>
+              <div className="mb-4">
+                <div className="flex justify-between mb-2">
+                  <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.profileLevelProgress}</span>
+                  <span className={`text-sm font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>{xpProgress.toFixed(0)}%</span>
+                </div>
+                <div className="h-2 bg-white bg-opacity-20 rounded-full overflow-hidden backdrop-blur-sm">
+                  <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full" style={{ width: `${xpProgress}%` }} />
+                </div>
+              </div>
+              <div className="text-center p-4 bg-gradient-to-r from-yellow-500/30 to-orange-500/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                <div className={`text-sm mb-1 ${darkMode ? 'text-yellow-300' : 'text-yellow-800'}`}>{t.profileNextReward}</div>
+                <div className={`text-xl font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>+100 XP {t.profileBonus} 🎁</div>
+              </div>
+            </div>
 
-Sound Category Distribution:
-${Object.entries(categoryCounts).map(([cat, count]) => `  • ${cat.charAt(0).toUpperCase() + cat.slice(1)}: ${count} (${(count/state.recordings.length*100).toFixed(1)}%)`).join('\n')}
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileSettingsTitle}</h2>
+              <button
+                onClick={() => setShowLangModal(true)}
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 rounded-2xl font-bold mb-3 flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/50 hover:scale-105 transition-transform"
+              >
+                🌐 {t.profileChangeLang}
+              </button>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-4 rounded-2xl font-bold mb-3 flex items-center justify-center gap-3 shadow-lg shadow-indigo-500/50 hover:scale-105 transition-transform"
+              >
+                {darkMode ? '☀️' : '🌙'} Toggle Dark Mode
+              </button>
+              <button
+                onClick={shareApp}
+                className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-pink-500/50 hover:scale-105 transition-transform"
+              >
+                📤 {t.profileShareApp}
+              </button>
+            </div>
 
-HEALTH COMPARISON
-${'-'.repeat(60)}
-WHO Safe Limit (Day): 55 dB
-Your Average: ${avg} dB ${parseFloat(avg) > 55 ? '⚠️ ABOVE LIMIT' : '✅ WITHIN SAFE RANGE'}
-Hearing Damage Risk: 85 dB
+            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileAboutTitle}</h2>
+              <div className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className="mb-3">
+                  <strong className={darkMode ? 'text-white' : 'text-gray-900'}>Articul8 EcoSense v1.0</strong>
+                </p>
+                <p className="mb-3">{t.profileAboutDesc}</p>
+                <p className="mb-3">
+                  <strong className={darkMode ? 'text-white' : 'text-gray-900'}>{t.profileFeaturesTitle}:</strong> {t.profileFeaturesList}
+                </p>
+                <p>© 2024 Articul8 EcoSense. {t.profileRights}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
-DETAILED RECORDINGS
-${'-'.repeat(60)}
-${state.recordings.map((r, i) => `
-${i + 1}. ${r.locationName}
-   Date/Time: ${r.date} ${r.time}
-   Location: ${r.location.lat.toFixed(4)}, ${r.location.lng.toFixed(4)}
-   Sound: ${r.noiseLevel} dB (${r.category})
-   Environment: ${r.temperature}°C, ${r.humidity}% humidity
-`).join('')}
-
-${'='.repeat(60)}
-© 2024 Articul8 EcoSense
-Environmental Intelligence Platform
-Weather data powered by OpenWeatherMap
-`;
-            
-            download(report, `articul8-ecosense-report-${Date.now()}.txt`, 'text/plain');
-            showStatus('✅ Report generated successfully!', false);
-            setTimeout(hideStatus, 2000);
-        }
-
-        function download(content, filename, type) {
-            const blob = new Blob([content], { type: type });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function getCategoryIcon(cat) {
-            return {
-                traffic: '🚗', 
-                construction: '🏗️', 
-                people: '👥', 
-                nature: '🌳', 
-                silence: '🔇'
-            }[cat] || '🔊';
-        }
-
-        function getColor(db) {
-            if (db < 40) return '#10b981';
-            if (db < 55) return '#84cc16';
-            if (db < 70) return '#f59e0b';
-            if (db < 85) return '#f97316';
-            return '#ef4444';
-        }
-
-        loadData();
-        getLocation();
-        getRealWeatherData();
-        renderHome();
-    </script>
-</body>
-</html>
+      {/* Bottom Navigation */}
+      <div className={`fixed bottom-0 left-0 right-0 ${darkMode ? 'bg-gradient-to-t from-slate-950 to-slate-900' : 'bg-gradient-to-t from-white to-purple-50'} backdrop-blur-2xl bg-opacity-90 flex justify-around py-2 shadow-2xl z-50 border-t-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'}`}>
+        {[
+          { id: 'home', icon: '🏠', label: t.navHome },
+          { id: 'record', icon: '🎤', label: t.navRecord },
+          { id: 'data', icon: '📊', label: t.navData },
+          { id: 'analytics', icon: '📈', label: t.navAnalytics },
+          { id: 'community', icon: '🌍', label: t.navCommunity },
+          { id: 'profile', icon: '👤', label: t.navProfile }
+        ].map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setCurrentTab(tab.id)}
+            className={`flex flex-col items-center gap-1 py-2 px-3 rounded-2xl transition-all duration-300 ${
+              currentTab === tab.id 
+                ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-110' 
+                : darkMode ? 'text-gray-400 hover:scale-105' : 'text-gray-500 hover:scale-105'
+            }`}
+          >
+            <div className="text-2xl drop-shadow-lg">{tab.icon}</div>
+            <div className="text-xs font-semibold">{tab.label}</div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
