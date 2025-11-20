@@ -13,8 +13,11 @@ const TRANSLATIONS = {
     sleepTitle: 'Sleep Quality Tracker',
     sleepDesc: 'Monitor noise disruptions during sleep',
     sleepBtnText: 'Start Sleep Monitoring',
+    stopSleepBtnText: 'Stop Sleep Monitoring',
     recordTitle: '🎤 Environmental Recording',
     recordStatus: 'Tap to record',
+    recordingStatus: 'Recording...',
+    analyzingStatus: 'Analyzing...',
     filterAll: 'All',
     filterToday: 'Today',
     filterWeek: 'This Week',
@@ -56,7 +59,35 @@ const TRANSLATIONS = {
     profileAboutDesc: 'Environmental monitoring platform powered by AI. Track sound, temperature, and humidity with real-time analysis.',
     profileFeaturesTitle: 'Features',
     profileFeaturesList: 'Gamification, Health Tracking, Community Map, Multi-Language Support, Sleep Monitoring',
-    profileRights: 'All rights reserved.'
+    profileRights: 'All rights reserved.',
+    noDataYet: 'No Data Yet',
+    noDataDesc: 'Record some environmental data to see analytics and insights!',
+    noRecordings: 'No recordings found',
+    communityMapDesc: 'Share your recordings to see them on the community map!',
+    communityNearbyDesc: 'No community recordings nearby yet',
+    whoSafeLimit: 'WHO Safe Limit',
+    daytime: 'Daytime',
+    yourAverage: 'Your Average',
+    current: 'Current',
+    damageRisk: 'Damage Risk',
+    threshold: 'Threshold',
+    category: 'Category',
+    temp: 'Temp',
+    humidity: 'Humidity',
+    total: 'Total',
+    recordings: 'Recordings',
+    streak: 'Streak',
+    days: 'Days',
+    comparison: '📊 Location Comparison',
+    vs: 'vs',
+    noiseLevel: 'Noise Level',
+    temperature: 'Temperature',
+    analysis: 'Analysis',
+    louder: 'louder',
+    quieter: 'quieter',
+    than: 'than',
+    close: 'Close',
+    selectLanguage: 'Select Language / اختر اللغة'
   },
   ar: {
     appTitle: '🌿 Articul8 EcoSense',
@@ -69,32 +100,81 @@ const TRANSLATIONS = {
     sleepTitle: 'متتبع جودة النوم',
     sleepDesc: 'راقب اضطرابات الضوضاء أثناء النوم',
     sleepBtnText: 'بدء مراقبة النوم',
+    stopSleepBtnText: 'إيقاف مراقبة النوم',
     recordTitle: '🎤 التسجيل البيئي',
     recordStatus: 'انقر للتسجيل',
+    recordingStatus: 'جاري التسجيل...',
+    analyzingStatus: 'جاري التحليل...',
     filterAll: 'الكل',
     filterToday: 'اليوم',
     filterWeek: 'هذا الأسبوع',
     filterMonth: 'هذا الشهر',
-    deleteBtn: '🗑️ حذف',
-    compareBtn: '⚖️ مقارنة',
-    selectedText: '✓ محدد',
-    locationPlaceholder: '📍 اسم الموقع',
+    analyticsDistTitle: '📈 توزيع الصوت',
+    analyticsTrendTitle: '📉 اتجاهات الضوضاء',
+    analyticsHealthTitle: '🏥 المعايير الصحية',
+    exportCSV: 'تصدير البيانات (CSV)',
+    exportReport: 'إنشاء تقرير',
+    clearAll: 'مسح كل البيانات',
+    communityMapTitle: '🌍 خريطة الضوضاء المجتمعية',
+    communityNearbyTitle: '📍 التسجيلات القريبة',
     navHome: 'الرئيسية',
     navRecord: 'تسجيل',
     navData: 'البيانات',
     navAnalytics: 'التحليلات',
     navCommunity: 'المجتمع',
-    navProfile: 'الملف'
+    navProfile: 'الملف',
+    deleteBtn: '🗑️ حذف',
+    compareBtn: '⚖️ مقارنة',
+    selectedText: '✓ محدد',
+    totalRecordings: 'إجمالي التسجيلات',
+    avgNoiseLevel: 'متوسط الضوضاء',
+    achievementsUnlocked: 'الإنجازات المفتوحة',
+    hearingHealth: 'صحة السمع',
+    locationPlaceholder: '📍 اسم الموقع',
+    profileLevelText: 'المستوى',
+    profileExplorerText: 'مستكشف',
+    profileDayText: 'سلسلة يومية',
+    noDataYet: 'لا توجد بيانات بعد',
+    noDataDesc: 'سجل بعض البيانات البيئية لرؤية التحليلات والرؤى!',
+    noRecordings: 'لم يتم العثور على تسجيلات',
+    category: 'الفئة',
+    temp: 'الحرارة',
+    humidity: 'الرطوبة',
+    total: 'الإجمالي',
+    recordings: 'التسجيلات',
+    streak: 'السلسلة',
+    days: 'أيام',
+    comparison: '📊 مقارنة المواقع',
+    vs: 'مقابل',
+    noiseLevel: 'مستوى الضوضاء',
+    temperature: 'درجة الحرارة',
+    analysis: 'التحليل',
+    louder: 'أعلى',
+    quieter: 'أهدأ',
+    than: 'من',
+    close: 'إغلاق',
+    selectLanguage: 'Select Language / اختر اللغة'
   },
   es: {
     appTitle: '🌿 Articul8 EcoSense',
     healthLabel: 'PUNTUACIÓN DE SALUD AUDITIVA',
     healthStatus: 'Excelente Condición',
+    healthExposure: 'Exposición hoy: {0} minutos por encima de 85 dB',
     achievementsTitle: '🏆 Logros',
+    challengesTitle: '🎯 Desafíos Diarios',
+    statsTitle: '📊 Tus Estadísticas',
+    sleepTitle: 'Monitor de Sueño',
+    sleepDesc: 'Monitorear ruido durante el sueño',
+    sleepBtnText: 'Iniciar Monitoreo',
+    stopSleepBtnText: 'Detener Monitoreo',
     recordTitle: '🎤 Grabación Ambiental',
     recordStatus: 'Toca para grabar',
+    recordingStatus: 'Grabando...',
+    analyzingStatus: 'Analizando...',
     filterAll: 'Todo',
     filterToday: 'Hoy',
+    filterWeek: 'Esta Semana',
+    filterMonth: 'Este Mes',
     deleteBtn: '🗑️ Eliminar',
     compareBtn: '⚖️ Comparar',
     selectedText: '✓ Seleccionado',
@@ -104,43 +184,101 @@ const TRANSLATIONS = {
     navData: 'Datos',
     navAnalytics: 'Análisis',
     navCommunity: 'Comunidad',
-    navProfile: 'Perfil'
+    navProfile: 'Perfil',
+    noDataYet: 'Sin Datos Todavía',
+    noDataDesc: '¡Graba algunos datos ambientales para ver análisis e información!',
+    noRecordings: 'No se encontraron grabaciones',
+    category: 'Categoría',
+    temp: 'Temp',
+    humidity: 'Humedad',
+    total: 'Total',
+    recordings: 'Grabaciones',
+    streak: 'Racha',
+    days: 'Días',
+    close: 'Cerrar',
+    selectLanguage: 'Select Language / اختر اللغة'
   },
   fr: {
     appTitle: '🌿 Articul8 EcoSense',
     healthLabel: 'SCORE DE SANTÉ AUDITIVE',
     healthStatus: 'Excellente Condition',
+    healthExposure: "Exposition aujourd'hui: {0} minutes au-dessus de 85 dB",
+    achievementsTitle: '🏆 Réalisations',
+    challengesTitle: '🎯 Défis Quotidiens',
+    statsTitle: '📊 Vos Statistiques',
+    sleepTitle: 'Suivi du Sommeil',
+    sleepDesc: 'Surveiller le bruit pendant le sommeil',
+    sleepBtnText: 'Démarrer la Surveillance',
+    stopSleepBtnText: 'Arrêter la Surveillance',
     recordTitle: '🎤 Enregistrement',
     recordStatus: 'Appuyez pour enregistrer',
+    recordingStatus: 'Enregistrement...',
+    analyzingStatus: 'Analyse...',
     filterAll: 'Tout',
     filterToday: "Aujourd'hui",
+    filterWeek: 'Cette Semaine',
+    filterMonth: 'Ce Mois',
     deleteBtn: '🗑️ Supprimer',
     compareBtn: '⚖️ Comparer',
+    selectedText: '✓ Sélectionné',
     locationPlaceholder: '📍 Nom du lieu',
     navHome: 'Accueil',
     navRecord: 'Enregistrer',
     navData: 'Données',
     navAnalytics: 'Analyse',
     navCommunity: 'Communauté',
-    navProfile: 'Profil'
+    navProfile: 'Profil',
+    noDataYet: 'Pas Encore de Données',
+    noDataDesc: 'Enregistrez des données environnementales pour voir les analyses!',
+    noRecordings: 'Aucun enregistrement trouvé',
+    category: 'Catégorie',
+    temp: 'Temp',
+    humidity: 'Humidité',
+    total: 'Total',
+    recordings: 'Enregistrements',
+    close: 'Fermer',
+    selectLanguage: 'Select Language / اختر اللغة'
   },
   de: {
     appTitle: '🌿 Articul8 EcoSense',
     healthLabel: 'GEHÖRGESUNDHEITS-SCORE',
     healthStatus: 'Ausgezeichnet',
+    healthExposure: 'Exposition heute: {0} Minuten über 85 dB',
+    achievementsTitle: '🏆 Erfolge',
+    challengesTitle: '🎯 Tägliche Herausforderungen',
+    statsTitle: '📊 Ihre Statistiken',
+    sleepTitle: 'Schlaf-Tracker',
+    sleepDesc: 'Lärmüberwachung während des Schlafs',
+    sleepBtnText: 'Überwachung Starten',
+    stopSleepBtnText: 'Überwachung Stoppen',
     recordTitle: '🎤 Aufzeichnung',
     recordStatus: 'Tippen zum Aufnehmen',
+    recordingStatus: 'Aufnahme...',
+    analyzingStatus: 'Analysieren...',
     filterAll: 'Alle',
     filterToday: 'Heute',
+    filterWeek: 'Diese Woche',
+    filterMonth: 'Dieser Monat',
     deleteBtn: '🗑️ Löschen',
     compareBtn: '⚖️ Vergleichen',
+    selectedText: '✓ Ausgewählt',
     locationPlaceholder: '📍 Ortsname',
     navHome: 'Startseite',
     navRecord: 'Aufnehmen',
     navData: 'Daten',
     navAnalytics: 'Analyse',
     navCommunity: 'Gemeinschaft',
-    navProfile: 'Profil'
+    navProfile: 'Profil',
+    noDataYet: 'Noch Keine Daten',
+    noDataDesc: 'Nehmen Sie Umgebungsdaten auf, um Analysen zu sehen!',
+    noRecordings: 'Keine Aufnahmen gefunden',
+    category: 'Kategorie',
+    temp: 'Temp',
+    humidity: 'Feuchtigkeit',
+    total: 'Gesamt',
+    recordings: 'Aufnahmen',
+    close: 'Schließen',
+    selectLanguage: 'Select Language / اختر اللغة'
   }
 };
 
@@ -189,7 +327,6 @@ export default function EcoSenseApp() {
 
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
 
-  // Check if it's a new day and reset challenges
   useEffect(() => {
     const today = new Date().toDateString();
     if (lastRecordDate && lastRecordDate !== today) {
@@ -211,7 +348,6 @@ export default function EcoSenseApp() {
     }
   }, [notification]);
 
-  // Cleanup audio context on unmount
   useEffect(() => {
     return () => {
       if (streamRef.current) {
@@ -223,7 +359,6 @@ export default function EcoSenseApp() {
     };
   }, []);
 
-  // Show comparison modal when 2 recordings selected
   useEffect(() => {
     if (selectedForCompare.length === 2) {
       setShowCompareModal(true);
@@ -255,7 +390,7 @@ export default function EcoSenseApp() {
     
     if (lastRecordDate === yesterday.toDateString()) {
       setStreak(prev => prev + 1);
-      showNotification(`🔥 ${streak + 1} Day Streak!`);
+      showNotification(`🔥 ${streak + 1} ${t.days} ${t.streak}!`);
     } else {
       setStreak(1);
     }
@@ -280,7 +415,8 @@ export default function EcoSenseApp() {
         audio: {
           echoCancellation: false,
           noiseSuppression: false,
-          autoGainControl: false
+          autoGainControl: false,
+          sampleRate: 48000
         }
       });
 
@@ -289,8 +425,8 @@ export default function EcoSenseApp() {
       analyserRef.current = audioContextRef.current.createAnalyser();
       const source = audioContextRef.current.createMediaStreamSource(stream);
       source.connect(analyserRef.current);
-      analyserRef.current.fftSize = 256;
-      analyserRef.current.smoothingTimeConstant = 0.3;
+      analyserRef.current.fftSize = 2048;
+      analyserRef.current.smoothingTimeConstant = 0.8;
 
       const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
       let maxDb = 0;
@@ -354,7 +490,7 @@ export default function EcoSenseApp() {
     checkAchievements([recording, ...recordings]);
     updateDailyChallenges(recording);
     updateHearingHealth(recording);
-    showNotification(`✅ Recorded: ${maxDb} dB - ${category}`);
+    showNotification(`✅ ${t.recordStatus}: ${maxDb} dB - ${category}`);
   };
 
   const analyzeFrequency = (dataArray) => {
@@ -637,36 +773,30 @@ export default function EcoSenseApp() {
   const compareRecordings = selectedForCompare.map(id => recordings.find(r => r.id === id)).filter(Boolean);
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950' : 'bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500'} pb-20 relative overflow-hidden`}>
-      {/* Animated background elements */}
-      <div className="fixed inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-      </div>
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-800'} pb-20 relative overflow-hidden`}>
 
       {/* Header */}
-      <div className="bg-black bg-opacity-40 backdrop-blur-2xl p-4 sticky top-0 z-50 border-b border-white border-opacity-10 shadow-2xl">
+      <div className={`${darkMode ? 'bg-black bg-opacity-30' : 'bg-black bg-opacity-30'} backdrop-blur-xl p-4 sticky top-0 z-50 border-b ${darkMode ? 'border-gray-700' : 'border-white border-opacity-10'}`}>
         <div className="flex justify-between items-center max-w-2xl mx-auto">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-lg shadow-cyan-500/50 flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300"
+              className={`w-10 h-10 rounded-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300`}
             >
-              {darkMode ? '☀️' : '🌙'}
+              🌙
             </button>
             <button
               onClick={() => setShowLangModal(true)}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 shadow-lg shadow-purple-500/50 flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300"
+              className={`w-10 h-10 rounded-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300`}
             >
               🌐
             </button>
-            <h1 className="text-xl font-bold text-white drop-shadow-lg tracking-wide">{t.appTitle}</h1>
+            <h1 className="text-xl font-bold text-white">{t.appTitle}</h1>
           </div>
           <div className="text-right text-sm text-white">
-            <div className="font-bold tracking-wider drop-shadow-lg">Lvl {level} • {xp} XP</div>
-            <div className="w-32 h-1 bg-white bg-opacity-20 rounded-full mt-1 overflow-hidden shadow-inner">
-              <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full shadow-lg animate-pulse" style={{ width: `${xpProgress}%` }} />
+            <div className="font-bold">Lvl {level} • {xp} XP</div>
+            <div className={`w-32 h-1 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full mt-1 overflow-hidden`}>
+              <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${xpProgress}%` }} />
             </div>
           </div>
         </div>
@@ -674,16 +804,16 @@ export default function EcoSenseApp() {
 
       {/* Notification */}
       {notification && (
-        <div className="fixed top-20 left-4 right-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white p-4 rounded-2xl shadow-2xl shadow-purple-500/50 z-50 animate-bounce backdrop-blur-xl border border-white border-opacity-20">
-          <div className="font-bold drop-shadow-lg">{notification}</div>
+        <div className="fixed top-20 left-4 right-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-xl shadow-xl z-50 animate-bounce">
+          <div className="font-bold">{notification}</div>
         </div>
       )}
 
       {/* Language Modal */}
       {showLangModal && (
         <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowLangModal(false)}>
-          <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900' : 'bg-gradient-to-br from-white to-purple-50'} rounded-3xl p-6 max-w-md w-full border-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'} shadow-2xl shadow-purple-500/50`} onClick={e => e.stopPropagation()}>
-            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>Select Language / اختر اللغة</h2>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.selectLanguage}</h2>
             <div className="flex flex-wrap gap-2 mb-4">
               {[
                 { code: 'en', label: '🇬🇧 English' },
@@ -695,13 +825,13 @@ export default function EcoSenseApp() {
                 <button
                   key={lang.code}
                   onClick={() => { setCurrentLang(lang.code); setShowLangModal(false); }}
-                  className={`px-4 py-2 rounded-full font-semibold transition-all duration-300 ${currentLang === lang.code ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-105' : 'bg-white bg-opacity-10 text-white hover:scale-105'}`}
+                  className={`px-4 py-2 rounded-full font-semibold transition-all duration-300 ${currentLang === lang.code ? 'bg-green-500 text-white' : darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-800'}`}
                 >
                   {lang.label}
                 </button>
               ))}
             </div>
-            <button onClick={() => setShowLangModal(false)} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white py-3 rounded-2xl font-bold shadow-lg shadow-purple-500/50 hover:scale-105 transition-transform">Close</button>
+            <button onClick={() => setShowLangModal(false)} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">{t.close}</button>
           </div>
         </div>
       )}
@@ -709,38 +839,38 @@ export default function EcoSenseApp() {
       {/* Comparison Modal */}
       {showCompareModal && compareRecordings.length === 2 && (
         <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }}>
-          <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900' : 'bg-gradient-to-br from-white to-purple-50'} rounded-3xl p-6 max-w-md w-full border-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'} shadow-2xl shadow-purple-500/50`} onClick={e => e.stopPropagation()}>
-            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>📊 Location Comparison</h2>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.comparison}</h2>
             <div className="text-center mb-4">
               <div className={`font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].locationName}</div>
-              <div className="text-sm text-gray-500">vs</div>
+              <div className="text-sm text-gray-500">{t.vs}</div>
               <div className={`font-bold mt-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].locationName}</div>
             </div>
             <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className="text-center p-3 bg-gradient-to-br from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                <div className="text-xs text-gray-300 mb-1">Noise Level</div>
+              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-xl`}>
+                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.noiseLevel}</div>
                 <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[0].noiseLevel) }}>{compareRecordings[0].noiseLevel} dB</div>
               </div>
-              <div className="text-center p-3 bg-gradient-to-br from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                <div className="text-xs text-gray-300 mb-1">Noise Level</div>
+              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-xl`}>
+                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.noiseLevel}</div>
                 <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[1].noiseLevel) }}>{compareRecordings[1].noiseLevel} dB</div>
               </div>
-              <div className="text-center p-3 bg-gradient-to-br from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                <div className="text-xs text-gray-300 mb-1">Temperature</div>
+              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-orange-100'} rounded-xl`}>
+                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.temperature}</div>
                 <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].temperature}°C</div>
               </div>
-              <div className="text-center p-3 bg-gradient-to-br from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                <div className="text-xs text-gray-300 mb-1">Temperature</div>
+              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-orange-100'} rounded-xl`}>
+                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.temperature}</div>
                 <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].temperature}°C</div>
               </div>
             </div>
-            <div className="bg-gradient-to-r from-green-500/20 to-emerald-600/20 p-3 rounded-xl backdrop-blur-sm border border-white border-opacity-10 mb-4">
-              <div className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Analysis</div>
+            <div className={`${darkMode ? 'bg-gray-700' : 'bg-green-100'} p-3 rounded-xl mb-4`}>
+              <div className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.analysis}</div>
               <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {compareRecordings[0].locationName} is {Math.abs(compareRecordings[0].noiseLevel - compareRecordings[1].noiseLevel)} dB {compareRecordings[0].noiseLevel > compareRecordings[1].noiseLevel ? 'louder' : 'quieter'} than {compareRecordings[1].locationName}.
+                {compareRecordings[0].locationName} is {Math.abs(compareRecordings[0].noiseLevel - compareRecordings[1].noiseLevel)} dB {compareRecordings[0].noiseLevel > compareRecordings[1].noiseLevel ? t.louder : t.quieter} {t.than} {compareRecordings[1].locationName}.
               </div>
             </div>
-            <button onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white py-3 rounded-2xl font-bold shadow-lg shadow-purple-500/50 hover:scale-105 transition-transform">Close</button>
+            <button onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">{t.close}</button>
           </div>
         </div>
       )}
@@ -750,47 +880,47 @@ export default function EcoSenseApp() {
         {/* Home Tab */}
         {currentTab === 'home' && (
           <div className="relative z-10">
-            <div className="bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 rounded-3xl p-6 mb-4 text-white shadow-2xl shadow-cyan-500/50 border border-white border-opacity-20 backdrop-blur-xl transform hover:scale-105 transition-transform duration-300">
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 text-white shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
               <div className="text-center text-sm opacity-90 tracking-wider uppercase">{t.healthLabel}</div>
-              <div className="text-7xl font-bold text-center my-4 drop-shadow-2xl animate-pulse">{hearingHealth.score}</div>
-              <div className="text-center text-sm opacity-90 tracking-wide">{t.healthStatus}</div>
-              <div className="w-full h-3 bg-white bg-opacity-20 rounded-full mt-4 overflow-hidden shadow-inner backdrop-blur-sm">
-                <div className="h-full bg-gradient-to-r from-cyan-300 to-white rounded-full shadow-lg animate-pulse" style={{ width: `${hearingHealth.score}%` }} />
+              <div className="text-7xl font-bold text-center my-4">{hearingHealth.score}</div>
+              <div className="text-center text-sm opacity-90">{t.healthStatus}</div>
+              <div className={`w-full h-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full mt-4 overflow-hidden`}>
+                <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${hearingHealth.score}%` }} />
               </div>
               <div className="text-center text-sm mt-4 opacity-90">
                 {t.healthExposure.replace('{0}', Math.round(hearingHealth.dailyExposure / 60))}
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.achievementsTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.achievementsTitle}</h2>
               <div className="grid grid-cols-3 gap-3">
                 {achievementsList.map(a => (
                   <div
                     key={a.id}
-                    className={`p-4 rounded-2xl text-center transition-all duration-300 ${achievements[a.id] ? 'bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg shadow-yellow-500/50 scale-105 border-2 border-yellow-300' : 'bg-white bg-opacity-10 opacity-50 backdrop-blur-sm'}`}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 ${achievements[a.id] ? `${darkMode ? 'bg-yellow-900 bg-opacity-50' : 'bg-yellow-500 bg-opacity-30'} border-2 border-yellow-500` : `${darkMode ? 'bg-gray-700 bg-opacity-50' : 'bg-white bg-opacity-10'} opacity-50`}`}
                   >
-                    <div className="text-3xl mb-2 drop-shadow-lg">{a.icon}</div>
-                    <div className={`text-xs font-semibold ${achievements[a.id] ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{a.name}</div>
+                    <div className="text-3xl mb-2">{a.icon}</div>
+                    <div className={`text-xs font-semibold ${achievements[a.id] ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{a.name}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.challengesTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.challengesTitle}</h2>
               {challengesList.map(c => {
                 const ch = dailyChallenges[c.id];
                 const progress = (ch.progress / ch.target) * 100;
                 return (
-                  <div key={c.id} className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-2xl mb-3 backdrop-blur-sm border border-white border-opacity-10 shadow-lg">
-                    <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{ch.completed ? '✅' : '⭕'} {c.title}</div>
-                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>{c.desc}</div>
+                  <div key={c.id} className={`${darkMode ? 'bg-gray-700 bg-opacity-50' : 'bg-white bg-opacity-10'} p-4 rounded-2xl mb-3`}>
+                    <div className="font-bold text-white">{ch.completed ? '✅' : '⭕'} {c.title}</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'} mb-2`}>{c.desc}</div>
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-2 bg-white bg-opacity-20 rounded-full overflow-hidden backdrop-blur-sm">
-                        <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full shadow-lg" style={{ width: `${progress}%` }} />
+                      <div className={`flex-1 h-2 ${darkMode ? 'bg-gray-600' : 'bg-white bg-opacity-20'} rounded-full overflow-hidden`}>
+                        <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${progress}%` }} />
                       </div>
-                      <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{ch.progress}/{ch.target}</div>
+                      <div className="text-sm font-bold text-white">{ch.progress}/{ch.target}</div>
                     </div>
                   </div>
                 );
@@ -798,18 +928,18 @@ export default function EcoSenseApp() {
             </div>
 
             {recordings.length > 0 && (
-              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-                <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.statsTitle}</h2>
+              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+                <h2 className="text-xl font-bold mb-4 text-white">{t.statsTitle}</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-6 rounded-2xl text-center text-white shadow-xl shadow-emerald-500/50 transform hover:scale-105 transition-transform border border-white border-opacity-20">
-                    <div className="text-sm opacity-90">Total</div>
-                    <div className="text-4xl font-bold my-2 drop-shadow-lg">{recordings.length}</div>
-                    <div className="text-sm opacity-90">Recordings</div>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-green-500 bg-opacity-30'} p-6 rounded-2xl text-center text-white border ${darkMode ? 'border-gray-600' : 'border-green-400'}`}>
+                    <div className="text-sm opacity-90">{t.total}</div>
+                    <div className="text-4xl font-bold my-2">{recordings.length}</div>
+                    <div className="text-sm opacity-90">{t.recordings}</div>
                   </div>
-                  <div className="bg-gradient-to-br from-orange-500 to-pink-600 p-6 rounded-2xl text-center text-white shadow-xl shadow-pink-500/50 transform hover:scale-105 transition-transform border border-white border-opacity-20">
-                    <div className="text-sm opacity-90">Streak</div>
-                    <div className="text-4xl font-bold my-2 drop-shadow-lg">{streak} 🔥</div>
-                    <div className="text-sm opacity-90">Days</div>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-orange-500 bg-opacity-30'} p-6 rounded-2xl text-center text-white border ${darkMode ? 'border-gray-600' : 'border-orange-400'}`}>
+                    <div className="text-sm opacity-90">{t.streak}</div>
+                    <div className="text-4xl font-bold my-2">{streak} 🔥</div>
+                    <div className="text-sm opacity-90">{t.days}</div>
                   </div>
                 </div>
               </div>
@@ -820,54 +950,56 @@ export default function EcoSenseApp() {
         {/* Record Tab */}
         {currentTab === 'record' && (
           <div className="relative z-10">
-            <div className="bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-3xl p-6 mb-4 text-white shadow-2xl shadow-blue-500/50 border border-white border-opacity-20">
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-blue-500 bg-opacity-20'} backdrop-blur-xl rounded-3xl p-6 mb-4 text-white shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
               <div className="text-center">
                 <div className="text-5xl mb-3">😴</div>
                 <div className="text-xl font-bold mb-2">{t.sleepTitle}</div>
                 <div className="text-sm opacity-90 mb-4">{t.sleepDesc}</div>
                 <button
                   onClick={toggleSleepMode}
-                  className="w-full bg-white text-blue-600 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform"
+                  className={`w-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} text-white py-3 rounded-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform`}
                 >
                   <span className="text-2xl">🌙</span>
-                  <span>{sleepMode ? 'Stop Sleep Monitoring' : t.sleepBtnText}</span>
+                  <span>{sleepMode ? t.stopSleepBtnText : t.sleepBtnText}</span>
                 </button>
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.recordTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.recordTitle}</h2>
               <input
                 type="text"
                 value={locationName}
                 onChange={(e) => setLocationName(e.target.value)}
                 placeholder={t.locationPlaceholder}
-                className={`w-full p-4 border-2 ${darkMode ? 'border-purple-500 bg-slate-800 text-white placeholder-gray-500' : 'border-purple-200 bg-white text-gray-900'} rounded-2xl mb-4 shadow-inner backdrop-blur-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all`}
+                className={`w-full p-4 border-2 ${darkMode ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-500' : 'border-white border-opacity-30 bg-white bg-opacity-10 text-white placeholder-gray-300'} rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all`}
               />
               <button
                 onClick={startRecording}
                 disabled={isRecording}
                 className={`w-40 h-40 rounded-full mx-auto flex items-center justify-center text-6xl ${
                   isRecording 
-                    ? 'bg-gradient-to-br from-red-500 via-pink-500 to-purple-600 shadow-2xl shadow-red-500/50 cursor-not-allowed' 
-                    : 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 shadow-2xl shadow-cyan-500/50 hover:scale-110 cursor-pointer'
-                } text-white mb-4 transition-all duration-300 border-4 border-white border-opacity-20 backdrop-blur-sm ${isRecording ? 'animate-pulse' : ''}`}
+                    ? 'bg-red-500 shadow-xl shadow-red-500/50 cursor-not-allowed animate-pulse' 
+                    : 'bg-green-500 shadow-xl shadow-green-500/50 hover:scale-110 cursor-pointer'
+                } text-white mb-4 transition-all duration-300 border-4 border-white border-opacity-20`}
               >
                 {isRecording ? '⏹️' : '🎤'}
               </button>
               <div className="text-center">
-                <div className={`text-5xl font-bold mb-2 drop-shadow-2xl ${isRecording ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 animate-pulse' : 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500'}`}>
+                <div className={`text-5xl font-bold mb-2 ${isRecording ? 'text-red-400' : 'text-green-400'}`}>
                   {currentDb} dB
                 </div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  {isRecording ? 'Recording...' : t.recordStatus}
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
+                  {isRecording ? t.recordingStatus : t.recordStatus}
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Data Tab - Continue in next message */}
+        {/* Continue with Data, Analytics, Community, and Profile tabs... */}
+        
+        {/* Data Tab */}
         {currentTab === 'data' && (
           <div className="relative z-10">
             <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
@@ -877,8 +1009,8 @@ export default function EcoSenseApp() {
                   onClick={() => setCurrentFilter(filter)}
                   className={`px-4 py-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ${
                     currentFilter === filter 
-                      ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-105' 
-                      : 'bg-white bg-opacity-20 text-white hover:scale-105 backdrop-blur-sm'
+                      ? 'bg-green-500 text-white' 
+                      : darkMode ? 'bg-gray-700 text-white' : 'bg-white bg-opacity-20 text-white'
                   }`}
                 >
                   {t[`filter${filter.charAt(0).toUpperCase() + filter.slice(1)}`] || filter}
@@ -887,50 +1019,50 @@ export default function EcoSenseApp() {
             </div>
 
             {getFilteredRecordings().length === 0 ? (
-              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-12 text-center shadow-2xl backdrop-blur-xl`}>
-                <div className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>No recordings found</div>
+              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-12 text-center shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+                <div className="text-lg text-white">{t.noRecordings}</div>
               </div>
             ) : (
               getFilteredRecordings().map(r => (
                 <div
                   key={r.id}
-                  className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 ${
-                    selectedForCompare.includes(r.id) ? 'ring-4 ring-cyan-400 shadow-cyan-500/50' : ''
-                  }`}
+                  className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${
+                    selectedForCompare.includes(r.id) ? 'border-green-500 border-4' : darkMode ? 'border-gray-700' : 'border-white border-opacity-20'
+                  } transition-all duration-300`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <div className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'} drop-shadow-lg`}>{r.locationName}</div>
-                      <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>📅 {r.date} • ⏰ {r.time}</div>
+                      <div className="font-bold text-lg text-white">{r.locationName}</div>
+                      <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>📅 {r.date} • ⏰ {r.time}</div>
                     </div>
-                    <div className="px-4 py-2 rounded-full text-white font-bold shadow-lg backdrop-blur-sm border-2 border-white border-opacity-20" style={{ backgroundColor: getNoiseColor(r.noiseLevel) }}>
+                    <div className="px-4 py-2 rounded-full text-white font-bold border-2 border-white border-opacity-20" style={{ backgroundColor: getNoiseColor(r.noiseLevel) }}>
                       {r.noiseLevel} dB
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-2 mb-4">
-                    <div className="text-center p-3 bg-gradient-to-br from-purple-400/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                      <div className="text-xs text-gray-300">Category</div>
-                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.category}</div>
+                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.category}</div>
+                      <div className="font-bold text-white">{r.category}</div>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-orange-400/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                      <div className="text-xs text-gray-300">Temp</div>
-                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.temperature}°C</div>
+                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.temp}</div>
+                      <div className="font-bold text-white">{r.temperature}°C</div>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                      <div className="text-xs text-gray-300">Humidity</div>
-                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{r.humidity}%</div>
+                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.humidity}</div>
+                      <div className="font-bold text-white">{r.humidity}%</div>
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => toggleCompare(r.id)}
-                      className="flex-1 bg-gradient-to-r from-orange-500 to-pink-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-pink-500/50 hover:scale-105 transition-transform"
+                      className="flex-1 bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition-colors"
                     >
                       {selectedForCompare.includes(r.id) ? t.selectedText : t.compareBtn}
                     </button>
                     <button
                       onClick={() => deleteRecording(r.id)}
-                      className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-red-500/50 hover:scale-105 transition-transform"
+                      className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold hover:bg-red-600 transition-colors"
                     >
                       {t.deleteBtn}
                     </button>
@@ -945,17 +1077,15 @@ export default function EcoSenseApp() {
         {currentTab === 'analytics' && (
           <div className="relative z-10">
             {recordings.length === 0 ? (
-              <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-12 text-center shadow-2xl backdrop-blur-xl`}>
+              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-12 text-center shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
                 <div className="text-6xl mb-4">📊</div>
-                <div className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>No Data Yet</div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Record some environmental data to see analytics and insights!
-                </div>
+                <div className="text-xl font-bold mb-2 text-white">{t.noDataYet}</div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.noDataDesc}</div>
               </div>
             ) : (
               <>
-                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsDistTitle}</h2>
+                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsDistTitle}</h2>
                   <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
                       <Pie data={chartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
@@ -964,55 +1094,55 @@ export default function EcoSenseApp() {
                         ))}
                       </Pie>
                       <Legend />
-                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1e1e2e' : '#fff', border: '2px solid #a855f7', borderRadius: '12px' }} />
+                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1f2937' : '#fff', border: '2px solid #10b981', borderRadius: '12px' }} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
 
-                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsTrendTitle}</h2>
+                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsTrendTitle}</h2>
                   <ResponsiveContainer width="100%" height={250}>
                     <LineChart data={trendData}>
-                      <XAxis dataKey="name" stroke={darkMode ? '#d1d5db' : '#6b7280'} />
-                      <YAxis stroke={darkMode ? '#d1d5db' : '#6b7280'} domain={[0, 100]} />
-                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1e1e2e' : '#fff', border: '2px solid #a855f7', borderRadius: '12px' }} />
+                      <XAxis dataKey="name" stroke={darkMode ? '#d1d5db' : '#fff'} />
+                      <YAxis stroke={darkMode ? '#d1d5db' : '#fff'} domain={[0, 100]} />
+                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1f2937' : '#fff', border: '2px solid #10b981', borderRadius: '12px' }} />
                       <Line type="monotone" dataKey="db" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', r: 5 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
 
-                <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-                  <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.analyticsHealthTitle}</h2>
+                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsHealthTitle}</h2>
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-green-500 bg-opacity-20'} rounded-xl`}>
                       <div>
-                        <div className={`font-bold ${darkMode ? 'text-emerald-300' : 'text-green-900'}`}>WHO Safe Limit</div>
-                        <div className={`text-xs ${darkMode ? 'text-emerald-400' : 'text-green-700'}`}>Daytime</div>
+                        <div className="font-bold text-white">{t.whoSafeLimit}</div>
+                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.daytime}</div>
                       </div>
-                      <div className={`text-2xl font-bold ${darkMode ? 'text-emerald-300' : 'text-green-900'}`}>55 dB</div>
+                      <div className="text-2xl font-bold text-white">55 dB</div>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-500/30 to-cyan-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-blue-500 bg-opacity-20'} rounded-xl`}>
                       <div>
-                        <div className={`font-bold ${darkMode ? 'text-cyan-300' : 'text-blue-900'}`}>Your Average</div>
-                        <div className={`text-xs ${darkMode ? 'text-cyan-400' : 'text-blue-700'}`}>Current</div>
+                        <div className="font-bold text-white">{t.yourAverage}</div>
+                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.current}</div>
                       </div>
-                      <div className={`text-2xl font-bold ${darkMode ? 'text-cyan-300' : 'text-blue-900'}`}>
+                      <div className="text-2xl font-bold text-white">
                         {(recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1)} dB
                       </div>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-red-500/30 to-pink-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
+                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-red-500 bg-opacity-20'} rounded-xl`}>
                       <div>
-                        <div className={`font-bold ${darkMode ? 'text-red-300' : 'text-red-900'}`}>Damage Risk</div>
-                        <div className={`text-xs ${darkMode ? 'text-red-400' : 'text-red-700'}`}>Threshold</div>
+                        <div className="font-bold text-white">{t.damageRisk}</div>
+                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.threshold}</div>
                       </div>
-                      <div className={`text-2xl font-bold ${darkMode ? 'text-red-300' : 'text-red-900'}`}>85 dB</div>
+                      <div className="text-2xl font-bold text-white">85 dB</div>
                     </div>
                   </div>
                 </div>
 
                 <button
                   onClick={exportData}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 rounded-2xl font-bold text-lg mb-3 flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/50 hover:scale-105 transition-transform"
+                  className="w-full bg-green-500 text-white py-4 rounded-xl font-bold text-lg mb-3 flex items-center justify-center gap-3 hover:bg-green-600 transition-colors"
                 >
                   <span className="text-2xl">📥</span>
                   {t.exportCSV}
@@ -1020,7 +1150,7 @@ export default function EcoSenseApp() {
 
                 <button
                   onClick={exportReport}
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 rounded-2xl font-bold text-lg mb-3 flex items-center justify-center gap-3 shadow-lg shadow-blue-500/50 hover:scale-105 transition-transform"
+                  className="w-full bg-blue-500 text-white py-4 rounded-xl font-bold text-lg mb-3 flex items-center justify-center gap-3 hover:bg-blue-600 transition-colors"
                 >
                   <span className="text-2xl">📄</span>
                   {t.exportReport}
@@ -1028,7 +1158,7 @@ export default function EcoSenseApp() {
 
                 <button
                   onClick={clearAll}
-                  className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg shadow-red-500/50 hover:scale-105 transition-transform"
+                  className="w-full bg-red-500 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-red-600 transition-colors"
                 >
                   <span className="text-2xl">🗑️</span>
                   {t.clearAll}
@@ -1041,22 +1171,18 @@ export default function EcoSenseApp() {
         {/* Community Tab */}
         {currentTab === 'community' && (
           <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.communityMapTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.communityMapTitle}</h2>
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">🌍</div>
-                <div className={`text-lg font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Community Map</div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Share your recordings to see them on the community map!
-                </div>
+                <div className="text-lg font-bold mb-2 text-white">Community Map</div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.communityMapDesc}</div>
               </div>
             </div>
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.communityNearbyTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.communityNearbyTitle}</h2>
               <div className="text-center py-8">
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  No community recordings nearby yet
-                </div>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.communityNearbyDesc}</div>
               </div>
             </div>
           </div>
@@ -1065,92 +1191,92 @@ export default function EcoSenseApp() {
         {/* Profile Tab */}
         {currentTab === 'profile' && (
           <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
               <div className="text-center py-6">
-                <div className="text-8xl mb-4 drop-shadow-2xl">👤</div>
-                <div className={`text-3xl font-bold mb-2 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>
+                <div className="text-8xl mb-4">👤</div>
+                <div className="text-3xl font-bold mb-2 text-white">
                   {t.profileLevelText} {level} {t.profileExplorerText}
                 </div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
                   {xp} XP • {streak} 🔥 {t.profileDayText}
                 </div>
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileStatsTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.profileStatsTitle}</h2>
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-purple-500/30 to-purple-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.totalRecordings}</span>
-                  <span className={`font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>{recordings.length}</span>
+                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                  <span className="font-semibold text-white">{t.totalRecordings}</span>
+                  <span className="font-bold text-green-400">{recordings.length}</span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.avgNoiseLevel}</span>
-                  <span className={`font-bold ${darkMode ? 'text-emerald-300' : 'text-green-600'}`}>
+                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                  <span className="font-semibold text-white">{t.avgNoiseLevel}</span>
+                  <span className="font-bold text-green-400">
                     {recordings.length > 0 ? (recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1) : 0} dB
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-orange-500/30 to-orange-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.achievementsUnlocked}</span>
-                  <span className={`font-bold ${darkMode ? 'text-orange-300' : 'text-orange-600'}`}>
+                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                  <span className="font-semibold text-white">{t.achievementsUnlocked}</span>
+                  <span className="font-bold text-orange-400">
                     {Object.values(achievements).filter(a => a).length}/6
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-red-500/30 to-pink-600/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                  <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.hearingHealth}</span>
-                  <span className={`font-bold ${darkMode ? 'text-pink-300' : 'text-red-600'}`}>{hearingHealth.score}</span>
+                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
+                  <span className="font-semibold text-white">{t.hearingHealth}</span>
+                  <span className="font-bold text-red-400">{hearingHealth.score}</span>
                 </div>
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileProgressTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.profileProgressTitle}</h2>
               <div className="mb-4">
                 <div className="flex justify-between mb-2">
-                  <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.profileLevelProgress}</span>
-                  <span className={`text-sm font-bold ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>{xpProgress.toFixed(0)}%</span>
+                  <span className="text-sm font-semibold text-white">{t.profileLevelProgress}</span>
+                  <span className="text-sm font-bold text-green-400">{xpProgress.toFixed(0)}%</span>
                 </div>
-                <div className="h-2 bg-white bg-opacity-20 rounded-full overflow-hidden backdrop-blur-sm">
-                  <div className="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full" style={{ width: `${xpProgress}%` }} />
+                <div className={`h-2 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full overflow-hidden`}>
+                  <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${xpProgress}%` }} />
                 </div>
               </div>
-              <div className="text-center p-4 bg-gradient-to-r from-yellow-500/30 to-orange-500/30 rounded-xl backdrop-blur-sm border border-white border-opacity-10">
-                <div className={`text-sm mb-1 ${darkMode ? 'text-yellow-300' : 'text-yellow-800'}`}>{t.profileNextReward}</div>
-                <div className={`text-xl font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>+100 XP {t.profileBonus} 🎁</div>
+              <div className={`text-center p-4 ${darkMode ? 'bg-gray-700' : 'bg-yellow-500 bg-opacity-20'} rounded-xl`}>
+                <div className={`text-sm mb-1 ${darkMode ? 'text-gray-300' : 'text-white'}`}>{t.profileNextReward}</div>
+                <div className="text-xl font-bold text-yellow-400">+100 XP {t.profileBonus} 🎁</div>
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 mb-4 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileSettingsTitle}</h2>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.profileSettingsTitle}</h2>
               <button
                 onClick={() => setShowLangModal(true)}
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 rounded-2xl font-bold mb-3 flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/50 hover:scale-105 transition-transform"
+                className="w-full bg-green-500 text-white py-4 rounded-xl font-bold mb-3 flex items-center justify-center gap-3 hover:bg-green-600 transition-colors"
               >
                 🌐 {t.profileChangeLang}
               </button>
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-4 rounded-2xl font-bold mb-3 flex items-center justify-center gap-3 shadow-lg shadow-indigo-500/50 hover:scale-105 transition-transform"
+                className="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold mb-3 flex items-center justify-center gap-3 hover:bg-indigo-600 transition-colors"
               >
-                {darkMode ? '☀️' : '🌙'} Toggle Dark Mode
+                🌙 Toggle Dark Mode
               </button>
               <button
                 onClick={shareApp}
-                className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-pink-500/50 hover:scale-105 transition-transform"
+                className="w-full bg-pink-500 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-pink-600 transition-colors"
               >
                 📤 {t.profileShareApp}
               </button>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-slate-900 to-purple-900 border-purple-500' : 'bg-gradient-to-br from-white to-purple-50 border-purple-200'} border-2 rounded-3xl p-6 shadow-2xl shadow-purple-500/30 backdrop-blur-xl`}>
-              <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'}`}>{t.profileAboutTitle}</h2>
-              <div className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
+              <h2 className="text-xl font-bold mb-4 text-white">{t.profileAboutTitle}</h2>
+              <div className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
                 <p className="mb-3">
-                  <strong className={darkMode ? 'text-white' : 'text-gray-900'}>Articul8 EcoSense v1.0</strong>
+                  <strong className="text-white">Articul8 EcoSense v1.0</strong>
                 </p>
                 <p className="mb-3">{t.profileAboutDesc}</p>
                 <p className="mb-3">
-                  <strong className={darkMode ? 'text-white' : 'text-gray-900'}>{t.profileFeaturesTitle}:</strong> {t.profileFeaturesList}
+                  <strong className="text-white">{t.profileFeaturesTitle}:</strong> {t.profileFeaturesList}
                 </p>
                 <p>© 2024 Articul8 EcoSense. {t.profileRights}</p>
               </div>
@@ -1160,7 +1286,7 @@ export default function EcoSenseApp() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className={`fixed bottom-0 left-0 right-0 ${darkMode ? 'bg-gradient-to-t from-slate-950 to-slate-900' : 'bg-gradient-to-t from-white to-purple-50'} backdrop-blur-2xl bg-opacity-90 flex justify-around py-2 shadow-2xl z-50 border-t-2 ${darkMode ? 'border-purple-500' : 'border-purple-200'}`}>
+      <div className={`fixed bottom-0 left-0 right-0 ${darkMode ? 'bg-gray-900 bg-opacity-95' : 'bg-white bg-opacity-10'} backdrop-blur-xl flex justify-around py-2 shadow-2xl z-50 border-t ${darkMode ? 'border-gray-700' : 'border-white border-opacity-10'}`}>
         {[
           { id: 'home', icon: '🏠', label: t.navHome },
           { id: 'record', icon: '🎤', label: t.navRecord },
@@ -1172,13 +1298,13 @@ export default function EcoSenseApp() {
           <button
             key={tab.id}
             onClick={() => setCurrentTab(tab.id)}
-            className={`flex flex-col items-center gap-1 py-2 px-3 rounded-2xl transition-all duration-300 ${
+            className={`flex flex-col items-center gap-1 py-2 px-3 rounded-xl transition-all duration-300 ${
               currentTab === tab.id 
-                ? 'bg-gradient-to-r from-cyan-400 to-purple-500 text-white shadow-lg shadow-purple-500/50 scale-110' 
-                : darkMode ? 'text-gray-400 hover:scale-105' : 'text-gray-500 hover:scale-105'
+                ? 'bg-green-500 text-white scale-110' 
+                : 'text-gray-400 hover:scale-105'
             }`}
           >
-            <div className="text-2xl drop-shadow-lg">{tab.icon}</div>
+            <div className="text-2xl">{tab.icon}</div>
             <div className="text-xs font-semibold">{tab.label}</div>
           </button>
         ))}
@@ -1186,3 +1312,4 @@ export default function EcoSenseApp() {
     </div>
   );
 }
+    
