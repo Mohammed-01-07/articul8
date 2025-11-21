@@ -3,1313 +3,303 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, 
 
 const TRANSLATIONS = {
   en: {
-    appTitle: '🌿 Articul8 EcoSense',
-    healthLabel: 'HEARING HEALTH SCORE',
-    healthStatus: 'Excellent Condition',
-    healthExposure: "Today's exposure: {0} minutes above 85 dB",
-    achievementsTitle: '🏆 Achievements',
-    challengesTitle: '🎯 Daily Challenges',
-    statsTitle: '📊 Your Statistics',
-    sleepTitle: 'Sleep Quality Tracker',
-    sleepDesc: 'Monitor noise disruptions during sleep',
-    sleepBtnText: 'Start Sleep Monitoring',
-    stopSleepBtnText: 'Stop Sleep Monitoring',
-    recordTitle: '🎤 Environmental Recording',
-    recordStatus: 'Tap to record',
-    recordingStatus: 'Recording...',
-    analyzingStatus: 'Analyzing...',
-    filterAll: 'All',
-    filterToday: 'Today',
-    filterWeek: 'This Week',
-    filterMonth: 'This Month',
-    analyticsDistTitle: '📈 Sound Distribution',
-    analyticsTrendTitle: '📉 Noise Trends',
-    analyticsHealthTitle: '🏥 Health Standards',
-    exportCSV: 'Export Data (CSV)',
-    exportReport: 'Generate Report',
-    clearAll: 'Clear All Data',
-    communityMapTitle: '🌍 Community Noise Map',
-    communityNearbyTitle: '📍 Nearby Recordings',
-    navHome: 'Home',
-    navRecord: 'Record',
-    navData: 'Data',
-    navAnalytics: 'Analytics',
-    navCommunity: 'Community',
-    navProfile: 'Profile',
-    deleteBtn: '🗑️ Delete',
-    compareBtn: '⚖️ Compare',
-    selectedText: '✓ Selected',
-    totalRecordings: 'Total Recordings',
-    avgNoiseLevel: 'Avg Noise Level',
-    achievementsUnlocked: 'Achievements Unlocked',
-    hearingHealth: 'Hearing Health',
-    locationPlaceholder: '📍 Location name',
-    profileLevelText: 'Level',
-    profileExplorerText: 'Explorer',
-    profileDayText: 'Day Streak',
-    profileStatsTitle: '📊 Your Statistics',
-    profileProgressTitle: '🏆 Progress Overview',
-    profileLevelProgress: 'Level Progress',
-    profileNextReward: 'Next Level Reward',
-    profileBonus: 'Bonus',
-    profileSettingsTitle: '⚙️ Settings',
-    profileChangeLang: 'Change Language',
-    profileShareApp: 'Share App',
-    profileAboutTitle: 'ℹ️ About',
-    profileAboutDesc: 'Environmental monitoring platform powered by AI. Track sound, temperature, and humidity with real-time analysis.',
-    profileFeaturesTitle: 'Features',
-    profileFeaturesList: 'Gamification, Health Tracking, Community Map, Multi-Language Support, Sleep Monitoring',
-    profileRights: 'All rights reserved.',
-    noDataYet: 'No Data Yet',
-    noDataDesc: 'Record some environmental data to see analytics and insights!',
-    noRecordings: 'No recordings found',
-    communityMapDesc: 'Share your recordings to see them on the community map!',
-    communityNearbyDesc: 'No community recordings nearby yet',
-    whoSafeLimit: 'WHO Safe Limit',
-    daytime: 'Daytime',
-    yourAverage: 'Your Average',
-    current: 'Current',
-    damageRisk: 'Damage Risk',
-    threshold: 'Threshold',
-    category: 'Category',
-    temp: 'Temp',
-    humidity: 'Humidity',
-    total: 'Total',
-    recordings: 'Recordings',
-    streak: 'Streak',
-    days: 'Days',
-    comparison: '📊 Location Comparison',
-    vs: 'vs',
-    noiseLevel: 'Noise Level',
-    temperature: 'Temperature',
-    analysis: 'Analysis',
-    louder: 'louder',
-    quieter: 'quieter',
-    than: 'than',
-    close: 'Close',
-    selectLanguage: 'Select Language / اختر اللغة'
+    appTitle: '🌿 Articul8 EcoSense', healthLabel: 'HEARING HEALTH SCORE', healthStatus: 'Excellent Condition',
+    healthExposure: "Today's exposure: {0} minutes above 85 dB", achievementsTitle: '🏆 Achievements',
+    challengesTitle: '🎯 Daily Challenges', statsTitle: '📊 Your Statistics', sleepTitle: 'Sleep Quality Tracker',
+    sleepDesc: 'Monitor noise disruptions during sleep', sleepBtnText: 'Start Sleep Monitoring',
+    stopSleepBtnText: 'Stop Sleep Monitoring', recordTitle: '🎤 Environmental Recording', recordStatus: 'Tap to record',
+    recordingStatus: 'Recording...', filterAll: 'All', filterToday: 'Today', filterWeek: 'This Week',
+    filterMonth: 'This Month', analyticsDistTitle: '📈 Sound Distribution', analyticsTrendTitle: '📉 Noise Trends',
+    analyticsHealthTitle: '🏥 Health Standards', exportCSV: 'Export Data (CSV)', exportReport: 'Generate Report',
+    clearAll: 'Clear All Data', communityMapTitle: '🌍 Community Noise Map', communityNearbyTitle: '📍 Nearby Recordings',
+    navHome: 'Home', navRecord: 'Record', navData: 'Data', navAnalytics: 'Analytics', navCommunity: 'Community',
+    navProfile: 'Profile', deleteBtn: '🗑️ Delete', compareBtn: '⚖️ Compare', selectedText: '✓ Selected',
+    totalRecordings: 'Total Recordings', avgNoiseLevel: 'Avg Noise Level', achievementsUnlocked: 'Achievements Unlocked',
+    hearingHealth: 'Hearing Health', locationPlaceholder: '📍 Location name', profileLevelText: 'Level',
+    profileExplorerText: 'Explorer', profileDayText: 'Day Streak', noDataYet: 'No Data Yet',
+    noDataDesc: 'Record some data to see analytics!', noRecordings: 'No recordings found', category: 'Category',
+    temp: 'Temp', humidity: 'Humidity', total: 'Total', recordings: 'Recordings', streak: 'Streak', days: 'Days',
+    comparison: '📊 Location Comparison', vs: 'vs', noiseLevel: 'Noise Level', temperature: 'Temperature',
+    analysis: 'Analysis', louder: 'louder', quieter: 'quieter', than: 'than', close: 'Close',
+    selectLanguage: 'Select Language', whoSafeLimit: 'WHO Safe Limit', daytime: 'Daytime', yourAverage: 'Your Average',
+    current: 'Current', damageRisk: 'Damage Risk', threshold: 'Threshold', profileSettingsTitle: '⚙️ Settings',
+    profileChangeLang: 'Change Language', profileShareApp: 'Share App', profileAboutTitle: 'ℹ️ About'
   },
   ar: {
-    appTitle: '🌿 Articul8 EcoSense',
-    healthLabel: 'درجة صحة السمع',
-    healthStatus: 'حالة ممتازة',
-    healthExposure: 'التعرض اليوم: {0} دقيقة فوق 85 ديسيبل',
-    achievementsTitle: '🏆 الإنجازات',
-    challengesTitle: '🎯 التحديات اليومية',
-    statsTitle: '📊 إحصائياتك',
-    sleepTitle: 'متتبع جودة النوم',
-    sleepDesc: 'راقب اضطرابات الضوضاء أثناء النوم',
-    sleepBtnText: 'بدء مراقبة النوم',
-    stopSleepBtnText: 'إيقاف مراقبة النوم',
-    recordTitle: '🎤 التسجيل البيئي',
-    recordStatus: 'انقر للتسجيل',
-    recordingStatus: 'جاري التسجيل...',
-    analyzingStatus: 'جاري التحليل...',
-    filterAll: 'الكل',
-    filterToday: 'اليوم',
-    filterWeek: 'هذا الأسبوع',
-    filterMonth: 'هذا الشهر',
-    analyticsDistTitle: '📈 توزيع الصوت',
-    analyticsTrendTitle: '📉 اتجاهات الضوضاء',
-    analyticsHealthTitle: '🏥 المعايير الصحية',
-    exportCSV: 'تصدير البيانات (CSV)',
-    exportReport: 'إنشاء تقرير',
-    clearAll: 'مسح كل البيانات',
-    communityMapTitle: '🌍 خريطة الضوضاء المجتمعية',
-    communityNearbyTitle: '📍 التسجيلات القريبة',
-    navHome: 'الرئيسية',
-    navRecord: 'تسجيل',
-    navData: 'البيانات',
-    navAnalytics: 'التحليلات',
-    navCommunity: 'المجتمع',
-    navProfile: 'الملف',
-    deleteBtn: '🗑️ حذف',
-    compareBtn: '⚖️ مقارنة',
-    selectedText: '✓ محدد',
-    totalRecordings: 'إجمالي التسجيلات',
-    avgNoiseLevel: 'متوسط الضوضاء',
-    achievementsUnlocked: 'الإنجازات المفتوحة',
-    hearingHealth: 'صحة السمع',
-    locationPlaceholder: '📍 اسم الموقع',
-    profileLevelText: 'المستوى',
-    profileExplorerText: 'مستكشف',
-    profileDayText: 'سلسلة يومية',
-    noDataYet: 'لا توجد بيانات بعد',
-    noDataDesc: 'سجل بعض البيانات البيئية لرؤية التحليلات والرؤى!',
-    noRecordings: 'لم يتم العثور على تسجيلات',
-    category: 'الفئة',
-    temp: 'الحرارة',
-    humidity: 'الرطوبة',
-    total: 'الإجمالي',
-    recordings: 'التسجيلات',
-    streak: 'السلسلة',
-    days: 'أيام',
-    comparison: '📊 مقارنة المواقع',
-    vs: 'مقابل',
-    noiseLevel: 'مستوى الضوضاء',
-    temperature: 'درجة الحرارة',
-    analysis: 'التحليل',
-    louder: 'أعلى',
-    quieter: 'أهدأ',
-    than: 'من',
-    close: 'إغلاق',
-    selectLanguage: 'Select Language / اختر اللغة'
+    appTitle: '🌿 Articul8 EcoSense', healthLabel: 'درجة صحة السمع', healthStatus: 'حالة ممتازة',
+    healthExposure: 'التعرض اليوم: {0} دقيقة فوق 85 ديسيبل', achievementsTitle: '🏆 الإنجازات',
+    challengesTitle: '🎯 التحديات اليومية', statsTitle: '📊 إحصائياتك', sleepTitle: 'متتبع جودة النوم',
+    sleepDesc: 'راقب اضطرابات الضوضاء أثناء النوم', sleepBtnText: 'بدء مراقبة النوم',
+    stopSleepBtnText: 'إيقاف مراقبة النوم', recordTitle: '🎤 التسجيل البيئي', recordStatus: 'انقر للتسجيل',
+    recordingStatus: 'جاري التسجيل...', filterAll: 'الكل', filterToday: 'اليوم', filterWeek: 'هذا الأسبوع',
+    filterMonth: 'هذا الشهر', navHome: 'الرئيسية', navRecord: 'تسجيل', navData: 'البيانات',
+    navAnalytics: 'التحليلات', navCommunity: 'المجتمع', navProfile: 'الملف', deleteBtn: '🗑️ حذف',
+    compareBtn: '⚖️ مقارنة', selectedText: '✓ محدد', locationPlaceholder: '📍 اسم الموقع',
+    noRecordings: 'لم يتم العثور على تسجيلات', category: 'الفئة', temp: 'الحرارة', humidity: 'الرطوبة',
+    close: 'إغلاق', selectLanguage: 'اختر اللغة'
   },
   es: {
-    appTitle: '🌿 Articul8 EcoSense',
-    healthLabel: 'PUNTUACIÓN DE SALUD AUDITIVA',
-    healthStatus: 'Excelente Condición',
-    healthExposure: 'Exposición hoy: {0} minutos por encima de 85 dB',
-    achievementsTitle: '🏆 Logros',
-    challengesTitle: '🎯 Desafíos Diarios',
-    statsTitle: '📊 Tus Estadísticas',
-    sleepTitle: 'Monitor de Sueño',
-    sleepDesc: 'Monitorear ruido durante el sueño',
-    sleepBtnText: 'Iniciar Monitoreo',
-    stopSleepBtnText: 'Detener Monitoreo',
-    recordTitle: '🎤 Grabación Ambiental',
-    recordStatus: 'Toca para grabar',
-    recordingStatus: 'Grabando...',
-    analyzingStatus: 'Analizando...',
-    filterAll: 'Todo',
-    filterToday: 'Hoy',
-    filterWeek: 'Esta Semana',
-    filterMonth: 'Este Mes',
-    deleteBtn: '🗑️ Eliminar',
-    compareBtn: '⚖️ Comparar',
-    selectedText: '✓ Seleccionado',
-    locationPlaceholder: '📍 Nombre del lugar',
-    navHome: 'Inicio',
-    navRecord: 'Grabar',
-    navData: 'Datos',
-    navAnalytics: 'Análisis',
-    navCommunity: 'Comunidad',
-    navProfile: 'Perfil',
-    noDataYet: 'Sin Datos Todavía',
-    noDataDesc: '¡Graba algunos datos ambientales para ver análisis e información!',
-    noRecordings: 'No se encontraron grabaciones',
-    category: 'Categoría',
-    temp: 'Temp',
-    humidity: 'Humedad',
-    total: 'Total',
-    recordings: 'Grabaciones',
-    streak: 'Racha',
-    days: 'Días',
-    close: 'Cerrar',
-    selectLanguage: 'Select Language / اختر اللغة'
+    appTitle: '🌿 Articul8 EcoSense', healthLabel: 'PUNTUACIÓN DE SALUD AUDITIVA', healthStatus: 'Excelente Condición',
+    achievementsTitle: '🏆 Logros', challengesTitle: '🎯 Desafíos Diarios', recordTitle: '🎤 Grabación Ambiental',
+    recordStatus: 'Toca para grabar', recordingStatus: 'Grabando...', filterAll: 'Todo', filterToday: 'Hoy',
+    navHome: 'Inicio', navRecord: 'Grabar', navData: 'Datos', navAnalytics: 'Análisis', navCommunity: 'Comunidad',
+    navProfile: 'Perfil', deleteBtn: '🗑️ Eliminar', compareBtn: '⚖️ Comparar', close: 'Cerrar', selectLanguage: 'Seleccionar Idioma'
   },
   fr: {
-    appTitle: '🌿 Articul8 EcoSense',
-    healthLabel: 'SCORE DE SANTÉ AUDITIVE',
-    healthStatus: 'Excellente Condition',
-    healthExposure: "Exposition aujourd'hui: {0} minutes au-dessus de 85 dB",
-    achievementsTitle: '🏆 Réalisations',
-    challengesTitle: '🎯 Défis Quotidiens',
-    statsTitle: '📊 Vos Statistiques',
-    sleepTitle: 'Suivi du Sommeil',
-    sleepDesc: 'Surveiller le bruit pendant le sommeil',
-    sleepBtnText: 'Démarrer la Surveillance',
-    stopSleepBtnText: 'Arrêter la Surveillance',
-    recordTitle: '🎤 Enregistrement',
-    recordStatus: 'Appuyez pour enregistrer',
-    recordingStatus: 'Enregistrement...',
-    analyzingStatus: 'Analyse...',
-    filterAll: 'Tout',
-    filterToday: "Aujourd'hui",
-    filterWeek: 'Cette Semaine',
-    filterMonth: 'Ce Mois',
-    deleteBtn: '🗑️ Supprimer',
-    compareBtn: '⚖️ Comparer',
-    selectedText: '✓ Sélectionné',
-    locationPlaceholder: '📍 Nom du lieu',
-    navHome: 'Accueil',
-    navRecord: 'Enregistrer',
-    navData: 'Données',
-    navAnalytics: 'Analyse',
-    navCommunity: 'Communauté',
-    navProfile: 'Profil',
-    noDataYet: 'Pas Encore de Données',
-    noDataDesc: 'Enregistrez des données environnementales pour voir les analyses!',
-    noRecordings: 'Aucun enregistrement trouvé',
-    category: 'Catégorie',
-    temp: 'Temp',
-    humidity: 'Humidité',
-    total: 'Total',
-    recordings: 'Enregistrements',
-    close: 'Fermer',
-    selectLanguage: 'Select Language / اختر اللغة'
+    appTitle: '🌿 Articul8 EcoSense', healthLabel: 'SCORE DE SANTÉ AUDITIVE', healthStatus: 'Excellente Condition',
+    achievementsTitle: '🏆 Réalisations', recordTitle: '🎤 Enregistrement', recordStatus: 'Appuyez pour enregistrer',
+    filterAll: 'Tout', navHome: 'Accueil', navRecord: 'Enregistrer', navData: 'Données', navProfile: 'Profil',
+    deleteBtn: '🗑️ Supprimer', close: 'Fermer', selectLanguage: 'Choisir la Langue'
   },
   de: {
-    appTitle: '🌿 Articul8 EcoSense',
-    healthLabel: 'GEHÖRGESUNDHEITS-SCORE',
-    healthStatus: 'Ausgezeichnet',
-    healthExposure: 'Exposition heute: {0} Minuten über 85 dB',
-    achievementsTitle: '🏆 Erfolge',
-    challengesTitle: '🎯 Tägliche Herausforderungen',
-    statsTitle: '📊 Ihre Statistiken',
-    sleepTitle: 'Schlaf-Tracker',
-    sleepDesc: 'Lärmüberwachung während des Schlafs',
-    sleepBtnText: 'Überwachung Starten',
-    stopSleepBtnText: 'Überwachung Stoppen',
-    recordTitle: '🎤 Aufzeichnung',
-    recordStatus: 'Tippen zum Aufnehmen',
-    recordingStatus: 'Aufnahme...',
-    analyzingStatus: 'Analysieren...',
-    filterAll: 'Alle',
-    filterToday: 'Heute',
-    filterWeek: 'Diese Woche',
-    filterMonth: 'Dieser Monat',
-    deleteBtn: '🗑️ Löschen',
-    compareBtn: '⚖️ Vergleichen',
-    selectedText: '✓ Ausgewählt',
-    locationPlaceholder: '📍 Ortsname',
-    navHome: 'Startseite',
-    navRecord: 'Aufnehmen',
-    navData: 'Daten',
-    navAnalytics: 'Analyse',
-    navCommunity: 'Gemeinschaft',
-    navProfile: 'Profil',
-    noDataYet: 'Noch Keine Daten',
-    noDataDesc: 'Nehmen Sie Umgebungsdaten auf, um Analysen zu sehen!',
-    noRecordings: 'Keine Aufnahmen gefunden',
-    category: 'Kategorie',
-    temp: 'Temp',
-    humidity: 'Feuchtigkeit',
-    total: 'Gesamt',
-    recordings: 'Aufnahmen',
-    close: 'Schließen',
-    selectLanguage: 'Select Language / اختر اللغة'
+    appTitle: '🌿 Articul8 EcoSense', healthLabel: 'GEHÖRGESUNDHEITS-SCORE', healthStatus: 'Ausgezeichnet',
+    achievementsTitle: '🏆 Erfolge', recordTitle: '🎤 Aufzeichnung', recordStatus: 'Tippen zum Aufnehmen',
+    filterAll: 'Alle', navHome: 'Startseite', navRecord: 'Aufnehmen', navData: 'Daten', navProfile: 'Profil',
+    deleteBtn: '🗑️ Löschen', close: 'Schließen', selectLanguage: 'Sprache Wählen'
   }
 };
 
 const COLORS = ['#ef4444', '#f97316', '#3b82f6', '#10b981', '#6b7280'];
 
 export default function EcoSenseApp() {
-  const [currentTab, setCurrentTab] = useState('home');
-  const [darkMode, setDarkMode] = useState(false);
-  const [currentLang, setCurrentLang] = useState('en');
+  const [tab, setTab] = useState('home');
+  const [dark, setDark] = useState(false);
+  const [lang, setLang] = useState('en');
   const [xp, setXp] = useState(0);
   const [level, setLevel] = useState(1);
   const [streak, setStreak] = useState(0);
-  const [lastRecordDate, setLastRecordDate] = useState(null);
-  const [recordings, setRecordings] = useState([]);
-  const [achievements, setAchievements] = useState({
-    firstRecord: false,
-    tenRecords: false,
-    quietSeeker: false,
-    noiseFinder: false,
-    weekStreak: false,
-    allCategories: false
-  });
-  const [dailyChallenges, setDailyChallenges] = useState({
-    record3: { completed: false, progress: 0, target: 3 },
-    findQuiet: { completed: false, progress: 0, target: 1 },
-    findLoud: { completed: false, progress: 0, target: 1 }
-  });
-  const [hearingHealth, setHearingHealth] = useState({
-    score: 100,
-    dailyExposure: 0,
-    lastReset: new Date().toDateString()
-  });
-  const [isRecording, setIsRecording] = useState(false);
-  const [currentDb, setCurrentDb] = useState(0);
-  const [locationName, setLocationName] = useState('');
-  const [currentFilter, setCurrentFilter] = useState('all');
-  const [selectedForCompare, setSelectedForCompare] = useState([]);
-  const [showLangModal, setShowLangModal] = useState(false);
-  const [showCompareModal, setShowCompareModal] = useState(false);
-  const [notification, setNotification] = useState('');
-  const [sleepMode, setSleepMode] = useState(false);
-
-  const audioContextRef = useRef(null);
-  const analyserRef = useRef(null);
+  const [recs, setRecs] = useState([]);
+  const [achievements, setAchievements] = useState({ firstRecord: false, tenRecords: false, quietSeeker: false, noiseFinder: false, weekStreak: false, allCategories: false });
+  const [challenges, setChallenges] = useState({ record3: { done: false, progress: 0, target: 3 }, findQuiet: { done: false, progress: 0, target: 1 }, findLoud: { done: false, progress: 0, target: 1 } });
+  const [health, setHealth] = useState({ score: 100, exposure: 0 });
+  const [recording, setRecording] = useState(false);
+  const [db, setDb] = useState(0);
+  const [loc, setLoc] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [compare, setCompare] = useState([]);
+  const [showLang, setShowLang] = useState(false);
+  const [showComp, setShowComp] = useState(false);
+  const [notif, setNotif] = useState('');
+  const [sleep, setSleep] = useState(false);
   const streamRef = useRef(null);
+  const ctxRef = useRef(null);
+  const analyserRef = useRef(null);
 
-  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+  const t = { ...TRANSLATIONS.en, ...TRANSLATIONS[lang] };
 
-  useEffect(() => {
-    const today = new Date().toDateString();
-    if (lastRecordDate && lastRecordDate !== today) {
-      setDailyChallenges({
-        record3: { completed: false, progress: 0, target: 3 },
-        findQuiet: { completed: false, progress: 0, target: 1 },
-        findLoud: { completed: false, progress: 0, target: 1 }
-      });
-    }
-    if (hearingHealth.lastReset !== today) {
-      setHearingHealth(prev => ({ ...prev, dailyExposure: 0, lastReset: today }));
-    }
-  }, [lastRecordDate, hearingHealth.lastReset]);
+  useEffect(() => { if (notif) { const tm = setTimeout(() => setNotif(''), 3000); return () => clearTimeout(tm); } }, [notif]);
+  useEffect(() => { if (compare.length === 2) setShowComp(true); }, [compare]);
+  useEffect(() => { return () => { if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop()); }; }, []);
 
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => setNotification(''), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
-
-  useEffect(() => {
-    return () => {
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach(t => t.stop());
-      }
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (selectedForCompare.length === 2) {
-      setShowCompareModal(true);
-    }
-  }, [selectedForCompare]);
-
-  const addXP = (amount) => {
-    const newXp = xp + amount;
-    const xpForNextLevel = level * 100;
-    if (newXp >= xpForNextLevel) {
-      setLevel(level + 1);
-      setXp(newXp - xpForNextLevel);
-      showNotification(`🎉 Level Up! You're now Level ${level + 1}!`);
-    } else {
-      setXp(newXp);
-    }
+  const notify = (msg) => setNotif(msg);
+  const addXP = (amt) => {
+    const nx = xp + amt;
+    const need = level * 100;
+    if (nx >= need) { setLevel(level + 1); setXp(nx - need); notify('🎉 Level Up!'); }
+    else setXp(nx);
   };
 
-  const showNotification = (msg) => {
-    setNotification(msg);
-  };
-
-  const updateStreak = () => {
-    const today = new Date().toDateString();
-    if (lastRecordDate === today) return;
-    
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    
-    if (lastRecordDate === yesterday.toDateString()) {
-      setStreak(prev => prev + 1);
-      showNotification(`🔥 ${streak + 1} ${t.days} ${t.streak}!`);
-    } else {
-      setStreak(1);
-    }
-    setLastRecordDate(today);
-  };
-
-  const startRecording = async () => {
-    if (isRecording) return;
-    if (sleepMode) {
-      toggleSleepMode();
-      return;
-    }
-
+  const startRec = async () => {
+    if (recording) return;
     try {
-      setIsRecording(true);
-      
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error('Microphone not supported in this browser');
-      }
-
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: false,
-          noiseSuppression: false,
-          autoGainControl: false,
-          sampleRate: 48000
-        }
-      });
-
+      setRecording(true);
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
-      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      analyserRef.current = audioContextRef.current.createAnalyser();
-      const source = audioContextRef.current.createMediaStreamSource(stream);
-      source.connect(analyserRef.current);
-      analyserRef.current.fftSize = 2048;
-      analyserRef.current.smoothingTimeConstant = 0.8;
-
-      const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
-      let maxDb = 0;
-      let animationId;
-
-      const updateMeter = () => {
-        if (!isRecording) return;
-        analyserRef.current.getByteFrequencyData(dataArray);
-        const avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
-        const db = Math.round(Math.min(100, Math.max(30, (avg / 255) * 70 + 30)));
-        maxDb = Math.max(maxDb, db);
-        setCurrentDb(db);
-        animationId = requestAnimationFrame(updateMeter);
+      ctxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      analyserRef.current = ctxRef.current.createAnalyser();
+      ctxRef.current.createMediaStreamSource(stream).connect(analyserRef.current);
+      analyserRef.current.fftSize = 256;
+      const arr = new Uint8Array(analyserRef.current.frequencyBinCount);
+      let max = 0;
+      const update = () => {
+        if (!recording) return;
+        analyserRef.current.getByteFrequencyData(arr);
+        const avg = arr.reduce((a, b) => a + b) / arr.length;
+        const d = Math.round(Math.min(100, Math.max(30, (avg / 255) * 70 + 30)));
+        max = Math.max(max, d);
+        setDb(d);
+        requestAnimationFrame(update);
       };
-      updateMeter();
-
-      setTimeout(() => {
-        if (animationId) cancelAnimationFrame(animationId);
-        stopRecording(maxDb, dataArray);
-      }, 5000);
-    } catch (err) {
-      console.error('Microphone error:', err);
-      setIsRecording(false);
-      setCurrentDb(0);
-      
-      if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-        showNotification('❌ Please allow microphone access in your browser settings');
-      } else if (err.name === 'NotFoundError') {
-        showNotification('❌ No microphone found on this device');
-      } else {
-        showNotification('❌ Unable to access microphone. Try refreshing the page.');
-      }
+      update();
+      setTimeout(() => stopRec(max), 5000);
+    } catch (e) {
+      setRecording(false);
+      notify('❌ Microphone access denied');
     }
   };
 
-  const stopRecording = (maxDb, dataArray) => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach(t => t.stop());
-    }
-    setIsRecording(false);
-    setCurrentDb(0);
-
-    const { category, confidences } = analyzeFrequency(dataArray);
-    const recording = {
-      id: Date.now(),
-      timestamp: Date.now(),
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-      locationName: locationName || 'Unnamed Location',
-      category,
-      confidences,
-      noiseLevel: maxDb,
-      temperature: 20 + Math.floor(Math.random() * 15),
-      humidity: 40 + Math.floor(Math.random() * 40)
-    };
-
-    setRecordings(prev => [recording, ...prev]);
-    setLocationName('');
+  const stopRec = (max) => {
+    if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop());
+    setRecording(false);
+    setDb(0);
+    const cats = ['traffic', 'construction', 'people', 'nature', 'silence'];
+    const cat = cats[Math.floor(Math.random() * cats.length)];
+    const rec = { id: Date.now(), ts: Date.now(), date: new Date().toLocaleDateString(), time: new Date().toLocaleTimeString(), loc: loc || 'Unnamed', cat, db: max, temp: 20 + Math.floor(Math.random() * 15), hum: 40 + Math.floor(Math.random() * 40) };
+    setRecs([rec, ...recs]);
+    setLoc('');
     addXP(10);
-    updateStreak();
-    checkAchievements([recording, ...recordings]);
-    updateDailyChallenges(recording);
-    updateHearingHealth(recording);
-    showNotification(`✅ ${t.recordStatus}: ${maxDb} dB - ${category}`);
-  };
-
-  const analyzeFrequency = (dataArray) => {
-    const binCount = dataArray.length;
-    const lowEnd = Math.floor(binCount * 0.2);
-    const midEnd = Math.floor(binCount * 0.6);
-    
-    let lowFreq = 0, midFreq = 0, highFreq = 0, total = 0;
-    
-    for (let i = 0; i < lowEnd; i++) { lowFreq += dataArray[i]; total += dataArray[i]; }
-    for (let i = lowEnd; i < midEnd; i++) { midFreq += dataArray[i]; total += dataArray[i]; }
-    for (let i = midEnd; i < binCount; i++) { highFreq += dataArray[i]; total += dataArray[i]; }
-    
-    if (total === 0) {
-      return { category: 'silence', confidences: { silence: 95, nature: 3, people: 1, traffic: 1, construction: 0 } };
-    }
-    
-    const lowPercent = (lowFreq / total) * 100;
-    const midPercent = (midFreq / total) * 100;
-    const highPercent = (highFreq / total) * 100;
-    
-    let variance = 0;
-    const mean = total / binCount;
-    for (let i = 0; i < binCount; i++) {
-      variance += Math.pow(dataArray[i] - mean, 2);
-    }
-    const complexity = Math.sqrt(variance / binCount);
-    
-    const confidences = { traffic: 10, construction: 10, people: 10, nature: 10, silence: 10 };
-    
-    if (midPercent > 45 && complexity > 30) {
-      confidences.people = 70 + Math.random() * 20;
-    } else if (lowPercent > 50 && complexity < 50) {
-      confidences.traffic = 70 + Math.random() * 20;
-    } else if (highPercent > 40) {
-      confidences.nature = 70 + Math.random() * 20;
-    } else if (complexity > 60) {
-      confidences.construction = 70 + Math.random() * 20;
-    } else {
-      confidences.silence = 70 + Math.random() * 20;
-    }
-    
-    const category = Object.entries(confidences).reduce((a, b) => confidences[a[0]] > confidences[b[0]] ? a : b)[0];
-    return { category, confidences };
-  };
-
-  const checkAchievements = (recs) => {
-    const newAch = { ...achievements };
-    let changed = false;
-
-    if (!newAch.firstRecord && recs.length >= 1) {
-      newAch.firstRecord = true;
-      addXP(50);
-      showNotification('🏆 Achievement: First Recording!');
-      changed = true;
-    }
-    if (!newAch.tenRecords && recs.length >= 10) {
-      newAch.tenRecords = true;
-      addXP(100);
-      showNotification('🏆 Achievement: Data Collector!');
-      changed = true;
-    }
-    if (!newAch.quietSeeker && recs.filter(r => r.noiseLevel < 40).length >= 5) {
-      newAch.quietSeeker = true;
-      addXP(75);
-      showNotification('🏆 Achievement: Quiet Seeker!');
-      changed = true;
-    }
-    if (!newAch.noiseFinder && recs.filter(r => r.noiseLevel > 80).length >= 3) {
-      newAch.noiseFinder = true;
-      addXP(75);
-      showNotification('🏆 Achievement: Noise Finder!');
-      changed = true;
-    }
-    if (!newAch.weekStreak && streak >= 7) {
-      newAch.weekStreak = true;
-      addXP(200);
-      showNotification('🏆 Achievement: Week Warrior!');
-      changed = true;
-    }
-    const categories = [...new Set(recs.map(r => r.category))];
-    if (!newAch.allCategories && categories.length >= 5) {
-      newAch.allCategories = true;
-      addXP(150);
-      showNotification('🏆 Achievement: Category Master!');
-      changed = true;
-    }
-
-    if (changed) setAchievements(newAch);
-  };
-
-  const updateDailyChallenges = (recording) => {
-    setDailyChallenges(prev => {
-      const updated = { ...prev };
-      let changed = false;
-
-      if (!updated.record3.completed) {
-        updated.record3.progress++;
-        if (updated.record3.progress >= 3) {
-          updated.record3.completed = true;
-          addXP(50);
-          showNotification('✅ Challenge Complete: 3 Recordings!');
-        }
-        changed = true;
-      }
-      if (!updated.findQuiet.completed && recording.noiseLevel < 45) {
-        updated.findQuiet.progress = 1;
-        updated.findQuiet.completed = true;
-        addXP(30);
-        showNotification('✅ Challenge: Found Quiet Spot!');
-        changed = true;
-      }
-      if (!updated.findLoud.completed && recording.noiseLevel > 75) {
-        updated.findLoud.progress = 1;
-        updated.findLoud.completed = true;
-        addXP(30);
-        showNotification('✅ Challenge: Found Loud Spot!');
-        changed = true;
-      }
-
-      return changed ? updated : prev;
+    setStreak(s => s + 1);
+    if (!achievements.firstRecord) { setAchievements({ ...achievements, firstRecord: true }); addXP(50); notify('🏆 First Recording!'); }
+    setChallenges(c => {
+      const u = { ...c };
+      if (!u.record3.done) { u.record3.progress++; if (u.record3.progress >= 3) { u.record3.done = true; addXP(50); } }
+      if (!u.findQuiet.done && max < 45) { u.findQuiet.progress = 1; u.findQuiet.done = true; addXP(30); }
+      if (!u.findLoud.done && max > 75) { u.findLoud.progress = 1; u.findLoud.done = true; addXP(30); }
+      return u;
     });
+    if (max >= 85) setHealth(h => ({ ...h, exposure: h.exposure + 5, score: Math.max(20, h.score - 5) }));
+    notify(`✅ Recorded: ${max} dB - ${cat}`);
   };
 
-  const updateHearingHealth = (recording) => {
-    if (recording.noiseLevel >= 85) {
-      setHearingHealth(prev => {
-        const newExposure = prev.dailyExposure + 5;
-        let score = 100;
-        if (newExposure > 480) score = 20;
-        else if (newExposure > 240) score = 40;
-        else if (newExposure > 120) score = 60;
-        else if (newExposure > 60) score = 80;
-        else if (newExposure > 15) score = 90;
-        
-        if (score < 70) showNotification('⚠️ Warning: High noise exposure!');
-        return { ...prev, score, dailyExposure: newExposure };
-      });
-    }
+  const getColor = (d) => d < 40 ? '#10b981' : d < 55 ? '#84cc16' : d < 70 ? '#f59e0b' : d < 85 ? '#f97316' : '#ef4444';
+  const filtered = () => {
+    const now = Date.now(), day = 86400000;
+    if (filter === 'today') return recs.filter(r => now - r.ts < day);
+    if (filter === 'week') return recs.filter(r => now - r.ts < 7 * day);
+    if (filter === 'month') return recs.filter(r => now - r.ts < 30 * day);
+    return recs;
   };
+  const catCounts = recs.reduce((a, r) => { a[r.cat] = (a[r.cat] || 0) + 1; return a; }, {});
+  const chartData = Object.entries(catCounts).map(([n, v]) => ({ name: n, value: v }));
+  const trendData = [...recs].reverse().slice(0, 10).map((r, i) => ({ name: `#${i + 1}`, db: r.db }));
+  const compRecs = compare.map(id => recs.find(r => r.id === id)).filter(Boolean);
+  const xpProg = (xp / (level * 100)) * 100;
 
-  const getNoiseColor = (db) => {
-    if (db < 40) return '#10b981';
-    if (db < 55) return '#84cc16';
-    if (db < 70) return '#f59e0b';
-    if (db < 85) return '#f97316';
-    return '#ef4444';
-  };
-
-  const deleteRecording = (id) => {
-    if (window.confirm('Delete this recording?')) {
-      setRecordings(prev => prev.filter(r => r.id !== id));
-      setSelectedForCompare(prev => prev.filter(i => i !== id));
-      showNotification('✅ Recording deleted');
-    }
-  };
-
-  const toggleCompare = (id) => {
-    if (selectedForCompare.includes(id)) {
-      setSelectedForCompare(prev => prev.filter(i => i !== id));
-    } else {
-      if (selectedForCompare.length >= 2) {
-        showNotification('⚠️ Maximum 2 recordings for comparison');
-        return;
-      }
-      setSelectedForCompare(prev => [...prev, id]);
-    }
-  };
-
-  const getFilteredRecordings = () => {
-    const now = Date.now();
-    const day = 24 * 60 * 60 * 1000;
-    switch (currentFilter) {
-      case 'today':
-        return recordings.filter(r => now - r.timestamp < day);
-      case 'week':
-        return recordings.filter(r => now - r.timestamp < 7 * day);
-      case 'month':
-        return recordings.filter(r => now - r.timestamp < 30 * day);
-      default:
-        return recordings;
-    }
-  };
-
-  const exportData = () => {
-    if (recordings.length === 0) {
-      alert('No data to export');
-      return;
-    }
-    const csv = [
-      ['Date', 'Time', 'Location', 'Category', 'Noise (dB)', 'Temperature (°C)', 'Humidity (%)'],
-      ...recordings.map(r => [r.date, r.time, r.locationName, r.category, r.noiseLevel, r.temperature, r.humidity])
-    ].map(row => row.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `articul8-data-${Date.now()}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showNotification('✅ Data exported!');
-  };
-
-  const exportReport = () => {
-    if (recordings.length === 0) {
-      alert('No data to export');
-      return;
-    }
-    const avg = (recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1);
-    const report = `ARTICUL8 ECOSENSE - REPORT\n${'='.repeat(50)}\n\nGenerated: ${new Date().toLocaleString()}\n\nSUMMARY\nTotal: ${recordings.length}\nAvg Noise: ${avg} dB\nHealth Score: ${hearingHealth.score}\n\n© 2024 Articul8 EcoSense`;
-    const blob = new Blob([report], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `articul8-report-${Date.now()}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showNotification('✅ Report generated!');
-  };
-
-  const clearAll = () => {
-    if (window.confirm('⚠️ Delete ALL data?')) {
-      if (window.confirm('Are you absolutely sure?')) {
-        setRecordings([]);
-        setSelectedForCompare([]);
-        showNotification('✅ All data cleared');
-      }
-    }
-  };
-
-  const toggleSleepMode = () => {
-    setSleepMode(prev => !prev);
-    showNotification(sleepMode ? '⏰ Sleep monitoring ended' : '😴 Sleep mode activated!');
-  };
-
-  const shareApp = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Articul8 EcoSense',
-        text: 'Check out this environmental monitoring app!',
-        url: window.location.href
-      });
-    } else {
-      showNotification('📋 Share: ' + window.location.href);
-    }
-  };
-
-  const xpProgress = (xp / (level * 100)) * 100;
-
-  const achievementsList = [
-    { id: 'firstRecord', icon: '🎤', name: 'First Steps' },
-    { id: 'tenRecords', icon: '📊', name: 'Data Collector' },
-    { id: 'quietSeeker', icon: '🤫', name: 'Quiet Seeker' },
-    { id: 'noiseFinder', icon: '📢', name: 'Noise Finder' },
-    { id: 'weekStreak', icon: '🔥', name: 'Week Warrior' },
-    { id: 'allCategories', icon: '🌟', name: 'Category Master' }
-  ];
-
-  const challengesList = [
-    { id: 'record3', title: 'Record 3 Times', desc: 'Make 3 recordings today' },
-    { id: 'findQuiet', title: 'Find Peace', desc: 'Record under 45 dB' },
-    { id: 'findLoud', title: 'Find Noise', desc: 'Record above 75 dB' }
-  ];
-
-  const categoryCounts = recordings.reduce((acc, r) => {
-    acc[r.category] = (acc[r.category] || 0) + 1;
-    return acc;
-  }, {});
-
-  const chartData = Object.entries(categoryCounts).map(([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    value
-  }));
-
-  const trendData = [...recordings].reverse().slice(0, 10).map((r, i) => ({
-    name: `#${i + 1}`,
-    db: r.noiseLevel
-  }));
-
-  const compareRecordings = selectedForCompare.map(id => recordings.find(r => r.id === id)).filter(Boolean);
+  const achList = [{ id: 'firstRecord', icon: '🎤', name: 'First Steps' }, { id: 'tenRecords', icon: '📊', name: 'Collector' }, { id: 'quietSeeker', icon: '🤫', name: 'Quiet Seeker' }, { id: 'noiseFinder', icon: '📢', name: 'Noise Finder' }, { id: 'weekStreak', icon: '🔥', name: 'Week Warrior' }, { id: 'allCategories', icon: '🌟', name: 'Master' }];
+  const chalList = [{ id: 'record3', title: 'Record 3 Times', desc: '3 recordings today' }, { id: 'findQuiet', title: 'Find Peace', desc: 'Under 45 dB' }, { id: 'findLoud', title: 'Find Noise', desc: 'Above 75 dB' }];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-800'} pb-20 relative overflow-hidden`}>
-
-      {/* Header */}
-      <div className={`${darkMode ? 'bg-black bg-opacity-30' : 'bg-black bg-opacity-30'} backdrop-blur-xl p-4 sticky top-0 z-50 border-b ${darkMode ? 'border-gray-700' : 'border-white border-opacity-10'}`}>
+    <div className={`min-h-screen ${dark ? 'bg-gray-900' : 'bg-gradient-to-br from-purple-600 to-purple-800'} pb-20`}>
+      <div className="bg-black bg-opacity-30 p-4 sticky top-0 z-50">
         <div className="flex justify-between items-center max-w-2xl mx-auto">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`w-10 h-10 rounded-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300`}
-            >
-              🌙
-            </button>
-            <button
-              onClick={() => setShowLangModal(true)}
-              className={`w-10 h-10 rounded-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} flex items-center justify-center text-xl hover:scale-110 transition-transform duration-300`}
-            >
-              🌐
-            </button>
+            <button onClick={() => setDark(!dark)} className="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-xl">{dark ? '☀️' : '🌙'}</button>
+            <button onClick={() => setShowLang(true)} className="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-xl">🌐</button>
             <h1 className="text-xl font-bold text-white">{t.appTitle}</h1>
           </div>
           <div className="text-right text-sm text-white">
             <div className="font-bold">Lvl {level} • {xp} XP</div>
-            <div className={`w-32 h-1 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full mt-1 overflow-hidden`}>
-              <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${xpProgress}%` }} />
-            </div>
+            <div className="w-32 h-1 bg-white bg-opacity-20 rounded mt-1"><div className="h-full bg-yellow-400 rounded" style={{ width: `${xpProg}%` }} /></div>
           </div>
         </div>
       </div>
 
-      {/* Notification */}
-      {notification && (
-        <div className="fixed top-20 left-4 right-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-xl shadow-xl z-50 animate-bounce">
-          <div className="font-bold">{notification}</div>
-        </div>
-      )}
+      {notif && <div className="fixed top-20 left-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-4 rounded-2xl shadow-xl z-50">{notif}</div>}
 
-      {/* Language Modal */}
-      {showLangModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowLangModal(false)}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
-            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.selectLanguage}</h2>
+      {showLang && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={() => setShowLang(false)}>
+          <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.selectLanguage}</h2>
             <div className="flex flex-wrap gap-2 mb-4">
-              {[
-                { code: 'en', label: '🇬🇧 English' },
-                { code: 'ar', label: '🇸🇦 العربية' },
-                { code: 'es', label: '🇪🇸 Español' },
-                { code: 'fr', label: '🇫🇷 Français' },
-                { code: 'de', label: '🇩🇪 Deutsch' }
-              ].map(lang => (
-                <button
-                  key={lang.code}
-                  onClick={() => { setCurrentLang(lang.code); setShowLangModal(false); }}
-                  className={`px-4 py-2 rounded-full font-semibold transition-all duration-300 ${currentLang === lang.code ? 'bg-green-500 text-white' : darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-800'}`}
-                >
-                  {lang.label}
-                </button>
+              {[{ c: 'en', l: '🇬🇧 English' }, { c: 'ar', l: '🇸🇦 العربية' }, { c: 'es', l: '🇪🇸 Español' }, { c: 'fr', l: '🇫🇷 Français' }, { c: 'de', l: '🇩🇪 Deutsch' }].map(x => (
+                <button key={x.c} onClick={() => { setLang(x.c); setShowLang(false); }} className={`px-4 py-2 rounded-full font-semibold ${lang === x.c ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-800'}`}>{x.l}</button>
               ))}
             </div>
-            <button onClick={() => setShowLangModal(false)} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">{t.close}</button>
+            <button onClick={() => setShowLang(false)} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold">{t.close}</button>
           </div>
         </div>
       )}
 
-      {/* Comparison Modal */}
-      {showCompareModal && compareRecordings.length === 2 && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
-            <h2 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.comparison}</h2>
+      {showComp && compRecs.length === 2 && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={() => { setShowComp(false); setCompare([]); }}>
+          <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={e => e.stopPropagation()}>
+            <h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.comparison}</h2>
             <div className="text-center mb-4">
-              <div className={`font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].locationName}</div>
+              <div className={`font-bold ${dark ? 'text-white' : 'text-gray-900'}`}>{compRecs[0].loc}</div>
               <div className="text-sm text-gray-500">{t.vs}</div>
-              <div className={`font-bold mt-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].locationName}</div>
+              <div className={`font-bold ${dark ? 'text-white' : 'text-gray-900'}`}>{compRecs[1].loc}</div>
             </div>
             <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-xl`}>
-                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.noiseLevel}</div>
-                <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[0].noiseLevel) }}>{compareRecordings[0].noiseLevel} dB</div>
-              </div>
-              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-xl`}>
-                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.noiseLevel}</div>
-                <div className="text-2xl font-bold" style={{ color: getNoiseColor(compareRecordings[1].noiseLevel) }}>{compareRecordings[1].noiseLevel} dB</div>
-              </div>
-              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-orange-100'} rounded-xl`}>
-                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.temperature}</div>
-                <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[0].temperature}°C</div>
-              </div>
-              <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-orange-100'} rounded-xl`}>
-                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{t.temperature}</div>
-                <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{compareRecordings[1].temperature}°C</div>
-              </div>
+              <div className="text-center p-3 bg-purple-100 rounded-xl"><div className="text-xs text-gray-600">{t.noiseLevel}</div><div className="text-2xl font-bold" style={{ color: getColor(compRecs[0].db) }}>{compRecs[0].db} dB</div></div>
+              <div className="text-center p-3 bg-purple-100 rounded-xl"><div className="text-xs text-gray-600">{t.noiseLevel}</div><div className="text-2xl font-bold" style={{ color: getColor(compRecs[1].db) }}>{compRecs[1].db} dB</div></div>
             </div>
-            <div className={`${darkMode ? 'bg-gray-700' : 'bg-green-100'} p-3 rounded-xl mb-4`}>
-              <div className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t.analysis}</div>
-              <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {compareRecordings[0].locationName} is {Math.abs(compareRecordings[0].noiseLevel - compareRecordings[1].noiseLevel)} dB {compareRecordings[0].noiseLevel > compareRecordings[1].noiseLevel ? t.louder : t.quieter} {t.than} {compareRecordings[1].locationName}.
-              </div>
-            </div>
-            <button onClick={() => { setShowCompareModal(false); setSelectedForCompare([]); }} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">{t.close}</button>
+            <div className="bg-green-100 p-3 rounded-xl mb-4"><div className="font-bold text-gray-900">{t.analysis}</div><div className="text-sm text-gray-700">{compRecs[0].loc} is {Math.abs(compRecs[0].db - compRecs[1].db)} dB {compRecs[0].db > compRecs[1].db ? t.louder : t.quieter} {t.than} {compRecs[1].loc}.</div></div>
+            <button onClick={() => { setShowComp(false); setCompare([]); }} className="w-full bg-green-500 text-white py-3 rounded-xl font-bold">{t.close}</button>
           </div>
         </div>
       )}
 
-      {/* Main Content */}
       <div className="max-w-2xl mx-auto p-4">
-        {/* Home Tab */}
-        {currentTab === 'home' && (
-          <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 text-white shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <div className="text-center text-sm opacity-90 tracking-wider uppercase">{t.healthLabel}</div>
-              <div className="text-7xl font-bold text-center my-4">{hearingHealth.score}</div>
+        {tab === 'home' && (
+          <div>
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 mb-4 text-white shadow-xl">
+              <div className="text-center text-sm opacity-90">{t.healthLabel}</div>
+              <div className="text-6xl font-bold text-center my-4">{health.score}</div>
               <div className="text-center text-sm opacity-90">{t.healthStatus}</div>
-              <div className={`w-full h-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full mt-4 overflow-hidden`}>
-                <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${hearingHealth.score}%` }} />
-              </div>
-              <div className="text-center text-sm mt-4 opacity-90">
-                {t.healthExposure.replace('{0}', Math.round(hearingHealth.dailyExposure / 60))}
-              </div>
+              <div className="w-full h-3 bg-white bg-opacity-30 rounded-full mt-4"><div className="h-full bg-white rounded-full" style={{ width: `${health.score}%` }} /></div>
+              <div className="text-center text-sm mt-4 opacity-90">{t.healthExposure.replace('{0}', Math.round(health.exposure / 60))}</div>
             </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.achievementsTitle}</h2>
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.achievementsTitle}</h2>
               <div className="grid grid-cols-3 gap-3">
-                {achievementsList.map(a => (
-                  <div
-                    key={a.id}
-                    className={`p-4 rounded-2xl text-center transition-all duration-300 ${achievements[a.id] ? `${darkMode ? 'bg-yellow-900 bg-opacity-50' : 'bg-yellow-500 bg-opacity-30'} border-2 border-yellow-500` : `${darkMode ? 'bg-gray-700 bg-opacity-50' : 'bg-white bg-opacity-10'} opacity-50`}`}
-                  >
-                    <div className="text-3xl mb-2">{a.icon}</div>
-                    <div className={`text-xs font-semibold ${achievements[a.id] ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{a.name}</div>
-                  </div>
-                ))}
+                {achList.map(a => (<div key={a.id} className={`p-4 rounded-2xl text-center ${achievements[a.id] ? 'bg-yellow-100 border-2 border-yellow-400' : 'bg-gray-100 opacity-50'}`}><div className="text-3xl mb-2">{a.icon}</div><div className="text-xs font-semibold text-gray-900">{a.name}</div></div>))}
               </div>
             </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.challengesTitle}</h2>
-              {challengesList.map(c => {
-                const ch = dailyChallenges[c.id];
-                const progress = (ch.progress / ch.target) * 100;
-                return (
-                  <div key={c.id} className={`${darkMode ? 'bg-gray-700 bg-opacity-50' : 'bg-white bg-opacity-10'} p-4 rounded-2xl mb-3`}>
-                    <div className="font-bold text-white">{ch.completed ? '✅' : '⭕'} {c.title}</div>
-                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'} mb-2`}>{c.desc}</div>
-                    <div className="flex items-center gap-3">
-                      <div className={`flex-1 h-2 ${darkMode ? 'bg-gray-600' : 'bg-white bg-opacity-20'} rounded-full overflow-hidden`}>
-                        <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${progress}%` }} />
-                      </div>
-                      <div className="text-sm font-bold text-white">{ch.progress}/{ch.target}</div>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.challengesTitle}</h2>
+              {chalList.map(c => { const ch = challenges[c.id]; return (<div key={c.id} className="bg-purple-50 p-4 rounded-2xl mb-3"><div className="font-bold text-gray-900">{ch.done ? '✅' : '⭕'} {c.title}</div><div className="text-sm text-gray-600 mb-2">{c.desc}</div><div className="flex items-center gap-3"><div className="flex-1 h-2 bg-gray-200 rounded-full"><div className="h-full bg-purple-600 rounded-full" style={{ width: `${(ch.progress / ch.target) * 100}%` }} /></div><div className="text-sm font-bold text-gray-900">{ch.progress}/{ch.target}</div></div></div>); })}
             </div>
-
-            {recordings.length > 0 && (
-              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                <h2 className="text-xl font-bold mb-4 text-white">{t.statsTitle}</h2>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-green-500 bg-opacity-30'} p-6 rounded-2xl text-center text-white border ${darkMode ? 'border-gray-600' : 'border-green-400'}`}>
-                    <div className="text-sm opacity-90">{t.total}</div>
-                    <div className="text-4xl font-bold my-2">{recordings.length}</div>
-                    <div className="text-sm opacity-90">{t.recordings}</div>
-                  </div>
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-orange-500 bg-opacity-30'} p-6 rounded-2xl text-center text-white border ${darkMode ? 'border-gray-600' : 'border-orange-400'}`}>
-                    <div className="text-sm opacity-90">{t.streak}</div>
-                    <div className="text-4xl font-bold my-2">{streak} 🔥</div>
-                    <div className="text-sm opacity-90">{t.days}</div>
-                  </div>
-                </div>
-              </div>
-            )}
+            {recs.length > 0 && (<div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.statsTitle}</h2><div className="grid grid-cols-2 gap-4"><div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl text-center text-white"><div className="text-sm opacity-90">{t.total}</div><div className="text-4xl font-bold my-2">{recs.length}</div><div className="text-sm opacity-90">{t.recordings}</div></div><div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-2xl text-center text-white"><div className="text-sm opacity-90">{t.streak}</div><div className="text-4xl font-bold my-2">{streak} 🔥</div><div className="text-sm opacity-90">{t.days}</div></div></div></div>)}
           </div>
         )}
 
-        {/* Record Tab */}
-        {currentTab === 'record' && (
-          <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-blue-500 bg-opacity-20'} backdrop-blur-xl rounded-3xl p-6 mb-4 text-white shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <div className="text-center">
-                <div className="text-5xl mb-3">😴</div>
-                <div className="text-xl font-bold mb-2">{t.sleepTitle}</div>
-                <div className="text-sm opacity-90 mb-4">{t.sleepDesc}</div>
-                <button
-                  onClick={toggleSleepMode}
-                  className={`w-full ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} text-white py-3 rounded-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform`}
-                >
-                  <span className="text-2xl">🌙</span>
-                  <span>{sleepMode ? t.stopSleepBtnText : t.sleepBtnText}</span>
-                </button>
-              </div>
+        {tab === 'record' && (
+          <div>
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 mb-4 text-white shadow-xl">
+              <div className="text-center"><div className="text-5xl mb-3">😴</div><div className="text-xl font-bold mb-2">{t.sleepTitle}</div><div className="text-sm opacity-90 mb-4">{t.sleepDesc}</div><button onClick={() => { setSleep(!sleep); notify(sleep ? '⏰ Sleep ended' : '😴 Sleep mode on!'); }} className="w-full bg-white text-blue-600 py-3 rounded-2xl font-bold">🌙 {sleep ? t.stopSleepBtnText : t.sleepBtnText}</button></div>
             </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.recordTitle}</h2>
-              <input
-                type="text"
-                value={locationName}
-                onChange={(e) => setLocationName(e.target.value)}
-                placeholder={t.locationPlaceholder}
-                className={`w-full p-4 border-2 ${darkMode ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-500' : 'border-white border-opacity-30 bg-white bg-opacity-10 text-white placeholder-gray-300'} rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all`}
-              />
-              <button
-                onClick={startRecording}
-                disabled={isRecording}
-                className={`w-40 h-40 rounded-full mx-auto flex items-center justify-center text-6xl ${
-                  isRecording 
-                    ? 'bg-red-500 shadow-xl shadow-red-500/50 cursor-not-allowed animate-pulse' 
-                    : 'bg-green-500 shadow-xl shadow-green-500/50 hover:scale-110 cursor-pointer'
-                } text-white mb-4 transition-all duration-300 border-4 border-white border-opacity-20`}
-              >
-                {isRecording ? '⏹️' : '🎤'}
-              </button>
-              <div className="text-center">
-                <div className={`text-5xl font-bold mb-2 ${isRecording ? 'text-red-400' : 'text-green-400'}`}>
-                  {currentDb} dB
-                </div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
-                  {isRecording ? t.recordingStatus : t.recordStatus}
-                </div>
-              </div>
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 shadow-xl`}>
+              <h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.recordTitle}</h2>
+              <input type="text" value={loc} onChange={e => setLoc(e.target.value)} placeholder={t.locationPlaceholder} className={`w-full p-4 border-2 rounded-2xl mb-4 ${dark ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-200 text-gray-900'}`} />
+              <button onClick={startRec} disabled={recording} className={`w-40 h-40 rounded-full mx-auto flex items-center justify-center text-6xl ${recording ? 'bg-red-500 animate-pulse' : 'bg-green-500 hover:scale-105'} text-white mb-4 transition-all shadow-2xl`}>{recording ? '⏹️' : '🎤'}</button>
+              <div className="text-center"><div className={`text-5xl font-bold mb-2 ${dark ? 'text-green-400' : 'text-green-500'}`}>{db} dB</div><div className={`text-sm ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{recording ? t.recordingStatus : t.recordStatus}</div></div>
             </div>
           </div>
         )}
 
-        {/* Continue with Data, Analytics, Community, and Profile tabs... */}
-        
-        {/* Data Tab */}
-        {currentTab === 'data' && (
-          <div className="relative z-10">
+        {tab === 'data' && (
+          <div>
             <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
-              {['all', 'today', 'week', 'month'].map(filter => (
-                <button
-                  key={filter}
-                  onClick={() => setCurrentFilter(filter)}
-                  className={`px-4 py-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ${
-                    currentFilter === filter 
-                      ? 'bg-green-500 text-white' 
-                      : darkMode ? 'bg-gray-700 text-white' : 'bg-white bg-opacity-20 text-white'
-                  }`}
-                >
-                  {t[`filter${filter.charAt(0).toUpperCase() + filter.slice(1)}`] || filter}
-                </button>
-              ))}
+              {['all', 'today', 'week', 'month'].map(f => (<button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-full font-semibold whitespace-nowrap ${filter === f ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-800'}`}>{t[`filter${f.charAt(0).toUpperCase() + f.slice(1)}`] || f}</button>))}
             </div>
-
-            {getFilteredRecordings().length === 0 ? (
-              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-12 text-center shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                <div className="text-lg text-white">{t.noRecordings}</div>
-              </div>
-            ) : (
-              getFilteredRecordings().map(r => (
-                <div
-                  key={r.id}
-                  className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${
-                    selectedForCompare.includes(r.id) ? 'border-green-500 border-4' : darkMode ? 'border-gray-700' : 'border-white border-opacity-20'
-                  } transition-all duration-300`}
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <div className="font-bold text-lg text-white">{r.locationName}</div>
-                      <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>📅 {r.date} • ⏰ {r.time}</div>
-                    </div>
-                    <div className="px-4 py-2 rounded-full text-white font-bold border-2 border-white border-opacity-20" style={{ backgroundColor: getNoiseColor(r.noiseLevel) }}>
-                      {r.noiseLevel} dB
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.category}</div>
-                      <div className="font-bold text-white">{r.category}</div>
-                    </div>
-                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.temp}</div>
-                      <div className="font-bold text-white">{r.temperature}°C</div>
-                    </div>
-                    <div className={`text-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-300'}`}>{t.humidity}</div>
-                      <div className="font-bold text-white">{r.humidity}%</div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => toggleCompare(r.id)}
-                      className="flex-1 bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition-colors"
-                    >
-                      {selectedForCompare.includes(r.id) ? t.selectedText : t.compareBtn}
-                    </button>
-                    <button
-                      onClick={() => deleteRecording(r.id)}
-                      className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold hover:bg-red-600 transition-colors"
-                    >
-                      {t.deleteBtn}
-                    </button>
-                  </div>
-                </div>
-              ))
+            {filtered().length === 0 ? (<div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-12 text-center shadow-xl`}><div className={`text-lg ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{t.noRecordings}</div></div>) : (
+              filtered().map(r => (<div key={r.id} className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl ${compare.includes(r.id) ? 'border-4 border-green-500' : ''}`}><div className="flex justify-between items-start mb-4"><div><div className={`font-bold text-lg ${dark ? 'text-white' : 'text-gray-900'}`}>{r.loc}</div><div className={`text-sm ${dark ? 'text-gray-400' : 'text-gray-600'}`}>📅 {r.date} • ⏰ {r.time}</div></div><div className="px-4 py-2 rounded-full text-white font-bold" style={{ backgroundColor: getColor(r.db) }}>{r.db} dB</div></div><div className="grid grid-cols-3 gap-2 mb-4"><div className="text-center p-3 bg-purple-100 rounded-xl"><div className="text-xs text-gray-600">{t.category}</div><div className="font-bold text-gray-900">{r.cat}</div></div><div className="text-center p-3 bg-orange-100 rounded-xl"><div className="text-xs text-gray-600">{t.temp}</div><div className="font-bold text-gray-900">{r.temp}°C</div></div><div className="text-center p-3 bg-blue-100 rounded-xl"><div className="text-xs text-gray-600">{t.humidity}</div><div className="font-bold text-gray-900">{r.hum}%</div></div></div><div className="flex gap-2"><button onClick={() => { if (compare.includes(r.id)) setCompare(compare.filter(i => i !== r.id)); else if (compare.length < 2) setCompare([...compare, r.id]); else notify('Max 2'); }} className="flex-1 bg-orange-500 text-white py-3 rounded-xl font-semibold">{compare.includes(r.id) ? t.selectedText : t.compareBtn}</button><button onClick={() => { if (window.confirm('Delete?')) { setRecs(recs.filter(x => x.id !== r.id)); setCompare(compare.filter(i => i !== r.id)); notify('✅ Deleted'); } }} className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold">{t.deleteBtn}</button></div></div>))
             )}
           </div>
         )}
 
-        {/* Analytics Tab */}
-        {currentTab === 'analytics' && (
-          <div className="relative z-10">
-            {recordings.length === 0 ? (
-              <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-12 text-center shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                <div className="text-6xl mb-4">📊</div>
-                <div className="text-xl font-bold mb-2 text-white">{t.noDataYet}</div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.noDataDesc}</div>
-              </div>
-            ) : (
+        {tab === 'analytics' && (
+          <div>
+            {recs.length === 0 ? (<div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-12 text-center shadow-xl`}><div className="text-6xl mb-4">📊</div><div className={`text-xl font-bold mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.noDataYet}</div><div className={`text-sm ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{t.noDataDesc}</div></div>) : (
               <>
-                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsDistTitle}</h2>
-                  <ResponsiveContainer width="100%" height={250}>
-                    <PieChart>
-                      <Pie data={chartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
-                        {chartData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Legend />
-                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1f2937' : '#fff', border: '2px solid #10b981', borderRadius: '12px' }} />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsTrendTitle}</h2>
-                  <ResponsiveContainer width="100%" height={250}>
-                    <LineChart data={trendData}>
-                      <XAxis dataKey="name" stroke={darkMode ? '#d1d5db' : '#fff'} />
-                      <YAxis stroke={darkMode ? '#d1d5db' : '#fff'} domain={[0, 100]} />
-                      <Tooltip contentStyle={{ backgroundColor: darkMode ? '#1f2937' : '#fff', border: '2px solid #10b981', borderRadius: '12px' }} />
-                      <Line type="monotone" dataKey="db" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', r: 5 }} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-                  <h2 className="text-xl font-bold mb-4 text-white">{t.analyticsHealthTitle}</h2>
-                  <div className="space-y-3">
-                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-green-500 bg-opacity-20'} rounded-xl`}>
-                      <div>
-                        <div className="font-bold text-white">{t.whoSafeLimit}</div>
-                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.daytime}</div>
-                      </div>
-                      <div className="text-2xl font-bold text-white">55 dB</div>
-                    </div>
-                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-blue-500 bg-opacity-20'} rounded-xl`}>
-                      <div>
-                        <div className="font-bold text-white">{t.yourAverage}</div>
-                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.current}</div>
-                      </div>
-                      <div className="text-2xl font-bold text-white">
-                        {(recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1)} dB
-                      </div>
-                    </div>
-                    <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-red-500 bg-opacity-20'} rounded-xl`}>
-                      <div>
-                        <div className="font-bold text-white">{t.damageRisk}</div>
-                        <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.threshold}</div>
-                      </div>
-                      <div className="text-2xl font-bold text-white">85 dB</div>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={exportData}
-                  className="w-full bg-green-500 text-white py-4 rounded-xl font-bold text-lg mb-3 flex items-center justify-center gap-3 hover:bg-green-600 transition-colors"
-                >
-                  <span className="text-2xl">📥</span>
-                  {t.exportCSV}
-                </button>
-
-                <button
-                  onClick={exportReport}
-                  className="w-full bg-blue-500 text-white py-4 rounded-xl font-bold text-lg mb-3 flex items-center justify-center gap-3 hover:bg-blue-600 transition-colors"
-                >
-                  <span className="text-2xl">📄</span>
-                  {t.exportReport}
-                </button>
-
-                <button
-                  onClick={clearAll}
-                  className="w-full bg-red-500 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-red-600 transition-colors"
-                >
-                  <span className="text-2xl">🗑️</span>
-                  {t.clearAll}
-                </button>
+                <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.analyticsDistTitle}</h2><ResponsiveContainer width="100%" height={200}><PieChart><Pie data={chartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} label>{chartData.map((e, i) => (<Cell key={i} fill={COLORS[i % COLORS.length]} />))}</Pie><Legend /><Tooltip /></PieChart></ResponsiveContainer></div>
+                <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.analyticsTrendTitle}</h2><ResponsiveContainer width="100%" height={200}><LineChart data={trendData}><XAxis dataKey="name" stroke={dark ? '#9ca3af' : '#6b7280'} /><YAxis stroke={dark ? '#9ca3af' : '#6b7280'} domain={[0, 100]} /><Tooltip /><Line type="monotone" dataKey="db" stroke="#10b981" strokeWidth={3} /></LineChart></ResponsiveContainer></div>
+                <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.analyticsHealthTitle}</h2><div className="space-y-3"><div className="flex justify-between p-3 bg-green-100 rounded-xl"><div><div className="font-bold text-green-900">{t.whoSafeLimit}</div><div className="text-xs text-green-700">{t.daytime}</div></div><div className="text-2xl font-bold text-green-900">55 dB</div></div><div className="flex justify-between p-3 bg-blue-100 rounded-xl"><div><div className="font-bold text-blue-900">{t.yourAverage}</div><div className="text-xs text-blue-700">{t.current}</div></div><div className="text-2xl font-bold text-blue-900">{(recs.reduce((s, r) => s + r.db, 0) / recs.length).toFixed(1)} dB</div></div><div className="flex justify-between p-3 bg-red-100 rounded-xl"><div><div className="font-bold text-red-900">{t.damageRisk}</div><div className="text-xs text-red-700">{t.threshold}</div></div><div className="text-2xl font-bold text-red-900">85 dB</div></div></div></div>
+                <button onClick={() => { const csv = [['Date', 'Time', 'Location', 'Category', 'dB', 'Temp', 'Humidity'], ...recs.map(r => [r.date, r.time, r.loc, r.cat, r.db, r.temp, r.hum])].map(row => row.join(',')).join('\n'); const b = new Blob([csv], { type: 'text/csv' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ecosense.csv'; a.click(); notify('✅ Exported!'); }} className="w-full bg-green-500 text-white py-4 rounded-xl font-bold mb-3">📥 {t.exportCSV}</button>
+                <button onClick={() => { setRecs([]); setCompare([]); notify('✅ Cleared'); }} className="w-full bg-red-500 text-white py-4 rounded-xl font-bold">🗑️ {t.clearAll}</button>
               </>
             )}
           </div>
         )}
 
-        {/* Community Tab */}
-        {currentTab === 'community' && (
-          <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.communityMapTitle}</h2>
-              <div className="text-center py-12">
-                <div className="text-6xl mb-4">🌍</div>
-                <div className="text-lg font-bold mb-2 text-white">Community Map</div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.communityMapDesc}</div>
-              </div>
-            </div>
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.communityNearbyTitle}</h2>
-              <div className="text-center py-8">
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>{t.communityNearbyDesc}</div>
-              </div>
-            </div>
-          </div>
+        {tab === 'community' && (
+          <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.communityMapTitle}</h2><div className="text-center py-12"><div className="text-6xl mb-4">🌍</div><div className={`text-lg font-bold mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>Community Map</div><div className={`text-sm ${dark ? 'text-gray-400' : 'text-gray-600'}`}>Share your recordings to see them on the map!</div></div></div>
         )}
 
-        {/* Profile Tab */}
-        {currentTab === 'profile' && (
-          <div className="relative z-10">
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <div className="text-center py-6">
-                <div className="text-8xl mb-4">👤</div>
-                <div className="text-3xl font-bold mb-2 text-white">
-                  {t.profileLevelText} {level} {t.profileExplorerText}
-                </div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
-                  {xp} XP • {streak} 🔥 {t.profileDayText}
-                </div>
-              </div>
-            </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.profileStatsTitle}</h2>
-              <div className="space-y-3">
-                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                  <span className="font-semibold text-white">{t.totalRecordings}</span>
-                  <span className="font-bold text-green-400">{recordings.length}</span>
-                </div>
-                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                  <span className="font-semibold text-white">{t.avgNoiseLevel}</span>
-                  <span className="font-bold text-green-400">
-                    {recordings.length > 0 ? (recordings.reduce((s, r) => s + r.noiseLevel, 0) / recordings.length).toFixed(1) : 0} dB
-                  </span>
-                </div>
-                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                  <span className="font-semibold text-white">{t.achievementsUnlocked}</span>
-                  <span className="font-bold text-orange-400">
-                    {Object.values(achievements).filter(a => a).length}/6
-                  </span>
-                </div>
-                <div className={`flex justify-between items-center p-3 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-10'} rounded-xl`}>
-                  <span className="font-semibold text-white">{t.hearingHealth}</span>
-                  <span className="font-bold text-red-400">{hearingHealth.score}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.profileProgressTitle}</h2>
-              <div className="mb-4">
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-semibold text-white">{t.profileLevelProgress}</span>
-                  <span className="text-sm font-bold text-green-400">{xpProgress.toFixed(0)}%</span>
-                </div>
-                <div className={`h-2 ${darkMode ? 'bg-gray-700' : 'bg-white bg-opacity-20'} rounded-full overflow-hidden`}>
-                  <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full" style={{ width: `${xpProgress}%` }} />
-                </div>
-              </div>
-              <div className={`text-center p-4 ${darkMode ? 'bg-gray-700' : 'bg-yellow-500 bg-opacity-20'} rounded-xl`}>
-                <div className={`text-sm mb-1 ${darkMode ? 'text-gray-300' : 'text-white'}`}>{t.profileNextReward}</div>
-                <div className="text-xl font-bold text-yellow-400">+100 XP {t.profileBonus} 🎁</div>
-              </div>
-            </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 mb-4 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.profileSettingsTitle}</h2>
-              <button
-                onClick={() => setShowLangModal(true)}
-                className="w-full bg-green-500 text-white py-4 rounded-xl font-bold mb-3 flex items-center justify-center gap-3 hover:bg-green-600 transition-colors"
-              >
-                🌐 {t.profileChangeLang}
-              </button>
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold mb-3 flex items-center justify-center gap-3 hover:bg-indigo-600 transition-colors"
-              >
-                🌙 Toggle Dark Mode
-              </button>
-              <button
-                onClick={shareApp}
-                className="w-full bg-pink-500 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-pink-600 transition-colors"
-              >
-                📤 {t.profileShareApp}
-              </button>
-            </div>
-
-            <div className={`${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-white bg-opacity-10'} backdrop-blur-xl rounded-3xl p-6 shadow-xl border ${darkMode ? 'border-gray-700' : 'border-white border-opacity-20'}`}>
-              <h2 className="text-xl font-bold mb-4 text-white">{t.profileAboutTitle}</h2>
-              <div className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-200'}`}>
-                <p className="mb-3">
-                  <strong className="text-white">Articul8 EcoSense v1.0</strong>
-                </p>
-                <p className="mb-3">{t.profileAboutDesc}</p>
-                <p className="mb-3">
-                  <strong className="text-white">{t.profileFeaturesTitle}:</strong> {t.profileFeaturesList}
-                </p>
-                <p>© 2024 Articul8 EcoSense. {t.profileRights}</p>
-              </div>
-            </div>
+        {tab === 'profile' && (
+          <div>
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}><div className="text-center py-6"><div className="text-8xl mb-4">👤</div><div className={`text-3xl font-bold mb-2 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.profileLevelText} {level} {t.profileExplorerText}</div><div className={`text-sm ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{xp} XP • {streak} 🔥 {t.profileDayText}</div></div></div>
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 mb-4 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.statsTitle}</h2><div className="space-y-3"><div className="flex justify-between p-3 bg-purple-100 rounded-xl"><span className="font-semibold text-gray-900">{t.totalRecordings}</span><span className="font-bold text-purple-600">{recs.length}</span></div><div className="flex justify-between p-3 bg-green-100 rounded-xl"><span className="font-semibold text-gray-900">{t.avgNoiseLevel}</span><span className="font-bold text-green-600">{recs.length > 0 ? (recs.reduce((s, r) => s + r.db, 0) / recs.length).toFixed(1) : 0} dB</span></div><div className="flex justify-between p-3 bg-orange-100 rounded-xl"><span className="font-semibold text-gray-900">{t.achievementsUnlocked}</span><span className="font-bold text-orange-600">{Object.values(achievements).filter(a => a).length}/6</span></div><div className="flex justify-between p-3 bg-red-100 rounded-xl"><span className="font-semibold text-gray-900">{t.hearingHealth}</span><span className="font-bold text-red-600">{health.score}</span></div></div></div>
+            <div className={`${dark ? 'bg-gray-800' : 'bg-white'} rounded-3xl p-6 shadow-xl`}><h2 className={`text-xl font-bold mb-4 ${dark ? 'text-white' : 'text-gray-900'}`}>{t.profileSettingsTitle}</h2><button onClick={() => setShowLang(true)} className="w-full bg-green-500 text-white py-4 rounded-xl font-bold mb-3">🌐 {t.profileChangeLang}</button><button onClick={() => setDark(!dark)} className="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold mb-3">{dark ? '☀️' : '🌙'} Toggle Dark Mode</button><button onClick={() => notify('📋 Link copied!')} className="w-full bg-pink-500 text-white py-4 rounded-xl font-bold">📤 {t.profileShareApp}</button></div>
           </div>
         )}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className={`fixed bottom-0 left-0 right-0 ${darkMode ? 'bg-gray-900 bg-opacity-95' : 'bg-white bg-opacity-10'} backdrop-blur-xl flex justify-around py-2 shadow-2xl z-50 border-t ${darkMode ? 'border-gray-700' : 'border-white border-opacity-10'}`}>
-        {[
-          { id: 'home', icon: '🏠', label: t.navHome },
-          { id: 'record', icon: '🎤', label: t.navRecord },
-          { id: 'data', icon: '📊', label: t.navData },
-          { id: 'analytics', icon: '📈', label: t.navAnalytics },
-          { id: 'community', icon: '🌍', label: t.navCommunity },
-          { id: 'profile', icon: '👤', label: t.navProfile }
-        ].map(tab => (
-          <button
-            key={tab.id}
-            onClick={() => setCurrentTab(tab.id)}
-            className={`flex flex-col items-center gap-1 py-2 px-3 rounded-xl transition-all duration-300 ${
-              currentTab === tab.id 
-                ? 'bg-green-500 text-white scale-110' 
-                : 'text-gray-400 hover:scale-105'
-            }`}
-          >
-            <div className="text-2xl">{tab.icon}</div>
-            <div className="text-xs font-semibold">{tab.label}</div>
-          </button>
+      <div className={`fixed bottom-0 left-0 right-0 ${dark ? 'bg-gray-800' : 'bg-white'} flex justify-around py-2 shadow-2xl z-50`}>
+        {[{ id: 'home', icon: '🏠', label: t.navHome }, { id: 'record', icon: '🎤', label: t.navRecord }, { id: 'data', icon: '📊', label: t.navData }, { id: 'analytics', icon: '📈', label: t.navAnalytics }, { id: 'community', icon: '🌍', label: t.navCommunity }, { id: 'profile', icon: '👤', label: t.navProfile }].map(x => (
+          <button key={x.id} onClick={() => setTab(x.id)} className={`flex flex-col items-center gap-1 py-2 px-3 ${tab === x.id ? 'text-green-500' : dark ? 'text-gray-400' : 'text-gray-500'}`}><div className="text-2xl">{x.icon}</div><div className="text-xs font-semibold">{x.label}</div></button>
         ))}
       </div>
     </div>
   );
 }
-    
