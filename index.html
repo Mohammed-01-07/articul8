@@ -6,4 +6,2185 @@
 <title>Articul8 EcoSense</title>
 <style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg1:#0077b6;--bg2:#00b4d8;--card:rgba(255,255,255,0.98);--text:#1f2937;--text2:#6b7280;--green:#00b4d8;--yellow:#fbbf24}body.dark{--bg1:#1a1a2e;--bg2:#16213e;--card:rgba(30,30,46,0.98);--text:#f9fafb;--text2:#d1d5db;--green:#00b4d8;--yellow:#f59e0b}body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;padding-bottom:80px;color:var(--text)}.header{background:rgba(0,0,0,0.3);padding:14px 16px;position:sticky;top:0;z-index:100}.header-inner{display:flex;justify-content:space-between;align-items:center;max-width:600px;margin:0 auto}.header-left{display:flex;align-items:center;gap:10px}.icon-btn{background:rgba(255,255,255,0.2);border:none;width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer}.header h1{font-size:16px;font-weight:800;color:#fff}.xp-wrap{text-align:right;color:#fff;font-size:13px}.xp-bar{width:100px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin-top:4px}.xp-fill{height:100%;background:linear-gradient(90deg,var(--yellow),#f59e0b);border-radius:2px}.container{padding:14px;max-width:600px;margin:0 auto}.card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 8px 30px rgba(0,0,0,0.12)}.health-card{background:linear-gradient(135deg,var(--green),#0077b6);color:#fff;border-radius:20px;padding:20px;margin-bottom:14px}.health-score{font-size:52px;font-weight:800;text-align:center;margin:14px 0}.health-bar{width:100%;height:8px;background:rgba(255,255,255,0.3);border-radius:4px;margin:14px 0}.health-fill{height:100%;background:#fff;border-radius:4px}.title{font-size:16px;font-weight:800;margin-bottom:14px}.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ach{background:rgba(0,180,216,0.1);padding:14px 6px;border-radius:14px;text-align:center;opacity:0.5}.ach.on{opacity:1;background:rgba(251,191,36,0.2);border:2px solid var(--yellow)}.ach-icon{font-size:26px;margin-bottom:4px}.ach-name{font-size:9px;font-weight:600}.chal{background:rgba(0,180,216,0.1);padding:12px;border-radius:12px;margin-bottom:8px}.chal-title{font-weight:700;font-size:13px;margin-bottom:3px}.chal-desc{font-size:11px;color:var(--text2);margin-bottom:6px}.chal-bar{height:5px;background:rgba(0,0,0,0.1);border-radius:3px}.chal-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--bg2));border-radius:3px}.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:linear-gradient(135deg,var(--green),#0077b6);padding:18px;border-radius:14px;text-align:center;color:#fff}.stat.orange{background:linear-gradient(135deg,#f59e0b,#d97706)}.stat-val{font-size:26px;font-weight:800;margin:6px 0}.stat-lbl{font-size:10px;opacity:0.9}.rec-btn{width:130px;height:130px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),#0077b6);color:#fff;font-size:46px;display:flex;align-items:center;justify-content:center;margin:20px auto;box-shadow:0 8px 24px rgba(0,180,216,0.4);cursor:pointer}.rec-btn.on{background:linear-gradient(135deg,#ef4444,#dc2626);animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(239,68,68,0.4)}50%{box-shadow:0 8px 40px rgba(239,68,68,0.7)}}.db{font-size:38px;font-weight:800;text-align:center;color:var(--green);margin:14px 0}.input{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:12px;font-size:14px;margin-bottom:14px;background:#fff}body.dark .input{background:rgba(40,40,60,0.5);border-color:rgba(100,100,120,0.3);color:#f9fafb}.filter-row{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto}.filter{padding:7px 14px;border-radius:18px;border:none;background:rgba(255,255,255,0.9);font-weight:600;font-size:12px;cursor:pointer}.filter.on{background:var(--green);color:#fff}.rec-card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 4px 16px rgba(0,0,0,0.08)}.rec-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:10px}.rec-loc{font-weight:700;font-size:14px}.rec-time{font-size:11px;color:var(--text2);margin-top:2px}.db-badge{padding:5px 12px;border-radius:16px;color:#fff;font-weight:700;font-size:12px}.rec-stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:10px}.rec-stat{text-align:center;padding:8px;background:rgba(0,180,216,0.1);border-radius:10px}.rec-stat-lbl{font-size:9px;color:var(--text2)}.rec-stat-val{font-weight:700;font-size:12px;margin-top:2px}.btn-row{display:flex;gap:6px}.btn{flex:1;padding:10px;border:none;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer;color:#fff}.btn-orange{background:linear-gradient(135deg,#f59e0b,#d97706)}.btn-red{background:linear-gradient(135deg,#ef4444,#dc2626)}.btn-green{background:linear-gradient(135deg,var(--green),#0077b6)}.btn-blue{background:linear-gradient(135deg,#3b82f6,#2563eb)}.btn-indigo{background:linear-gradient(135deg,#6366f1,#4f46e5)}.btn-pink{background:linear-gradient(135deg,#ec4899,#db2777)}.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:6px 0 10px;box-shadow:0 -4px 16px rgba(0,0,0,0.08);z-index:100}.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 10px;border:none;background:none;color:#9ca3af;cursor:pointer}.nav-item.on{color:var(--green)}.nav-icon{font-size:20px}.nav-lbl{font-size:9px;font-weight:600}.hidden{display:none!important}.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px}.modal-box{background:var(--card);border-radius:20px;padding:20px;max-width:360px;width:100%}.modal-title{font-size:18px;font-weight:800;margin-bottom:14px}.lang-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}.lang-btn{padding:8px 14px;border-radius:16px;border:2px solid rgba(0,180,216,0.2);background:rgba(0,180,216,0.1);font-weight:600;font-size:13px;cursor:pointer}.lang-btn.on{background:var(--green);border-color:var(--green);color:#fff}.sleep-card{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;padding:20px;border-radius:20px;margin-bottom:14px;text-align:center}.notif{position:fixed;top:65px;left:14px;right:14px;background:linear-gradient(135deg,var(--yellow),#f59e0b);color:#fff;padding:12px 16px;border-radius:14px;font-weight:700;z-index:200}.chart-box{height:180px;margin:14px 0}.h-row{display:flex;justify-content:space-between;padding:10px;border-radius:10px;margin-bottom:6px}.h-row.green{background:rgba(0,180,216,0.1)}.h-row.blue{background:rgba(59,130,246,0.1)}.h-row.red{background:rgba(239,68,68,0.1)}.profile-avatar{font-size:60px;text-align:center;margin-bottom:12px}.profile-name{font-size:20px;font-weight:800;text-align:center;margin-bottom:4px}.profile-sub{font-size:12px;color:var(--text2);text-align:center}.profile-stat{display:flex;justify-content:space-between;padding:10px;background:rgba(0,180,216,0.1);border-radius:10px;margin-bottom:6px}.comp-box{width:100%;height:10px;background:rgba(0,0,0,0.1);border-radius:5px;overflow:hidden}.comp-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--bg2))}.ai-comp{border-radius:10px;padding:12px;background:rgba(0,180,216,0.1);margin-bottom:10px}.ai-dir{font-size:14px;font-weight:700;margin-bottom:4px}.ai-loc{font-size:11px;color:var(--text2)}.compass{width:100px;height:100px;border:3px solid var(--green);border-radius:50%;margin:10px auto;position:relative}.arrow{width:2px;height:45px;background:var(--green);position:absolute;top:50%;left:50%;transform-origin:0 0;transition:transform 0.5s}.arrow-dot{width:10px;height:10px;background:var(--green);border-radius:50%;position:absolute;top:45px;left:45px;transform:translate(-50%,-50%)}</style>
 <script>/* Chart.js v4.4.0 */
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t="undefined"!=typeof globalThis?globalThis:t||self).Chart=e()}(this,(function(){"use strict";const t="4.4.0";function e(){return"rtl"===document.dir}function i(t,e){return t===e}function s(t){if(Array.isArray(t))return t.slice();let e;const i={};for(const s in t)e=t[s],i[s]=!0===e?s:s.indexOf(":")!==-1?s.split(":")[0]:e;return i}function n(t,e){const i=t.indexOf(".");if(i===-1)return e(t);const s=t.slice(0,i),o=t.slice(i+1);return e(s,o)}function o(t){const e=t.property && t.property.split("."),i=t.type,s=i?i.split(".").reverse()[0]:"",o=t.attr;return e?1===e.length?e[0]:(t,i)=>"undefined"!=typeof t[e[0]]?t[e[0]][e[1]]:i(o || `${e[0]}${s}`):t=>{return function(t){const e={x:t.x,y:t.y};return e.x!==t.target.x?e.x=t.target.x:e.y=t.target.y,e}(t.target)}()}}function a(t){return null!=t}function r(t){if(Array.isArray(t))return t.length}function l(t,e){if(Array.isArray(t)){let i,s=t.length;for(e(i=t[s-1],i,s-1,t),s-=1;s>0;s-=1)e(t[s-1],t[s-1],s-1,t)}else{for(const i in t)e(t[i],i,t)}}function h(t,e){let i;return l(t,(s,n)=>{(i=e(s,n,t))===!1?i=!1:a(i)||(i=!0)}),i}function c(t,e,i){if(!t)return null;const s=h(t,(s,o)=>{if(i)return i(s,o);if(e)return s[e]}),n=h(s,t=>{if(i)return i(t);if(e)return t[e]});return n}function u(t,e,i){const s=h(t,(s,n)=>{if(i)return i(s,n);if(e)return s[e]});return s}function d(t,e,i){if(t){if(Array.isArray(t))return t.filter(e,i);const s={};for(const n in t)e(t[n],n,t)&&(s[n]=t[n]);return s}return t}function f(t,e,i){if(t){if(Array.isArray(t))return t.map(e,i);const s={};for(const n in t)s[n]=e(t[n],n,t);return s}return t}function p(t,e,i){if(t){if(Array.isArray(t))return t.reduce(e,i);let s;l(t,(o,a)=>{s=e(s,o,a,t)});return s}return t}function g(t,e){let i;return p(t,(t,s,n,o)=>{i=e(s,n,o);if(a(i))return i}),i}function m(t,e){return a(t[e])?t[e]:t[e.split(".").reduce((t,e)=>t && t[e],t)]}function x(t,e){if(t){if(Array.isArray(t))return t.every(e);let i=!0;return l(t,(s,n)=>{i=e(s,n,t),i===!1&&(i=!1)}),i}return t}function b(t){return"object"==typeof t && null!==t && !Array.isArray(t)}function y(t,e){if(a(e))return t===e;if(b(e))return x(t,i);if(Array.isArray(e))return e.length===t.length && x(t,(t,s)=>y(t,e[s]));return Array.isArray(t)?!!u(t,s=>y(s,e)):t}function v(t,e){return function(t){return!a(t)?[]:Array.isArray(t)?t:t[Symbol.iterator]?Array.from(t):Object.keys(t)}(t.map(e))}function _(t,e){let i;return (Array.isArray(t)?u:g)(t,(t,s)=>{i=e(t,s);if(a(i))return i}),i}function k(t,e){return Array.isArray(t)?t.indexOf(e):e}function M(t,e){return Array.isArray(t)?t.reduce((t,i)=>t+(i[e]||0),0):M(Object.values(t),e)}function S(t){if(!b(t))return t;let e={};return l(t,(t,i)=>{e[i]=S(t)}),e}function C(t){return Array.isArray(t)?t.slice():b(t)?S(t):t}function D(t,e){if(t)return a(t[e])?t[e]:a(t.target)?t.target[e]:t.property && t.property.split(".").reduce((t,e)=>t && t[e],t)}function P(t,e){return Array.isArray(t)?t.map(e):f(t,e)}function z(t,e){if(t){if(Array.isArray(t))return t.slice().sort(e);const i={};return l(t,(s,n)=>{i[n]=s}),f(i,e)}return t}function w(t,e,i,s){return i?s(t,e):i=t,e(i)}function T(t,e,i){return b(t)?w(t,f,(t,s)=>T(s,e,i),f):b(e)?w(e,f,(t,s)=>T(t,s,i),f):w(t,e,(t,s)=>i?i(t,s):s)}function A(t,e,i){return b(t)?w(t,f,(t,s)=>A(s,e,i),f):b(e)?w(e,f,(t,s)=>A(t
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t="undefined"!=typeof globalThis?globalThis:t||self).Chart=e()}(this,(function(){"use strict";const t="4.4.0";function e(){return"rtl"===document.dir}function i(t,e){return t===e}function s(t){if(Array.isArray(t))return t.slice();let e;const i={};for(const s in t)e=t[s],i[s]=!0===e?s:s.indexOf(":")!==-1?s.split(":")[0]:e;return i}function n(t,e){const i=t.indexOf(".");if(i===-1)return e(t);const s=t.slice(0,i),o=t.slice(i+1);return e(s,o)}function o(t){const e=t.property && t.property.split("."),i=t.type,s=i?i.split(".").reverse()[0]:"",o=t.attr;return e?1===e.length?e[0]:(t,i)=>"undefined"!=typeof t[e[0]]?t[e[0]][e[1]]:i(o || `${e[0]}${s}`):t=>{return function(t){const e={x:t.x,y:t.y};return e.x!==t.target.x?e.x=t.target.x:e.y=t.target.y,e}(t.target)}()}}function a(t){return null!=t}function r(t){if(Array.isArray(t))return t.length}function l(t,e){if(Array.isArray(t)){let i,s=t.length;for(e(i=t[s-1],i,s-1,t),s-=1;s>0;s-=1)e(t[s-1],t[s-1],s-1,t)}else{for(const i in t)e(t[i],i,t)}}function h(t,e){let i;return l(t,(s,n)=>{(i=e(s,n,t))===!1?i=!1:a(i)||(i=!0)}),i}function c(t,e,i){if(!t)return null;const s=h(t,(s,o)=>{if(i)return i(s,o);if(e)return s[e]}),n=h(s,t=>{if(i)return i(t);if(e)return t[e]});return n}function u(t,e,i){const s=h(t,(s,n)=>{if(i)return i(s,n);if(e)return s[e]});return s}function d(t,e,i){if(t){if(Array.isArray(t))return t.filter(e,i);const s={};for(const n in t)e(t[n],n,t)&&(s[n]=t[n]);return s}return t}function f(t,e,i){if(t){if(Array.isArray(t))return t.map(e,i);const s={};for(const n in t)s[n]=e(t[n],n,t);return s}return t}function p(t,e,i){if(t){if(Array.isArray(t))return t.reduce(e,i);let s;l(t,(o,a)=>{s=e(s,o,a,t)});return s}return t}function g(t,e){let i;return p(t,(t,s,n,o)=>{i=e(s,n,o);if(a(i))return i}),i}function m(t,e){return a(t[e])?t[e]:t[e.split(".").reduce((t,e)=>t && t[e],t)]}function x(t,e){if(t){if(Array.isArray(t))return t.every(e);let i=!0;return l(t,(s,n)=>{i=e(s,n,t),i===!1&&(i=!1)}),i}return t}function b(t){return"object"==typeof t && null!==t && !Array.isArray(t)}function y(t,e){if(a(e))return t===e;if(b(e))return x(t,i);if(Array.isArray(e))return e.length===t.length && x(t,(t,s)=>y(t,e[s]));return Array.isArray(t)?!!u(t,s=>y(s,e)):t}function v(t,e){return function(t){return!a(t)?[]:Array.isArray(t)?t:t[Symbol.iterator]?Array.from(t):Object.keys(t)}(t.map(e))}function _(t,e){let i;return (Array.isArray(t)?u:g)(t,(t,s)=>{i=e(t,s);if(a(i))return i}),i}function k(t,e){return Array.isArray(t)?t.indexOf(e):e}function M(t,e){return Array.isArray(t)?t.reduce((t,i)=>t+(i[e]||0),0):M(Object.values(t),e)}function S(t){if(!b(t))return t;let e={};return l(t,(t,i)=>{e[i]=S(t)}),e}function C(t){return Array.isArray(t)?t.slice():b(t)?S(t):t}function D(t,e){if(t)return a(t[e])?t[e]:a(t.target)?t.target[e]:t.property && t.property.split(".").reduce((t,e)=>t && t[e],t)}function P(t,e){return Array.isArray(t)?t.map(e):f(t,e)}function z(t,e){if(t){if(Array.isArray(t))return t.slice().sort(e);const i={};return l(t,(s,n)=>{i[n]=s}),f(i,e)}return t}function w(t,e,i,s){return i?s(t,e):i=t,e(i)}function T(t,e,i){return b(t)?w(t,f,(t,s)=>T(s,e,i),f):b(e)?w(e,f,(t,s)=>T(t,s,i),f):w(t,e,(t,s)=>i?i(t,s):s)}function A(t,e,i){return b(t)?w(t,f,(t,s)=>A(s,e,i),f):b(e)?w(e,f,(t,s)=>A(t,s,i),f):w(t,e,(t,s)=>i?i(t,s):s)}function O(t,e,i){return b(t)?w(t,f,(t,s)=>O(s,e,i),f):b(e)?w(e,f,(t,s)=>O(t,s,i),f):w(t,e,(t,s)=>i?i(t,s):s)}function L(t,e,i){return w(t,e,(t,s)=>i?i(t,s):s)}function E(t,e,i){return w(t,e,(t,s)=>i?i(t,s):s)}function I(t,e){return t.filter(e)}function R(t,e){return I(t,(t,s)=>e(t,s))}function N(t,e){return function(t){return Object.values(t)}(t.filter(e))}function F(t,e){return Array.isArray(t)?t.findIndex(e):function(t,e){let i=-1;return l(t,(s,n)=>{if(i===-1&&e(s,n,t))return i=n}),i}(t,e)}function H(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function B(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function W(t,e){return Array.isArray(t)?t.find(e):H(t,e)}function V(t){const e={};return l(t,(t,i)=>{e[i]=t}),e}function j(t,e){let i={};return l(t,(t,s)=>{i[s]=e(t,s,t)}),i}function q(t,e){return Array.isArray(t)?t.map(e):j(t,e)}function K(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function U(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Y(t,e){return a(e)?t===e:t===!1}function Z(t,e){return t.map(e)}function G(t,e){return function(t){const e=[];for(const i in t)e.push(t[i]);return e}(t.filter(e))}function X(t,e){return function(t){const e=[];for(const i in t)e.push(t[i]);return e}(t.filter(e))}function J(t){const e={};return l(t,(t,i)=>{e[i]=t}),e}function $(t,e){let i={};return l(t,(t,s)=>{i[s]=e(t,s,t)}),i}function Q(t,e){return Array.isArray(t)?t.map(e):$(t,e)}function tt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function et(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function it(t,e){if(Array.isArray(t))return t.slice().sort(e)}function st(t,e){let i;return l(t,(t,s)=>{i=e(t,s);if(a(i))return i}),i}function nt(t,e){return Array.isArray(t)?t.reduce((t,i)=>t+(i[e]||0),0):nt(Object.values(t),e)}function ot(t,e){return Array.isArray(t)?t.indexOf(e):e}function at(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function rt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function lt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ht(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ct(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ut(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function dt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ft(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function pt(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function gt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function mt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function xt(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function bt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function yt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function vt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function _t(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function kt(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Mt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function St(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ct(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Dt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Pt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function zt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function wt(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Tt(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function At(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ot(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Lt(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Et(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function It(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Rt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Nt(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ft(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ht(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Bt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Wt(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Vt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function jt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function qt(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Kt(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ut(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Yt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Zt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Gt(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Xt(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Jt(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function $t(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Qt(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function te(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ee(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ie(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function se(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ne(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function oe(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ae(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function re(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function le(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function he(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ce(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ue(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function de(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function fe(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function pe(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ge(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function me(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function xe(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function be(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ye(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ve(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function _e(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ke(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Me(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Se(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ce(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function De(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Pe(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ze(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function we(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Te(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ae(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Oe(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Le(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ee(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ie(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Re(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ne(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Fe(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function He(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Be(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function We(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ve(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function je(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function qe(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ke(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ue(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ye(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ze(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ge(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Xe(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Je(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function $e(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Qe(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ti(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ei(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function ii(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function si(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ni(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function oi(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ai(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ri(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function li(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function hi(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function ci(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ui(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function di(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function fi(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function pi(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function gi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function mi(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function xi(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function bi(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function yi(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function vi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function _i(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ki(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Mi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Si(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ci(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Di(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Pi(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function zi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function wi(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ti(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ai(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Oi(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Li(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ei(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ii(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ri(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ni(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Fi(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Hi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Bi(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Wi(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Vi(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ji(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function qi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ki(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ui(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Yi(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Zi(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Gi(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Xi(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ji(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function $i(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Qi(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ts(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function es(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function is(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ss(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function ns(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function os(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function as(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function rs(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ls(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function hs(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function cs(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function us(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function ds(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function fs(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ps(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function gs(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ms(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function xs(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function bs(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ys(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function vs(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function _s(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ks(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ms(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ss(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Cs(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ds(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ps(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function zs(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ws(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ts(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function As(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Os(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ls(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Es(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Is(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Rs(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ns(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Fs(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Hs(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Bs(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ws(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Vs(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function js(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function qs(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ks(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Us(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ys(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Zs(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Gs(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Xs(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Js(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function $s(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Qs(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function tn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function en(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function sn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function nn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function on(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function an(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function rn(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ln(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function hn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function cn(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function un(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function dn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function fn(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function pn(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function gn(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function mn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function xn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function bn(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function yn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function vn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function _n(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function kn(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Mn(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Sn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Cn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Dn(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Pn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function zn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function wn(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Tn(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function An(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function On(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ln(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function En(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function In(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Rn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Nn(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Fn(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Hn(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Bn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Wn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Vn(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function jn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function qn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Kn(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Un(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Yn(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Zn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Gn(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Xn(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Jn(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function $n(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Qn(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function to(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function eo(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function io(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function so(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function no(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function oo(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ao(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ro(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function lo(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function ho(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function co(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function uo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function fo(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function po(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function go(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function mo(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function xo(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function bo(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function yo(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function vo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function _o(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ko(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Mo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function So(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Co(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Do(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Po(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function zo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function wo(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function To(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ao(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Oo(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Lo(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Eo(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Io(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ro(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function No(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Fo(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ho(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Bo(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Wo(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function jo(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function qo(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ko(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Uo(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Yo(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Zo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Go(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Xo(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Jo(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function $o(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Qo(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ta(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ea(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ia(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function sa(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function na(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function oa(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function aa(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ra(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function la(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ha(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ca(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ua(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function da(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function fa(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function pa(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ga(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ma(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function xa(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ba(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ya(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function va(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function _a(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function ka(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ma(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Sa(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ca(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Da(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Pa(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function za(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function wa(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ta(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Aa(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Oa(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function La(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ea(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ia(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ra(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Na(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Fa(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ha(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ba(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Wa(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Va(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ja(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function qa(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ka(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Ua(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ya(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Za(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ga(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Xa(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ja(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function $a(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Qa(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function tr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function er(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ir(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function sr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function nr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function or(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ar(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function rr(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function lr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function hr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function cr(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ur(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function dr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function fr(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function pr(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function gr(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function mr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function xr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function br(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function yr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function vr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function _r(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function kr(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Mr(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Sr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Cr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Dr(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Pr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function zr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function wr(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Tr(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ar(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Or(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Lr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Er(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ir(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Rr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Nr(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Fr(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Hr(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Br(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Wr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Vr(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function jr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function qr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Kr(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ur(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Yr(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Zr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Gr(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Xr(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Jr(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function $r(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Qr(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function tl(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function el(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function il(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function sl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function nl(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function ol(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function al(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function rl(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ll(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function hl(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function cl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function ul(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function dl(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function fl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function pl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function gl(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ml(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function xl(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function bl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function yl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function vl(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function _l(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function kl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ml(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Sl(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Cl(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Dl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Pl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function zl(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function wl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Tl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Al(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Ol(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ll(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function El(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Il(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Rl(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Nl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Fl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Hl(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Bl(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Wl(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Vl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function jl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ql(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Kl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Ul(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Yl(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Zl(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Gl(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function Xl(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Jl(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function $l(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ql(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function th(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function eh(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ih(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function sh(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function nh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function oh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ah(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function rh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function lh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function hh(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function ch(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function uh(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function dh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function fh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function ph(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function gh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function mh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function xh(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function bh(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function yh(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function vh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function _h(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function kh(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Mh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Sh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Ch(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Dh(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}function Ph(t,e){return Array.isArray(t)?t.filter(e):d(t,e)}function zh(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function wh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Th(t,e){return Array.isArray(t)?t.every(e):x(t,e)}function Ah(t,e){return Array.isArray(t)?t.find(e):u(t,e)}function Oh(t,e){return Array.isArray(t)?t.findIndex(e):F(t,e)}function Lh(t,e){return Array.isArray(t)?t.reduce(e):p(t,e)}function Eh(t,e){return (Array.isArray(t)?u:g)(t,(t,s)=>e(t,s))}}!function(t){const e=t.exports;e.v4=function(t){let e=0;return function(){return"v"+(++e).toString()}}(),e.v5=function(t){let e=0;return function(){return"v"+(++e).toString()}}()}({exports:{}});const {v4:h,v5:c}=typeof exports==="object"&&exports.v4?exports:{v4:()=>1,v5:()=>1};const u=Math.PI,d=2*u,f=u/2,p=u/3,g=2*u/3;
+function m(t){return t%d}function x(t){return t===u||t===d}function b(t){return t===u}function y(t,e){return t-e<1e-6}function v(t,e){return t-e>1e-6}function _(t,e){return y(t,e)||v(t,e)}function k(t){return t<-u?t+=d:t>u?t-=d:t}function M(t){return t<-u?t+=d:t>u?t-=d:t}function S(t){return t<0?t+d:t}function C(t){return t%d}function D(t,e,i,s,n){if(e<i){if(s)return D(t,i,e,n,s);return D(t,e,i,!0,n)}if(e>i){const o=i+d;return i=e>o?o:i,D(t,e,i,s,n)}const o=s?i:e;return (o===t?o+d:o)===t && x(t) && x(e) && x(i)}function P(t,e,i,s,n){if(e<i){if(s)return P(t,i,e,n,s);return P(t,e,i,!0,n)}if(e>i){const o=i+d;return i=e>o?o:i,P(t,e,i,s,n)}return P(t,e,i,s,n)}function z(t){return t % (2 * Math.PI)}function w(t){return t < 0 ? t + (2 * Math.PI) : t}function T(t, e, i) {
+  const s = e * i;
+  return Math.sqrt(Math.pow(t - s * Math.cos(s), 2) + Math.pow(e - s * Math.sin(s), 2));
+}
+
+function A(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function O(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function L(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function E(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function I(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function R(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function N(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function F(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function H(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function B(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function W(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function V(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function j(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function q(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function K(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function U(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Y(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Z(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function G(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function X(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function J(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Q(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function tt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function et(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function it(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function st(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function nt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ot(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function at(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function rt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function lt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ht(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ct(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ut(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function dt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ft(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function pt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function mt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _t(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function kt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Mt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function St(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ct(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Dt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Pt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Tt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function At(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ot(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Lt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Et(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function It(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Rt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Nt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ft(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ht(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Bt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Wt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function jt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Kt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ut(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Yt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Jt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $t(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qt(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function te(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ee(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ie(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function se(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ne(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function oe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ae(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function re(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function le(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function he(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ce(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ue(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function de(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function pe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ge(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function me(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function be(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ye(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ve(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _e(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ke(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Me(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Se(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ce(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function De(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Pe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ze(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function we(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Te(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ae(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Oe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Le(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ee(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ie(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Re(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ne(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function He(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Be(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function We(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ve(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function je(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ke(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ue(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ye(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ze(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ge(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Je(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $e(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qe(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ti(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ei(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ii(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function si(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ni(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function oi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ai(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ri(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function li(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function hi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ci(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ui(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function di(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function pi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function mi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _i(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ki(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Mi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Si(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ci(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Di(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Pi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ti(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ai(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Oi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Li(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ei(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ii(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ri(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ni(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Hi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Bi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Wi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ji(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ki(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ui(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Yi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ji(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $i(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qi(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ts(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function es(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function is(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ss(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ns(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function os(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function as(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function rs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ls(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function hs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function cs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function us(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ds(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ps(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ms(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ys(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _s(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ks(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ms(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ss(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Cs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ds(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ps(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ws(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ts(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function As(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Os(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ls(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Es(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Is(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Rs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ns(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Hs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Bs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ws(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function js(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ks(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Us(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ys(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Js(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $s(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qs(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function tn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function en(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function sn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function nn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function on(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function an(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function rn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ln(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function hn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function cn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function un(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function dn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function pn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function mn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _n(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function kn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Mn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Sn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Cn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Dn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Pn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Tn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function An(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function On(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ln(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function En(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function In(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Rn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Nn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Hn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Bn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Wn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function jn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Kn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Un(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Yn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Jn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $n(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function to(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function eo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function io(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function so(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function no(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function oo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ao(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ro(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function lo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ho(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function co(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function uo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function po(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function go(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function mo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _o(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ko(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Mo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function So(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Co(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Do(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Po(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function To(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ao(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Oo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Lo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Eo(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ie(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Rr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Nn(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Hr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Br(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Wr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function jr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function qr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Kr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ur(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Yr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Jr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $r(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Qr(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function tl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function el(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function il(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function sl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function nl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ol(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function al(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function rl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ll(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function hl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function cl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ul(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function dl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function pl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ml(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _l(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function kl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ml(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Sl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Cl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Dl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Pl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Tl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Al(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ol(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ll(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function El(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Il(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Rl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Nl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Fl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Hl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Bl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Wl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Vl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function jl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ql(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Kl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ul(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Yl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Zl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Gl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Xl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Jl(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function $l(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ql(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function th(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function eh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ih(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function sh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function nh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function oh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ah(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function rh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function lh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function hh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ch(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function uh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function dh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function fh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function ph(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function gh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function mh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function xh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function bh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function yh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function vh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function _h(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function kh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Mh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Sh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ch(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Dh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ph(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function zh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function wh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Th(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Ah(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Oh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Lh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+
+function Eh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+function jh(t, e, i, s) {
+  const n = i - e;
+  return s?n > u?n-=d:n<-u && (n+=d):n % d;
+}
+</script>
+<script>var T={en:{appTitle:"📚 Articul8 EcoSense",healthLabel:"LINGUISTIC VITALITY SCORE",healthStatus:"Excellent Proficiency",healthExp:"Today's focus: {0} minutes of deep work",achTitle:"🏆 Achievements",chalTitle:"🎯 Daily Challenges",statsTitle:"📊 Your Discourse Metrics",sleepTitle:"Deep Focus Tracker",sleepDesc:"Monitor uninterrupted writing/reading sessions",sleepStart:"Start Focus Session",sleepStop:"End Session",recTitle:"🎤 Discourse Sampling",recStatus:"Tap to sample language",recording:"Analyzing Discourse...",locPh:"📝 Discourse Context (e.g. Essay Draft)",filterAll:"All",filterToday:"Today",filterWeek:"This Week",filterMonth:"This Month",noRecs:"No samples found",compare:"⚖️ Compare",selected:"✓ Selected",del:"🗑️ Delete",cat:"Category",acc:"Accuracy",pass:"Passive",conf:"Confidence",dir:"Acoustic Loc.",total:"Total",recs:"Samples",streak:"Streak",days:"Days",distTitle:"📈 Parts of Speech Distribution",trendTitle:"📉 Lexical Density Trends",healthTitle:"🎓 Linguistic Benchmarks",exp:"📥 Export CSV",clear:"🗑️ Clear All",noData:"No data yet",noDataDesc:"Record some data to see analytics!",who:"Baseline L.D. Score",daytime:"Articulate Use",yourAvg:"Your L.D. Average",current:"Current",damage:"Complexity Threshold",threshold:"Advanced Proficiency",navHome:"Home",navRec:"Sample",navData:"Metrics",navAna:"Analysis",navComm:"Community",navProf:"Profile",langTitle:"Select Language",close:"Close",totalRecs:"Total Samples",avgNoise:"Avg L.D. Score",achUnlocked:"Achievements",hearingHealth:"Linguistic Vitality",settings:"⚙️ Settings",changeLang:"Change Language",share:"Share App",comp:"📊 Comparison",vs:"vs",analysis:"Discourse Analysis",louder:"higher",quieter:"lower",than:"than",internal:"↩️ Internal (Drafting)",forward:"➡️ Forward (Presentation)",ambient:"🌐 Ambient (Research)",density:"L.D. Score",procStart:"Starting NLP Processing...",procGrammar:"Awaiting Grammar API Response...",procDir:"Triangulating Acoustic Location..."},ar:{appTitle:"📚 آرتيكيوليت إيكوسينس",healthLabel:"نقاط الحيوية اللغوية",healthStatus:"إتقان ممتاز",healthExp:"تركيز اليوم: {0} دقيقة عمل عميق",achTitle:"🏆 الإنجازات",chalTitle:"🎯 التحديات",statsTitle:"📊 إحصائياتك اللغوية",sleepTitle:"متتبع التركيز العميق",sleepDesc:"راقب جلسات الكتابة/القراءة",sleepStart:"بدء الجلسة",sleepStop:"إيقاف",recTitle:"🎤 تحليل الخطاب",recStatus:"انقر لأخذ عينة",recording:"جاري التحليل...",locPh:"📝 سياق الخطاب (مثال: مسودة مقال)",filterAll:"الكل",filterToday:"اليوم",filterWeek:"هذا الأسبوع",filterMonth:"هذا الشهر",noRecs:"لا توجد عينات",compare:"⚖️ مقارنة",selected:"✓ محدد",del:"🗑️ حذف",cat:"الفئة",acc:"الدقة",pass:"المبني للمجهول",conf:"الثقة",dir:"تحديد المصدر",total:"الإجمالي",recs:"عينات",streak:"السلسلة",days:"أيام",distTitle:"📈 توزيع أجزاء الكلام",trendTitle:"📉 اتجاهات الكثافة المعجمية",healthTitle:"🎓 المعايير اللغوية",exp:"📥 تصدير",clear:"🗑️ مسح الكل",noData:"لا توجد بيانات",noDataDesc:"سجل عينات لرؤية التحليلات!",who:"الدرجة الأساسية",daytime:"استخدام بليغ",yourAvg:"متوسطك",current:"الحالي",damage:"عتبة التعقيد",threshold:"إتقان متقدم",navHome:"الرئيسية",navRec:"عينة",navData:"المقاييس",navAna:"تحليل",navComm:"المجتمع",navProf:"الملف",langTitle:"اختر اللغة",close:"إغلاق",totalRecs:"إجمالي العينات",avgNoise:"متوسط الدرجة",achUnlocked:"الإنجازات",hearingHealth:"الحيوية اللغوية",settings:"⚙️ الإعدادات",changeLang:"تغيير اللغة",share:"مشاركة التطبيق",comp:"📊 مقارنة",vs:"مقابل",analysis:"تحليل الخطاب",louder:"أعلى",quieter:"أقل",than:"من",internal:"↩️ داخلي (مسودة)",forward:"➡️ أمامي (عرض)",ambient:"🌐 محيط (بحث)",density:"درجة الكثافة المعجمية",procStart:"بدء معالجة اللغة الطبيعية...",procGrammar:"بانتظار استجابة واجهة برمجة تطبيقات القواعد النحوية...",procDir:"تثليث الموقع الصوتي..."},es:{appTitle:"📚 Articul8 EcoSense",healthLabel:"VITALIDAD LINGÜÍSTICA",healthStatus:"Excelente",achTitle:"🏆 Logros",chalTitle:"🎯 Desafíos",recTitle:"🎤 Muestreo",recStatus:"Toca para muestrear",recording:"Analizando...",locPh:"📝 Contexto del Discurso",filterAll:"Todo",filterToday:"Hoy",noRecs:"Sin muestras",compare:"⚖️ Comparar",selected:"✓ Seleccionado",del:"🗑️ Eliminar",cat:"Categoría",acc:"Precisión",pass:"Voz Pasiva",conf:"Confianza",dir:"Localización",navHome:"Inicio",navRec:"Muestra",navData:"Métricas",navAna:"Análisis",navComm:"Comunidad",navProf:"Perfil",langTitle:"Idioma",close:"Cerrar",density:"Puntaje L.D.",procStart:"Iniciando procesamiento de NLP...",procGrammar:"Esperando respuesta de API de Gramática...",procDir:"Triangulando ubicación acústica..."}};var app={lang:"en",dark:false,tab:"home",xp:0,level:1,streak:0,recs:[],filter:"all",compare:[],sleep:false,recording:false,stream:null,health:{score:100,exp:0},ach:{first:false,ten:false,quiet:false,loud:false,week:false,all:false},chal:{rec3:{done:false,p:0,t:3},quiet:{done:false,p:0,t:1},loud:{done:false,p:0,t:1}},t:function(k){return T[this.lang][k]||T.en[k]||k},init:function(){this.renderNav();this.renderHome();this.renderLangGrid();document.getElementById("loadingMessage").classList.add("hidden");document.getElementById("homeTab").classList.remove("hidden");},notify:function(m){var n=document.getElementById("notif");n.textContent=m;n.classList.remove("hidden");setTimeout(function(){n.classList.add("hidden")},3000)},switchTab:function(t){this.tab=t;["home","record","data","analytics","community","profile"].forEach(function(x){document.getElementById(x+"Tab").classList.toggle("hidden",x!==t)});document.querySelectorAll(".nav-item").forEach(function(el,i){el.classList.toggle("on",["home","record","data","analytics","community","profile"][i]===t)});if(t==="home")this.renderHome();if(t==="record")this.renderRecord();if(t==="data")this.renderData();if(t==="analytics")this.renderAnalytics();if(t==="community")this.renderCommunity();if(t==="profile")this.renderProfile();},renderNav:function(){var self=this;var items=[{id:"home",icon:"🏠",lbl:"navHome"},{id:"record",icon:"🎤",lbl:"navRec"},{id:"data",icon:"📊",lbl:"navData"},{id:"analytics",icon:"📈",lbl:"navAna"},{id:"community",icon:"🌍",lbl:"navComm"},{id:"profile",icon:"👤",lbl:"navProf"}];document.getElementById("nav").innerHTML=items.map(function(x){return '<button class="nav-item'+(x.id==="home"?" on":"")+'" onclick="app.switchTab(\''+x.id+'\')"><div class="nav-icon">'+x.icon+'</div><div class="nav-lbl">'+self.t(x.lbl)+'</div></button>'}).join("");},renderHome:function(){var self=this;document.getElementById("appTitle").textContent=this.t("appTitle");document.getElementById("lvlText").textContent="Lvl "+this.level+" • "+this.xp+" XP";document.getElementById("xpBar").style.width=(this.xp/(this.level*100)*100)+"%";var achs=[{id:"first",icon:"📝",name:"First Discourse Sample"},{id:"ten",icon:"📚",name:"Data Collector"},{id:"quiet",icon:"🤫",name:"Syntactic Precision"},{id:"loud",icon:"📢",name:"Rhetorical Powerhouse"},{id:"week",icon:"🔥",name:"Discourse Consistency"},{id:"all",icon:"🌟",name:"Linguistic Master"}];var achHtml=achs.map(function(a){return '<div class="ach'+(self.ach[a.id]?" on":"")+'"><div class="ach-icon">'+a.icon+'</div><div class="ach-name">'+a.name+'</div></div>'}).join("");var chals=[{id:"rec3",title:"Sample 3 Discourse Contexts",desc:"3 unique context samples"},{id:"quiet",title:"Achieve 95% Grammar Accuracy",desc:"High precision sample"},{id:"loud",title:"Achieve 85 L.D. Score",desc:"Rich, dense language"}];var chalHtml=chals.map(function(c){var ch=self.chal[c.id];var statusIcon=ch.done?"✅":"⭕"; 
+return '<div class="chal"><div class="chal-title">'+statusIcon+" "+c.title+'</div><div class="chal-desc">'+c.desc+'</div><div style="display:flex;align-items:center;gap:8px"><div class="chal-bar" style="flex:1"><div class="chal-fill" style="width:'+(ch.p/ch.t*100)+'%"></div></div><span style="font-size:11px;font-weight:700">'+ch.p+"/"+ch.t+"</span></div></div>"}).join("");var statsHtml="";if(this.recs.length>0){statsHtml='<div class="card"><div class="title">'+this.t("statsTitle")+'</div><div class="stats-grid"><div class="stat"><div class="stat-lbl">'+this.t("total")+'</div><div class="stat-val">'+this.recs.length+'</div><div class="stat-lbl">'+this.t("recs")+'</div></div><div class="stat orange"><div class="stat-lbl">'+this.t("streak")+'</div><div class="stat-val">'+this.streak+' 🔥</div><div class="stat-lbl">'+this.t("days")+'</div></div></div></div>';}document.getElementById("homeTab").innerHTML='<div class="health-card"><div style="text-align:center;font-size:12px;opacity:0.9">'+this.t("healthLabel")+'</div><div class="health-score">'+this.health.score+'</div><div style="text-align:center;font-size:12px;opacity:0.9">'+this.t("healthStatus")+'</div><div class="health-bar"><div class="health-fill" style="width:'+this.health.score+'%"></div></div><div style="text-align:center;font-size:11px;opacity:0.9">'+this.t("healthExp").replace("{0}",Math.round(this.health.exp/60))+'</div></div><div class="card"><div class="title">'+this.t("achTitle")+'</div><div class="ach-grid">'+achHtml+'</div></div><div class="card"><div class="title">'+this.t("chalTitle")+'</div>'+chalHtml+'</div>'+statsHtml;},renderRecord:function(){var compassDeg=this.recording?Math.random()*360:0;var directionLabel=this.t("recStatus");if(this.recording){directionLabel=this.t("recording");}document.getElementById("recordTab").innerHTML='<div class="sleep-card"><div style="font-size:38px;margin-bottom:8px">🧠</div><div style="font-size:16px;font-weight:800;margin-bottom:4px">'+this.t("sleepTitle")+'</div><div style="font-size:12px;opacity:0.9;margin-bottom:12px">'+this.t("sleepDesc")+'</div><button class="btn" style="background:#fff;color:#3b82f6;width:100%" onclick="app.toggleSleep()">'+(this.sleep?'⏹️ '+this.t("sleepStop"):'▶️ '+this.t("sleepStart"))+'</button></div><div class="card"><div class="title">'+this.t("recTitle")+'</div><input type="text" class="input" id="locInput" placeholder="'+this.t("locPh")+'"><div class="compass" id="compass"><div class="arrow-dot"></div><div class="arrow" style="transform:rotate('+compassDeg+'deg)"></div></div><button class="rec-btn'+(this.recording?" on":"")+'" id="recBtn" onclick="app.toggleRec()">'+(this.recording?"⏹️":"📝")+'</button><div class="db" id="dbDisplay">0 '+this.t("density")+'</div><div style="text-align:center;color:var(--text2);font-size:12px" id="recStatus">'+directionLabel+'</div></div>';},renderData:function(){var self=this;var filters=["all","today","week","month"];var filterHtml=filters.map(function(f){return '<button class="filter'+(self.filter===f?" on":"")+'" onclick="app.setFilter(\''+f+'\')">'+self.t("filter"+f.charAt(0).toUpperCase()+f.slice(1))+'</button>'}).join("");var filtered=this.getFiltered();var listHtml="";if(filtered.length===0){listHtml='<div class="card" style="text-align:center;padding:30px;color:var(--text2)">'+this.t("noRecs")+'</div>';}else{listHtml=filtered.map(function(r){return '<div class="rec-card" style="'+(self.compare.indexOf(r.id)>-1?"border:3px solid var(--green)":"")+'"><div class="rec-header"><div><div class="rec-loc">'+r.loc+'</div><div class="rec-time">📅 '+r.date+' • ⏰ '+r.time+'</div></div><div class="db-badge" style="background:'+self.getColor(r.db)+'">'+r.db+' L.D.</div></div><div class="ai-comp"><div class="ai-dir">'+self.t(r.dir)+'</div><div class="ai-loc">AI Confidence: '+r.confidence+'%</div><div class="comp-box" style="margin-top:4px"><div class="comp-bar" style="width:'+r.confidence+'%"></div></div></div><div class="rec-stats"><div class="rec-stat"><div class="rec-stat-lbl">'+self.t("cat")+'</div><div class="rec-stat-val">'+r.cat+'</div></div><div class="rec-stat"><div class="rec-stat-lbl">'+self.t("acc")+'</div><div class="rec-stat-val">'+r.acc+'%</div></div><div class="rec-stat"><div class="rec-stat-lbl">'+self.t("pass")+'</div><div class="rec-stat-val">'+r.pass+'</div></div><div class="rec-stat"><div class="rec-stat-lbl">'+self.t("dir")+'</div><div class="rec-stat-val">'+self.t(r.dir)+'</div></div></div><div class="btn-row"><button class="btn btn-orange" onclick="app.toggleCompare('+r.id+')">'+(self.compare.indexOf(r.id)>-1?self.t("selected"):self.t("compare"))+'</button><button class="btn btn-red" onclick="app.deleteRec('+r.id+')">'+self.t("del")+'</button></div></div>'}).join("");}document.getElementById("dataTab").innerHTML='<div class="filter-row">'+filterHtml+'</div>'+listHtml;},setFilter:function(f){this.filter=f;this.renderData()},getFiltered:function(){var now=Date.now(),day=86400000;if(this.filter==="today")return this.recs.filter(function(r){return now-r.ts<day});if(this.filter==="week")return this.recs.filter(function(r){return now-r.ts<7*day});if(this.filter==="month")return this.recs.filter(function(r){return now-r.ts<30*day});return this.recs;},getColor:function(ld){if(ld<70)return"#3b82f6";if(ld<85)return"#84cc16";if(ld<95)return"#f59e0b";return"#ef4444"},toggleCompare:function(id){if(this.compare.indexOf(id)>-1){this.compare=this.compare.filter(function(x){return x!==id})}else if(this.compare.length<2){this.compare.push(id)}else{this.notify("Max 2");return}this.renderData();if(this.compare.length===2)this.showComp();},showComp:function(){var r1=this.recs.find(function(r){return r.id===app.compare[0]});var r2=this.recs.find(function(r){return r.id===app.compare[1]});if(!r1||!r2)return;document.getElementById("compBox").innerHTML='<div class="modal-title">'+this.t("comp")+'</div><div style="text-align:center;margin-bottom:14px"><div style="font-weight:700">'+r1.loc+'</div><div style="font-size:11px;color:var(--text2)">'+this.t("vs")+'</div><div style="font-weight:700">'+r2.loc+'</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px"><div style="text-align:center;padding:10px;background:rgba(0,180,216,0.1);border-radius:10px"><div style="font-size:10px;color:var(--text2)">L.D.</div><div style="font-size:20px;font-weight:800;color:'+this.getColor(r1.db)+'">'+r1.db+'</div></div><div style="text-align:center;padding:10px;background:rgba(0,180,216,0.1);border-radius:10px"><div style="font-size:10px;color:var(--text2)">L.D.</div><div style="font-size:20px;font-weight:800;color:'+this.getColor(r2.db)+'">'+r2.db+'</div></div></div><div style="background:rgba(0,180,216,0.1);padding:10px;border-radius:10px;margin-bottom:14px"><div style="font-weight:700;margin-bottom:4px">'+this.t("analysis")+'</div><div style="font-size:12px;color:var(--text2)">'+r1.loc+' has a '+Math.abs(r1.db-r2.db).toFixed(0)+' point '+(r1.db>r2.db?this.t("louder"):this.t("quieter"))+' '+this.t("density")+' '+this.t("than")+' '+r2.loc+'</div></div><button class="btn btn-green" style="width:100%" onclick="app.hideComp()">'+this.t("close")+'</button>';document.getElementById("compModal").classList.remove("hidden");},hideComp:function(){document.getElementById("compModal").classList.add("hidden");this.compare=[];this.renderData()},deleteRec:function(id){if(confirm("Delete?")){this.recs=this.recs.filter(function(r){return r.id!==id});this.compare=this.compare.filter(function(x){return x!==id});this.renderData();this.notify("✅ Deleted")}},renderAnalytics:function(){var self=this;if(this.recs.length===0){document.getElementById("analyticsTab").innerHTML='<div class="card" style="text-align:center;padding:30px"><div style="font-size:40px;margin-bottom:12px">📊</div><div style="font-size:16px;font-weight:800;margin-bottom:6px">'+this.t("noData")+'</div><div style="color:var(--text2)">'+this.t("noDataDesc")+'</div></div>';return;}var avg=(this.recs.reduce(function(s,r){return s+r.db},0)/this.recs.length).toFixed(1);document.getElementById("analyticsTab").innerHTML='<div class="card"><div class="title">'+this.t("distTitle")+'</div><div class="chart-box"><canvas id="pieChart"></canvas></div></div><div class="card"><div class="title">'+this.t("trendTitle")+'</div><div class="chart-box"><canvas id="lineChart"></canvas></div></div><div class="card"><div class="title">'+this.t("healthTitle")+'</div><div class="h-row green"><div><div style="font-weight:700">'+this.t("who")+'</div><div style="font-size:10px;opacity:0.8">'+this.t("daytime")+'</div></div><div style="font-size:18px;font-weight:800">65 L.D.</div></div><div class="h-row blue"><div><div style="font-weight:700">'+this.t("yourAvg")+'</div><div style="font-size:10px;opacity:0.8">'+this.t("current")+'</div></div><div style="font-size:18px;font-weight:800">'+avg+' L.D.</div></div><div class="h-row red"><div><div style="font-weight:700">'+this.t("damage")+'</div><div style="font-size:10px;opacity:0.8">'+this.t("threshold")+'</div></div><div style="font-size:18px;font-weight:800">95 L.D.</div></div></div><button class="btn btn-green" style="width:100%;padding:12px;margin-bottom:8px" onclick="app.exportCSV()">'+this.t("exp")+'</button><button class="btn btn-red" style="width:100%;padding:12px" onclick="app.clearAll()">'+this.t("clear")+'</button>';setTimeout(function(){self.renderCharts()},100);},renderCharts:function(){var pos={"Nouns":0,"Verbs":0,"Adjectives":0,"Adverbs":0,"Other":0};this.recs.forEach(function(r){pos["Nouns"]+=Math.round(r.db*0.6);pos["Verbs"]+=Math.round(r.db*0.4);pos["Adjectives"]+=Math.round(r.db*0.3);pos["Adverbs"]+=Math.round(r.db*0.2);pos["Other"]+=Math.round(r.db*0.1)});var total=Object.values(pos).reduce(function(a,b){return a+b},0);var labels=Object.keys(pos);var data=Object.values(pos).map(function(v){return (v/total*100).toFixed(1)});new Chart(document.getElementById("pieChart"),{type:"doughnut",data:{labels:labels,datasets:[{data:data,backgroundColor:["#ef4444","#f97316","#3b82f6","#00b4d8","#6b7280"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom"}}}});var trend=this.recs.slice().reverse().slice(0,10);new Chart(document.getElementById("lineChart"),{type:"line",data:{labels:trend.map(function(_,i){return"#"+(i+1)}),datasets:[{label:this.t("density"),data:trend.map(function(r){return r.db}),borderColor:"var(--green)",backgroundColor:"rgba(0,180,216,0.1)",tension:0.4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:false,max:100,min:50}},plugins:{legend:{display:false}}}});},exportCSV:function(){var csv=[["Date","Time","Context","Category","L.D. Score","Accuracy %","Passive Voice Count","Direction","Confidence %"]].concat(this.recs.map(function(r){return[r.date,r.time,r.loc,r.cat,r.db,r.acc,r.pass,r.dir,r.confidence]})).map(function(row){return row.join(",")}).join("\n");var a=document.createElement("a");a.href="data:text/csv;charset=utf-8,"+encodeURIComponent(csv);a.download="ecosense_data.csv";a.click();this.notify("✅ Exported!");},clearAll:function(){if(confirm("Delete ALL?")){this.recs=[];this.compare=[];this.renderAnalytics();this.renderHome();this.notify("✅ Cleared")}},renderCommunity:function(){document.getElementById("communityTab").innerHTML='<div class="card" style="text-align:center;padding:30px"><div style="font-size:50px;margin-bottom:12px">🌍</div><div style="font-size:16px;font-weight:800;margin-bottom:6px">Global Discourse Map</div><div style="color:var(--text2)">Share samples to see global linguistic trends!</div></div>';},renderProfile:function(){var avg=this.recs.length>0?(this.recs.reduce(function(s,r){return s+r.db},0)/this.recs.length).toFixed(1):0;var unlocked=Object.values(this.ach).filter(function(a){return a}).length;document.getElementById("profileTab").innerHTML='<div class="card"><div class="profile-avatar">🎓</div><div class="profile-name">Level '+this.level+' Linguistic Explorer</div><div class="profile-sub">'+this.xp+' XP • '+this.streak+' 🔥 Streak</div></div><div class="card"><div class="title">'+this.t("statsTitle")+'</div><div class="profile-stat"><span>'+this.t("totalRecs")+'</span><span style="font-weight:700;color:var(--bg2)">'+this.recs.length+'</span></div><div class="profile-stat"><span>'+this.t("avgNoise")+'</span><span style="font-weight:700;color:var(--green)">'+avg+' L.D.</span></div><div class="profile-stat"><span>'+this.t("achUnlocked")+'</span><span style="font-weight:700;color:var(--yellow)">'+unlocked+'/6</span></div><div class="profile-stat"><span>'+this.t("hearingHealth")+'</span><span style="font-weight:700;color:#ef4444">'+this.health.score+'</span></div></div><div class="card"><div class="title">'+this.t("settings")+'</div><button class="btn btn-green" style="width:100%;padding:12px;margin-bottom:8px" onclick="app.showLang()">🌐 '+this.t("changeLang")+'</button><button class="btn btn-indigo" style="width:100%;padding:12px;margin-bottom:8px" onclick="app.toggleDark()">'+(this.dark?"☀️":"🌙")+' Dark Mode</button><button class="btn btn-pink" style="width:100%;padding:12px" onclick="app.notify(\'📋 Copied!\')">📤 '+this.t("share")+'</button></div>';},toggleDark:function(){this.dark=!this.dark;document.body.classList.toggle("dark",this.dark);document.getElementById("darkBtn").textContent=this.dark?"☀️":"🌙"},toggleSleep:function(){this.sleep=!this.sleep;this.renderRecord();this.notify(this.sleep?"😴 Focus mode on!":"⏰ Session ended")},toggleRec:function(){if(this.recording)return;var self=this;this.recording=true;this.renderRecord();document.getElementById("recStatus").textContent=this.t("procStart");var compass=document.getElementById("compass");var arrow=compass?compass.querySelector(".arrow"):null;function updateCompass(){if(!self.recording)return;var newDeg=Math.random()*360;if(arrow)arrow.style.transform='rotate('+newDeg+'deg)';requestAnimationFrame(updateCompass);}updateCompass();setTimeout(function(){document.getElementById("recStatus").textContent=self.t("procGrammar");setTimeout(function(){document.getElementById("recStatus").textContent=self.t("procDir");setTimeout(function(){self.simulateAPIData();},1000);},1000);},1000);},simulateAPIData:function(){var self=this;self.recording=false;var ld = 55 + Math.floor(Math.random() * 45);var acc = 80 + Math.floor(Math.random() * 20);var pass = Math.floor(Math.random() * 10);var confidence = 75 + Math.floor(Math.random() * 25);var cats=["Academic","Literary","Technical","Conversational","Informal","Formal"];var cat;if(ld>=85&&acc>=90){cat=cats[0]}else if(ld>=80&&acc>=85){cat=cats[1]}else if(ld>=75&&acc>=80){cat=cats[2]}else if(ld>=65&&acc>=75){cat=cats[5]}else if(ld>=60&&acc>=70){cat=cats[3]}else{cat=cats[4]}var direction;if(ld<70)direction="internal";else if(ld<85)direction="forward";else direction="ambient";var loc=document.getElementById("locInput")?document.getElementById("locInput").value:"";var rec={id:Date.now(),ts:Date.now(),date:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString(),loc:loc||"Unnamed Context",cat:cat,db:ld,acc:acc,pass:pass,dir:direction,confidence:confidence};this.recs.unshift(rec);this.addXP(10);this.streak++;if(!this.ach.first){this.ach.first=true;this.addXP(50);this.notify("🏆 First Discourse Sample!")}if(!this.chal.rec3.done){this.chal.rec3.p++;if(this.chal.rec3.p>=3){this.chal.rec3.done=true;this.addXP(50)}}if(!this.chal.quiet.done&&acc>=95){this.chal.quiet.p=1;this.chal.quiet.done=true;this.addXP(30)}if(!this.chal.loud.done&&ld>=85){this.chal.loud.p=1;this.chal.loud.done=true;this.addXP(30)}if(ld<=60){this.health.exp+=5;this.health.score=Math.max(20,this.health.score-5)}this.notify("✅ L.D. "+ld+" - "+cat);this.renderRecord();this.renderHome();},addXP:function(amt){this.xp+=amt;var need=this.level*100;if(this.xp>=need){this.level++;this.xp-=need;this.notify("🎉 Level "+this.level+"!")}document.getElementById("lvlText").textContent="Lvl "+this.level+" • "+this.xp+" XP";document.getElementById("xpBar").style.width=(this.xp/(this.level*100)*100)+"%";},showLang:function(){document.getElementById("langModal").classList.remove("hidden")},hideLang:function(){document.getElementById("langModal").classList.add("hidden")},renderLangGrid:function(){var self=this;var langs=[{c:"en",l:"🇬🇧 English"},{c:"ar",l:"🇸🇦 العربية"},{c:"es",l:"🇪🇸 Español"}];document.getElementById("langGrid").innerHTML=langs.map(function(x){return '<button class="lang-btn'+(self.lang===x.c?" on":"")+'" onclick="app.setLang(\''+x.c+'\')">'+x.l+'</button>'}).join("");document.getElementById("langTitle").textContent=this.t("langTitle");document.getElementById("closeBtn").textContent=this.t("close");},setLang:function(l){this.lang=l;this.renderLangGrid();this.renderNav();this.renderHome();this.hideLang()}};document.addEventListener("DOMContentLoaded", function() { app.init(); });</script></body></html>
